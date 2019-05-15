@@ -10,12 +10,12 @@
                 </a>
                 <ul class="pcoded-submenu">
                     <li>
-                        <a href="{{ route('clientes.create') }}">
+                        <a href="{{ route('clients.create') }}">
                             <span class="pcoded-mtext">Nuevo cliente</span>
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('clientes.index') }}">
+                        <a href="{{ route('clients.index') }}">
                             <span class="pcoded-mtext">Ver clientes</span>
                         </a>
                     </li>
@@ -29,17 +29,17 @@
                 </a>
                 <ul class="pcoded-submenu">
                     <li class="">
-                        <a href="{{ route('formularios.create') }}">
+                        <a href="{{ route('forms.create') }}">
                             <span class="pcoded-mtext">Nuevo préstamo</span>
                         </a>
                     </li>
                     <li class="">
-                        <a href="{{ route('formularios.index') }}">
+                        <a href="{{ route('forms.index') }}">
                             <span class="pcoded-mtext">Mis préstamos pendientes</span>
                         </a>
                     </li>
                     <li class="">
-                        <a href="{{ route('formularios.index') }}">
+                        <a href="{{ route('forms.index') }}">
                             <span class="pcoded-mtext">Mis préstamos otorgados</span>
                         </a>
                     </li>

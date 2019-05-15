@@ -58,28 +58,42 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>Tiger</td>
-                            <td>Nixon</td>
-                            <td>System Architect</td>
-                            <td>Edinburgh</td>
-                            <td>61</td>
-                            <td class="text-right">
-                                <div class="dropdown-primary dropdown open show">
-                                    <button class="btn btn-primary btn-sm dropdown-toggle waves-effect waves-light "
-                                            type="button" id="dropdown-7" data-toggle="dropdown" aria-haspopup="true"
-                                            aria-expanded="true">Opciones
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdown-7" data-dropdown-in="fadeIn"
-                                         data-dropdown-out="fadeOut" x-placement="bottom-start">
-                                        <a class="dropdown-item waves-light waves-effect" href="#">
-                                            <i class="fa fa-edit"></i> Editar</a>
-                                        <a class="dropdown-item waves-light waves-effect" href="#">
-                                            <i class="fa fa-trash"></i> Borrar</a>
+                        @forelse($datas as $client)
+                            <tr>
+                                <td>{{ $client->name }}</td>
+                                <td>{{ $client->last_name }}</td>
+                                <td><b>{{ $client->dniType->type }}:</b> {{ $client->dni }}</td>
+                                <td>{{ $client->address }}</td>
+                                <td><ul>
+                                        <li><b>Tel:</b> {{ $client->phone }}</li>
+                                        <li><b>Cel:</b> {{ $client->cel }}</li>
+                                    </ul>
+                                </td>
+                                <td class="text-right">
+                                    <div class="dropdown-primary dropdown open show">
+                                        <button class="btn btn-primary btn-sm dropdown-toggle waves-effect waves-light "
+                                                type="button" id="dropdown-7" data-toggle="dropdown" aria-haspopup="true"
+                                                aria-expanded="true">Opciones
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdown-7" data-dropdown-in="fadeIn"
+                                             data-dropdown-out="fadeOut" x-placement="bottom-start">
+                                            <a class="dropdown-item waves-light waves-effect" href="{{ route("clients.edit",$client->id) }}">
+                                                <i class="fa fa-edit"></i> Editar</a>
+                                            {{ Form::open(["route" => ["clients.destroy",$client->id],'method' => 'DELETE']) }}
+
+                                                <button class="dropdown-item waves-light waves-effect" type="submit">
+                                                    <i class="fa fa-trash"></i> Borrar</button>
+
+                                            {{ Form::close() }}
+                                        </div>
                                     </div>
-                                </div>
-                            </td>
-                        </tr>
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="6"></td>
+                            </tr>
+                        @endforelse
                         </tbody>
                     </table>
                 </div>
@@ -108,33 +122,5 @@
 
     <script type="text/javascript" src="assets/js/script.js"></script>
 
-    <script>
-        $('.datatable').DataTable({
-            language: {
-                "sProcessing": "Procesando...",
-                "sLengthMenu": "Mostrar _MENU_ registros",
-                "sZeroRecords": "No se encontraron resultados",
-                "sEmptyTable": "Ningún dato disponible en esta tabla",
-                "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-                "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-                "sInfoPostFix": "",
-                "sSearch": "Buscar:",
-                "sUrl": "",
-                "sInfoThousands": ",",
-                "sLoadingRecords": "Cargando...",
-                "oPaginate": {
-                    "sFirst": "Primero",
-                    "sLast": "Último",
-                    "sNext": "Siguiente",
-                    "sPrevious": "Anterior"
-                },
-                "oAria": {
-                    "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
-                    "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-                }
-            },
-            responsive: true
-        })
-    </script>
+
 @endsection

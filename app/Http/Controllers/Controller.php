@@ -36,7 +36,7 @@ class Controller extends BaseController
 
         $this->repo->create($request->all());
 
-        return redirect()->route(config($this->confFile.".viewIndex"))->withErrors('Registro Creado.');
+        return redirect()->route(config($this->confFile.".viewIndex"))->with('ok','Registro Creado.');
     }
 
     public function edit()
@@ -54,29 +54,32 @@ class Controller extends BaseController
 
         $model->fill($request->all());
 
-        //updateables
-        if(config($this->confFile.'.updateable'))
-        {
-            $diffs = array_diff($model->getAttributes(),$model->getOriginal());
-            foreach ($diffs as $diff => $a)
-            {
-                $col = $diff;
-                $model->Updateables()->create(['users_id' => Auth::user()->id, 'column' => $col, 'new_data' => $model->$diff, 'old_data' => $model->getOriginal($diff)]);
-            }
-        }
+//        //updateables
+//        if(config($this->confFile.'.updateable'))
+//        {
+//            $diffs = array_diff($model->getAttributes(),$model->getOriginal());
+//            foreach ($diffs as $diff => $a)
+//            {
+//                $col = $diff;
+//                $model->Updateables()->create(['users_id' => Auth::user()->id, 'column' => $col, 'new_data' => $model->$diff, 'old_data' => $model->getOriginal($diff)]);
+//            }
+//        }
 
         $model->save();
 
-        return redirect()->route(config($this->confFile.".viewIndex"))->withErrors('Registro Editado.');
+        return redirect()->route(config($this->confFile.".viewIndex"))->with('ok','Registro Editado.');
     }
 
     public function destroy()
     {
         $model = $this->repo->find($this->route->id);
 
+        if(!$model)
+            return redirect()->back()->withErrors('No se pudo borrar el registro');
+
         $model->delete();
 
-        return redirect()->route(config($this->confFile.".viewIndex"))->withErrors('Registro Editado.');
+        return redirect()->route(config($this->confFile.".viewIndex"))->with('ok','Registro Borrado.');
     }
 
     public function  show()

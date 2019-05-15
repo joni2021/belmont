@@ -14,7 +14,7 @@ class CreateDniTypeTable extends Migration
     public function up()
     {
         Schema::create('dni_types', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->tinyIncrements('id');
             $table->string('type');
             $table->timestamps();
         });

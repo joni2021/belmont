@@ -76,6 +76,7 @@
                                         <div class="dropdown-menu" aria-labelledby="dropdown-7" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut" x-placement="bottom-start">
                                             <a class="dropdown-item waves-light waves-effect" href="#">
                                                 <i class="fa fa-edit"></i> Editar</a>
+
                                             <a class="dropdown-item waves-light waves-effect" href="#">
                                                 <i class="fa fa-trash"></i> Borrar</a>
                                         </div>

@@ -18,20 +18,20 @@ class CreateClientsTable extends Migration
             $table->string('name');
             $table->string('last_name');
             $table->tinyInteger('dni_type_id',false,true);
-            $table->bigInteger('dni', false, true)->unique();
+            $table->string('dni')->unique();
             $table->string('address');
             $table->string('city');
             $table->string('province');
-            $table->bigInteger('phone',false,true);
-            $table->integer('cp',false,true);
-            $table->bigInteger('cel',false,true)->unique();
-            $table->bigInteger('cbu',false,true)->unique();
+            $table->string('phone')->nullable();
+            $table->string('cp');
+            $table->string('cel')->unique();
+            $table->string('cbu')->unique()->nullable();
 
-            $table->string('job_name');
-            $table->string('job_address');
-            $table->string('job_city');
-            $table->string('job_province');
-            $table->bigInteger('job_phone',false,true)->nullable();
+            $table->string('job_name')->nullable();
+            $table->string('job_address')->nullable();
+            $table->string('job_city')->nullable();
+            $table->string('job_province')->nullable();
+            $table->string('job_phone')->nullable();
 
             $table->foreign('dni_type_id')->references('id')->on('dni_types');
             $table->timestamps();

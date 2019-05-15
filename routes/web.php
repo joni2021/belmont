@@ -21,38 +21,38 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::group(['prefix' => 'clientes'], function () {
         Route::get('index', [
-            'as' => 'clientes.index',
+            'as' => 'clients.index',
             'uses' => 'ClientsController@index'
         ]);
 
         Route::get('create', [
-            'as' => 'clientes.create',
+            'as' => 'clients.create',
             'uses' => 'ClientsController@create'
         ]);
 
         Route::post('store', [
-            'as' => 'clientes.store',
+            'as' => 'clients.store',
             'uses' => 'ClientsController@store'
         ]);
 
         Route::group(['prefix' => '{id}'], function () {
             Route::get('edit', [
-                'as' => 'clientes.edit',
+                'as' => 'clients.edit',
                 'uses' => 'ClientsController@edit'
             ]);
 
             Route::get('show', [
-                'as' => 'clientes.show',
+                'as' => 'clients.show',
                 'uses' => 'ClientsController@show'
             ]);
 
             Route::put('update', [
-                'as' => 'clientes.update',
+                'as' => 'clients.update',
                 'uses' => 'ClientsController@update'
             ]);
 
             Route::delete('destroy', [
-                'as' => 'clientes.destroy',
+                'as' => 'clients.destroy',
                 'uses' => 'ClientsController@destroy'
             ]);
 
@@ -64,38 +64,38 @@ Route::group(['middleware' => 'auth'], function () {
 //    Formularios
     Route::group(['prefix' => 'formularios'], function () {
         Route::get('index', [
-            'as' => 'formularios.index',
+            'as' => 'forms.index',
             'uses' => 'FormsController@index'
         ]);
 
         Route::get('create', [
-            'as' => 'formularios.create',
+            'as' => 'forms.create',
             'uses' => 'FormsController@create'
         ]);
 
         Route::post('store', [
-            'as' => 'formularios.store',
+            'as' => 'forms.store',
             'uses' => 'FormsController@store'
         ]);
 
         Route::group(['prefix' => '{id}'], function () {
             Route::get('edit', [
-                'as' => 'formularios.edit',
+                'as' => 'forms.edit',
                 'uses' => 'FormsController@edit'
             ]);
             
             Route::get('show', [
-                'as' => 'formularios.show',
+                'as' => 'forms.show',
                 'uses' => 'FormsController@show'
             ]);
             
             Route::put('update', [
-                'as' => 'formularios.update',
+                'as' => 'forms.update',
                 'uses' => 'FormsController@update'
             ]);
             
             Route::delete('destroy', [
-                'as' => 'formularios.destroy',
+                'as' => 'forms.destroy',
                 'uses' => 'FormsController@destroy'
             ]);
 

@@ -82,6 +82,29 @@
                     <div class="main-body">
                         <div class="page-wrapper">
 
+                            @if($errors->any())
+                                <div class="alert alert-danger icons-alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <i class="icofont icofont-close-line-circled text-white"></i>
+                                    </button>
+                                    <b>¡Error!</b>
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+
+                            @if(session()->has('ok'))
+                                <div class="alert alert-success icons-alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <i class="icofont icofont-close-line-circled"></i>
+                                    </button>
+                                    <p>{{ session()->get('ok') }}</p>
+                                </div>
+                            @endif
+
                             @yield('content')
 
                         </div>

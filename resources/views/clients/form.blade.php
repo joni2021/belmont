@@ -38,7 +38,11 @@
                                 <div id="wizard">
                                     <section>
 
-                                        {{ Form::open(['route' => 'clientes.store','method' => 'post','class' => 'validateForm']) }}
+                                        @if(isset($model))
+                                            {{ Form::model($model,['route' => ['clients.update',$model->id],'method' => 'put','class' => 'validateForm']) }}
+                                        @else
+                                            {{ Form::open(['route' => 'clients.store','method' => 'post','class' => 'validateForm']) }}
+                                        @endif
                                         <div class="form-group row">
                                             <div class="col-12 col-md-6 col-lg-4">
                                                 <label class="block" for="name">Nombre</label>
