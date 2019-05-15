@@ -191,7 +191,7 @@
                                                 <div class="form-group row">
                                                     <div class="col-12 col-md-3">
                                                         <label class="block" for="amount">Monto solicitado ($)</label>
-                                                        {{ Form::number('amount',null,['class' => 'select2 required form-control','id' => 'amount']) }}
+                                                        {{ Form::number('amount',null,['class' => 'required form-control','id' => 'amount']) }}
                                                         <div class="invalid-feedback d-block"></div>
                                                     </div>
 
@@ -211,17 +211,8 @@
                                                         <div class="invalid-feedback d-block"></div>
                                                     </div>
 
-                                                    <div class="col-6 col-md-3">
-                                                        <label class="block" for="dues_amount">Importe Cuota</label>
-                                                        <div class="input-group">
 
-                                                            {{ Form::number(null,null,['class' => 'form-control disabled','id' => 'dues_amount','readonly' => true]) }}
-                                                        </div>
-                                                        <div class="invalid-feedback d-block"></div>
-                                                    </div>
-
-
-                                                    <div class="col-12 col-md-4">
+                                                    <div class="col-12 col-md-7">
                                                         <label class="block" for="cbu">C.B.U</label>
                                                         <div class="input-group">
 

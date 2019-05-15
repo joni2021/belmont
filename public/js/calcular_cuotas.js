@@ -1,14 +1,12 @@
 $(document).ready(function () {
-    $("#dues").select2({
-        placeholder: "Seleccione cuotas"
-    });
 
     var cuota, tasa, monto, porcentajeCuota;
 
-    $("#dues").on("change", function (ev) {
-
-        cuota = parseFloat($(this).val());
-        tasa = parseFloat(ev.currentTarget.selectedOptions[0].dataset.porcent);
+    $("#dues,#amount").on("change keyup", function (ev) {
+        var dues = $("#dues");
+        cuota = parseFloat($(dues).val());
+        // tasa = parseFloat(ev.currentTarget.selectedOptions[0].dataset.porcent);
+        tasa = parseFloat($("#dues>option:selected").data("porcent"));
         monto = parseFloat($('#amount').val());
 
         if (monto == 'undefined' || parseFloat(monto) < 1 || isNaN(monto)) {
@@ -26,9 +24,9 @@ $(document).ready(function () {
 
         var tasaPrimerCuota = parseFloat($("#dues option")[0].dataset.porcent)
 
-        var tabla = "<tr><td>1</td><td>" + tasaPrimerCuota + "%</td><td>" + calcular_cuota(tasaPrimerCuota) + "</td>";
+        var tabla = "<tr><td>1</td><td>" + tasaPrimerCuota + "%</td><td>" + calcular_cuota(2) + "</td>";
 
-        var pagoTotal = parseFloat(monto) + parseFloat(calcular_cuota(tasaPrimerCuota));
+        var pagoTotal = parseFloat(monto) + parseFloat(calcular_cuota(cuota));
 
          for(var i = 2; i <= cuota; i++ ){
              var tasa = $("#dues option[value=" + i + "]").data("porcent");
@@ -36,9 +34,9 @@ $(document).ready(function () {
 
              tabla += "<tr><td>" + i + "</td>";
              tabla += "<td>" + parseFloat(tasa) + "%</td>";
-             tabla += "<td>" + calcular_cuota(tasa) + "</td></tr>";
+             tabla += "<td>" + calcular_cuota(i) + "</td></tr>";
 
-             pagoTotal = parseFloat(pagoTotal) + parseFloat(calcular_cuota(tasa));
+             pagoTotal = parseFloat(pagoTotal) + parseFloat(calcular_cuota(2));
          }
 
         tabla += "<tr>";
@@ -55,6 +53,7 @@ $(document).ready(function () {
 
 
     function calcular_cuota(cuota){
+
         var valor =  monto * (( porcentajeCuota * (Math.pow( 1 + porcentajeCuota, cuota ))) / (( (Math.pow( 1 + porcentajeCuota, cuota )) - 1 )))
 
         return parseFloat(valor).toFixed(2);
