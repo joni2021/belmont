@@ -20,7 +20,7 @@ class Controller extends BaseController
 
     public function index()
     {
-        $this->data['datas'] = $this->repo->getAllPaginated(config($this->confFile.".paginate"));
+        $this->data['datas'] = $this->repo->getModel()->all();
         return view(config($this->confFile.".viewIndex"))->with($this->data);
     }
 
