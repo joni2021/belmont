@@ -18,6 +18,18 @@ class Client extends Model
     public function DniType(){
         return $this->belongsTo(DniType::class);
     }
+
+    public function Loans(){
+        return $this->hasMany(Loans::class);
+    }
+
+    public function getFullNameAttribute(){
+        return $this->attributes['name'] . " " . $this->attributes['last_name'];
+    }
+
+    public function getTotalLoansAttribute(){
+        return $this->loans()->count();
+    }
 }
 
 

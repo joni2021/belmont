@@ -20,7 +20,7 @@ class Controller extends BaseController
 
     public function index()
     {
-        $this->data['datas'] = $this->repo->getModel()->all();
+        $this->data['datas'] = $this->repo->getModel()->all()->sortByDesc('id');
         return view(config($this->confFile.".viewIndex"))->with($this->data);
     }
 

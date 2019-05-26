@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Entities\Client;
+use App\Entities\DniType;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -41,5 +42,29 @@ class User extends Authenticatable
 
     public function Clients(){
         return $this->belongsToMany(Client::class);
+    }
+
+    public function DniType(){
+        return $this->belongsTo(DniType::class);
+    }
+
+    public function getFullNameAttribute(){
+        return $this->attributes['user'] ? $this->attributes['user'] : $this->attributes['name'] . ' ' . $this->attributes['last_name'];
+    }
+
+    public function getTotalLoans(){
+        $total = 0;
+
+        if($this->clients()->count() > 0):
+            foreach ($this->clients as $client) {
+                $total += $client->totalLoans;
+            }
+        endif;
+
+        return $total;
+    }
+
+    public function TotalLoansByClient($client){
+
     }
 }
