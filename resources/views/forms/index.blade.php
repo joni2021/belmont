@@ -18,7 +18,7 @@
                 <div class="page-header-title">
                     <div class="d-inline">
                         <h4>Prestamos</h4>
-                        <span>Listado de mis préstamos otorgados</span>
+                        <span>Listado de mis préstamos {{ $estado }}</span>
                     </div>
                 </div>
             </div>
@@ -30,7 +30,7 @@
                         </li>
                         <li class="breadcrumb-item">Préstamos
                         </li>
-                        <li class="breadcrumb-item text-black-50"><b>Otorgados</b>
+                        <li class="breadcrumb-item text-black-50"><b>{{ $estado }}</b>
                         </li>
                     </ul>
                 </div>
@@ -58,23 +58,30 @@
                             </tr>
                             </thead>
                             <tbody>
+
+                            @forelse($models as $prestamo)
                             <tr>
-                                <td>Juan Perez
-                                    <a href="#" class="float-right pt-1" data-toggle="tooltip" data-placement="top" title="Ver cliente" data-original-title="Ver cliente">
+                                <td>{{ $prestamo->client->fullName }}
+                                    <a href="{{ route('clients.show',$prestamo->client->id) }}" target="_blank" class="float-right pt-1" data-toggle="tooltip" data-placement="top" title="Ver cliente" data-original-title="Ver cliente">
 
                                             <i class="icofont icofont-eye-alt text-primary" style="font-size:15px;"></i>
 
                                     </a>
                                 </td>
-                                <td>15555484</td>
-                                <td>1146513185</td>
-                                <td>{{ date('d/m/Y',time()) }}</td>
-                                <td>$18.000</td>
+                                <td>{{ $prestamo->client->dniType->type }}: {{ $prestamo->client->dni }}</td>
+                                <td>
+                                    <ul class="list-unstyled">
+                                        <li>Part: {{ $prestamo->client->phone }}</li>
+                                        <li>Cel: {{ $prestamo->client->cel }}</li>
+                                    </ul>
+                                </td>
+                                <td>{{ $prestamo->date }}</td>
+                                <td>{{ $prestamo->formattedAmount }}</td>
                                 <td class="text-right">
                                     <div class="dropdown-primary dropdown open show">
                                         <button class="btn btn-primary btn-sm dropdown-toggle waves-effect waves-light " type="button" id="dropdown-7" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Opciones</button>
                                         <div class="dropdown-menu" aria-labelledby="dropdown-7" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut" x-placement="bottom-start">
-                                            <a class="dropdown-item waves-light waves-effect" href="#">
+                                            <a class="dropdown-item waves-light waves-effect" href="{{ route('forms.edit',[$status,$prestamo->id]) }}">
                                                 <i class="fa fa-edit"></i> Editar</a>
 
                                             <a class="dropdown-item waves-light waves-effect" href="#">
@@ -83,6 +90,11 @@
                                     </div>
                                 </td>
                             </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="6" class="text-center">No otorgaste ningún préstamos todavía</td>
+                                </tr>
+                            @endforelse
                             </tbody>
                         </table>
                     </div>

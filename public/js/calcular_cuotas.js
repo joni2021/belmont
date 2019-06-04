@@ -4,7 +4,7 @@ $(document).ready(function () {
 
     $("#dues,#amount").on("change keyup", function (ev) {
         var dues = $("#dues");
-        cuota = parseFloat($(dues).val());
+        cuota = parseFloat($(dues).data("due"));
         // tasa = parseFloat(ev.currentTarget.selectedOptions[0].dataset.porcent);
         tasa = parseFloat($("#dues>option:selected").data("porcent"));
         monto = parseFloat($('#amount').val());

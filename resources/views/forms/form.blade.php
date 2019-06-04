@@ -46,13 +46,18 @@
                             <div class="col-md-12">
                                 <div id="wizard">
                                     <section>
-
-                                        <form class="wizard-form" id="example-advanced-form" action="#">
+                                        @if(isset($model))
+                                            {{ Form::model($model,['route' => ['forms.update',$status,$model->id],'method' => 'POST','class' => 'wizard-form','id' => 'example-advanced-form']) }}
+                                        @else
+                                            {{ Form::open(['route' => ['forms.store',$status],'method' => 'POST','class' => 'wizard-form','id' => 'example-advanced-form']) }}
+                                        @endif
                                             @csrf
 
+                                            @if(!isset($model))
                                             <h3 class="d-flex"> Datos personales </h3>
 
                                             <fieldset class="datosPersonales">
+
                                                 <div class="card p-3 m-4">
                                                     <div class="form-group">
                                                         <label>Buscar cliente:</label>
@@ -62,7 +67,9 @@
                                                     </div>
                                                 </div>
 
+
                                                 {{ Form::hidden('client_id',null) }}
+
 
                                                 <div class="form-group row">
                                                     <div class="col-12 col-md-6 col-lg-4">
@@ -185,6 +192,8 @@
 
 
                                             </fieldset>
+                                            @endif
+
                                             <h3 class="align-text-bottom"> Operación </h3>
                                             <fieldset class="mb-5">
 
@@ -198,11 +207,12 @@
                                                     <div class="col-6 col-md-2">
                                                         <label class="block" for="dues">Cant. Cuotas</label>
                                                         <div class="input-group">
-                                                            <select name="dues" id="dues" class="form-control" data-placeholder="Seleccione cuotas">
+                                                            <select name="financing_id" id="dues" class="form-control"
+                                                                    data-placeholder="Seleccione cuotas">
 
                                                                 @foreach($financing as $f)
-                                                                    <option value="{{ $f->due }}"
-                                                                            data-porcent="{{ $f->porcent }}">{{ $f->due }}</option>
+                                                                    <option value="{{ $f->id }}"
+                                                                            data-porcent="{{ $f->porcent }}" data-due="{{ $f->due }}">{{ $f->due }}</option>
 
                                                                 @endforeach
                                                             </select>
@@ -215,8 +225,11 @@
                                                     <div class="col-12 col-md-7">
                                                         <label class="block" for="cbu">C.B.U</label>
                                                         <div class="input-group">
-
-                                                            {{ Form::number('cbu',null,['class' => 'form-control','id' => 'cbu']) }}
+                                                            @if(!isset($model))
+                                                                {{ Form::number('cbu',null,['class' => 'form-control','id' => 'cbu']) }}
+                                                            @else
+                                                                {{ Form::number(null,$model->client->cbu,['class' => 'form-control','id' => 'cbu','readonly' => true]) }}
+                                                            @endif
                                                         </div>
                                                         <div class="invalid-feedback d-block"></div>
                                                     </div>
@@ -233,7 +246,7 @@
                                                         <label class="block" for="tna">TNA</label>
                                                         <div class="input-group">
 
-                                                            {{ Form::number(null,null,['class' => 'form-control required disabled','id' => 'tasa','readonly' => true]) }}
+                                                            {{ Form::number('tasa',null,['class' => 'form-control required','id' => 'tasa','readonly' => true]) }}
                                                         </div>
                                                         <div class="invalid-feedback d-block"></div>
                                                     </div>
@@ -282,7 +295,7 @@
                                                     </table>
                                                 </div>
                                             </fieldset>
-                                        </form>
+                                        {{ Form::close() }}
 
                                     </section>
                                 </div>
@@ -338,7 +351,6 @@
         //                }
         //            }
         //        })
-
 
 
     </script>

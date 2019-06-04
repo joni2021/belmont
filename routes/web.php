@@ -60,45 +60,49 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
 
-
 //    Formularios
     Route::group(['prefix' => 'formularios'], function () {
-        Route::get('index', [
-            'as' => 'forms.index',
-            'uses' => 'FormsController@index'
-        ]);
 
         Route::get('create', [
             'as' => 'forms.create',
             'uses' => 'FormsController@create'
         ]);
 
+
         Route::post('store', [
             'as' => 'forms.store',
             'uses' => 'FormsController@store'
         ]);
 
-        Route::group(['prefix' => '{id}'], function () {
-            Route::get('edit', [
-                'as' => 'forms.edit',
-                'uses' => 'FormsController@edit'
-            ]);
-            
-            Route::get('show', [
-                'as' => 'forms.show',
-                'uses' => 'FormsController@show'
-            ]);
-            
-            Route::put('update', [
-                'as' => 'forms.update',
-                'uses' => 'FormsController@update'
-            ]);
-            
-            Route::delete('destroy', [
-                'as' => 'forms.destroy',
-                'uses' => 'FormsController@destroy'
+
+        Route::group(['prefix' => '{status}'], function () {
+            Route::get('index', [
+                'as' => 'forms.index',
+                'uses' => 'FormsController@index'
             ]);
 
+            Route::group(['prefix' => '{id}'], function () {
+                Route::get('edit', [
+                    'as' => 'forms.edit',
+                    'uses' => 'FormsController@edit'
+                ]);
+
+                Route::get('show', [
+                    'as' => 'forms.show',
+                    'uses' => 'FormsController@show'
+                ]);
+
+                Route::put('update', [
+                    'as' => 'forms.update',
+                    'uses' => 'FormsController@update'
+                ]);
+
+                Route::delete('destroy', [
+                    'as' => 'forms.destroy',
+                    'uses' => 'FormsController@destroy'
+                ]);
+
+            });
         });
     });
 

@@ -32,7 +32,7 @@ class Controller extends BaseController
     public function store(Request $request)
     {
         //validacion del formulario
-        $request->validate(config($this->confFile.'.validationsStore'));
+        $request->validate(config($this->confFile.'.validationsStore'),config($this->confFile.'.messagesStore'));
 
         $this->repo->create($request->all());
 
@@ -48,7 +48,7 @@ class Controller extends BaseController
 
     public function update(Request $request)
     {
-        $request->validate(config($this->confFile.'.validationsUpdate'));
+        $request->validate(config($this->confFile.'.validationsUpdate'),config($this->confFile.'.messagesUpdate'));
 
         $model = $this->repo->find($this->route->id);
 

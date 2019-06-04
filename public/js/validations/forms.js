@@ -39,7 +39,7 @@ $(document).ready(function () {
             return form.valid();
         },
         onFinished: function (event, currentIndex) {
-            alert("Submitted!");
+            form.submit();
         },
         labels: {
             cancel: "Cancelar",
@@ -97,6 +97,9 @@ $(document).ready(function () {
             job_phone: {
                 number: "Debe ser un celular válido"
             },
+            job_province: {
+                required: "La provincia es requerida"
+            },
             amount: {
                 number: "Debe ser un monto válido",
                 required: "El monto es requerido"
@@ -112,7 +115,7 @@ $(document).ready(function () {
                 number: "Debe ser numérico",
                 required: "La cft es requerida"
             },
-            tna: {
+            tasa: {
                 number: "Debe ser numérico",
                 required: "La tna es requerida"
             },
@@ -161,8 +164,8 @@ $(document).ready(function () {
             },
             cbu: {
                 number: true,
-                min:10000000000000000000,
-                max:99999999999999999999
+                min:1000000000000000000000,
+                max:9999999999999999999999
             }
         }
     });

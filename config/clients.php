@@ -49,6 +49,31 @@ return [
     //validaciones de edición
 
     'validationsUpdate' => [
+        'name' => "required|string",
+        'last_name' => "string",
+        'dni_types_id' => "exists:dni_types,id",
+        'dni' => "numeric",
+        'address' => "string",
+        'city' => "string",
+        'province' => "numeric",
+        'phone' => "numeric",
+        'cp' => "numeric",
+        'cel' => "numeric",
+        'cbu' => "numeric",
+        'job_name' => "",
+        'job_address' => "",
+        'job_city' => "",
+        'job_province' => "",
+        'job_phone => "'
+    ],
+
+
+    'messagesStore' => [
+
+    ],
+
+
+    'messagesUpdate' => [
 
     ],
 

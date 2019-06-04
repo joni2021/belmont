@@ -23,7 +23,7 @@ class financingTableSeeder extends Seeder
             ]);
         endfor;
 
-        for($i = 13; $i < 23;$i++):
+        for($i = 12; $i < 23;$i++):
             DB::table("financing")->insert([
                [
                    "id"         => $i,
