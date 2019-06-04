@@ -99,7 +99,7 @@
                                                 <button class="btn btn-xs p-0 btn-link dropdown-toggle" type="button"
                                                         data-toggle="dropdown"></button>
                                                 <div class="dropdown-menu">
-                                                    <a class="dropdown-item" href="{{ route('forms.index') }}"> <i
+                                                    <a class="dropdown-item" href="{{ route('forms.index',0) }}"> <i
                                                                 class="fa fa-list"></i> Listado</a>
                                                     <a class="dropdown-item" href="{{ route('forms.create') }}"> <i
                                                                 class="fa fa-plus"></i> Nuevo</a>
@@ -158,7 +158,7 @@
 
                             </div>
                             <div class="text-center">
-                                <a href="{{ route('forms.index') }}" class="b-b-primary text-primary">Ver todos</a>
+                                <a href="{{ route('forms.index',0) }}" class="b-b-primary text-primary">Ver todos</a>
                             </div>
                         </div>
                     </div>
