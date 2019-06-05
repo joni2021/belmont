@@ -47,7 +47,7 @@
                                 <div id="wizard">
                                     <section>
                                         @if(isset($model))
-                                            {{ Form::model($model,['route' => ['forms.update',$status,$model->id],'method' => 'POST','class' => 'wizard-form','id' => 'example-advanced-form']) }}
+                                            {{ Form::model($model,['route' => ['forms.update',$status,$model->id],'method' => 'PUT','class' => 'wizard-form','id' => 'example-advanced-form']) }}
                                         @else
                                             {{ Form::open(['route' => ['forms.store',$status],'method' => 'POST','class' => 'wizard-form','id' => 'example-advanced-form']) }}
                                         @endif
@@ -212,6 +212,7 @@
 
                                                                 @foreach($financing as $f)
                                                                     <option value="{{ $f->id }}"
+                                                                            @if(isset($model) && $model->financing_id == $f->id) selected @endif
                                                                             data-porcent="{{ $f->porcent }}" data-due="{{ $f->due }}">{{ $f->due }}</option>
 
                                                                 @endforeach
@@ -324,7 +325,11 @@
     <script type="text/javascript" src="bower_components/select2/js/select2.full.min.js"></script>
 
     {{-- Validations & Steps --}}
-    <script type="text/javascript" src="js/validations/forms.js"></script>
+    @if(isset($model))
+        <script type="text/javascript" src="js/validations/forms-edit.js"></script>
+    @else
+        <script type="text/javascript" src="js/validations/forms.js"></script>
+    @endif
 
     <!-- data-table js -->
     <script src="bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
