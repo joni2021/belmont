@@ -24,19 +24,21 @@ $(document).ready(function () {
 
         var tasaPrimerCuota = parseFloat($("#dues option")[0].dataset.porcent)
 
-        var tabla = "<tr><td>1</td><td>" + tasaPrimerCuota + "%</td><td>" + calcular_cuota(2) + "</td>";
+        // var tabla = "<tr><td>1</td><td>" + tasaPrimerCuota + "%</td><td>$" + calcular_cuota(2).toLocaleString() + "</td>";
 
-        var pagoTotal = parseFloat(monto) + parseFloat(calcular_cuota(cuota));
+        var pagoTotal = 0;
+        // var pagoTotal = parseFloat(calcular_cuota(2));
 
          for(var i = 2; i <= cuota; i++ ){
              var tasa = $("#dues option[value=" + i + "]").data("porcent");
-             var tasaCuota =
+             console.log(i)
+             console.log($("#dues option[value=" + i + "]"))
 
              tabla += "<tr><td>" + i + "</td>";
              tabla += "<td>" + parseFloat(tasa) + "%</td>";
-             tabla += "<td>" + calcular_cuota(i) + "</td></tr>";
+             tabla += "<td>$" + calcular_cuota(i).toLocaleString() + "</td></tr>";
 
-             pagoTotal = parseFloat(pagoTotal) + parseFloat(calcular_cuota(2));
+             pagoTotal += parseFloat(calcular_cuota(i)) //+ parseFloat(pagoTotal) ;
          }
 
         tabla += "<tr>";
@@ -44,7 +46,7 @@ $(document).ready(function () {
 
         $(".datosCuota").empty();
         $(".datosCuota").append(tabla);
-        $("#precioTotal").text("$ " + pagoTotal)
+        $("#precioTotal").text("$ " + pagoTotal.toLocaleString())
 
 
         $(".tablaCuotas").removeClass("d-none");

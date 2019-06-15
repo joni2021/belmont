@@ -117,12 +117,17 @@ class FormsController extends Controller
 
         $model = $this->repo->find($this->route->id);
 
-        $model->fill($request->all());
+        $datosPrestamo = $this->request->only(['amount','financing_id','cbu','cft','tem','accreditation_type_id']);
 
-        $model->save();
+        $dues = Financing::find($datosPrestamo['financing_id']);
+
+        if(!$dues)
+            return redirect()->back()->withInput()->withErrors("La cantidad de cuotas ingresado no es correcta");
+
+        $datosPrestamo['dues'] = $dues->due;
+
+        $model->update($datosPrestamo);
 
         return redirect()->route(config($this->confFile.".viewIndex"),$this->data['status'])->with('ok','Registro Editado.');
     }
-
-
 }

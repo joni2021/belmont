@@ -275,26 +275,13 @@
 
                                                 </div>
 
-                                                <div class="dt-responsive">
-                                                    <table class="table table-bordered nowrap tablaCuotas d-none w-100">
-                                                        <thead>
-                                                        <tr>
-                                                            <th>Cuota</th>
-                                                            <th>Tasa</th>
-                                                            <th>Importe mensual($)</th>
-                                                        </tr>
-                                                        </thead>
-                                                        <tbody class="datosCuota">
+                                            @php
+                                                if(!isset($model))
+                                                    $model = [];
+                                            @endphp
 
-                                                        </tbody>
-                                                        <tfooter>
-                                                            <tr>
-                                                                <td colspan="2" class="text-right">Total</td>
-                                                                <td class="text-danger" id="precioTotal">$</td>
-                                                            </tr>
-                                                        </tfooter>
-                                                    </table>
-                                                </div>
+                                            @include('forms.partials.dues_table',$model)
+
                                             </fieldset>
                                         {{ Form::close() }}
 
@@ -325,7 +312,7 @@
     <script type="text/javascript" src="bower_components/select2/js/select2.full.min.js"></script>
 
     {{-- Validations & Steps --}}
-    @if(isset($model))
+    @if(!empty($model))
         <script type="text/javascript" src="js/validations/forms-edit.js"></script>
     @else
         <script type="text/javascript" src="js/validations/forms.js"></script>

@@ -46,11 +46,10 @@
             <div class="card-block">
 
                 <div class="dt-responsive">
-                    <table class="table table-striped table-bordered nowrap datatable">
+                    <table class="table table-striped table-bordered nowrap datatable w-100">
                         <thead>
                         <tr>
                             <th>Nombre</th>
-                            <th>Apellido</th>
                             <th>DNI</th>
                             <th>Dirección</th>
                             <th>Teléfono</th>
@@ -60,14 +59,13 @@
                         <tbody>
                         @forelse($datas as $client)
                             <tr>
-                                <td>{{ $client->name }}
+                                <td>{{ $client->full_name }}
                                     <a href="{{ route('clients.show',$client->id) }}" class="float-right pt-1" data-toggle="tooltip" data-placement="top" title="Ver detalle" data-original-title="Ver detalle">
 
                                         <i class="icofont icofont-eye-alt text-primary" style="font-size:15px;"></i>
 
                                     </a>
                                 </td>
-                                <td>{{ $client->last_name }}</td>
                                 <td><b>{{ $client->dniType->type }}:</b> {{ $client->dni }}</td>
                                 <td>{{ $client->address }}</td>
                                 <td><ul>

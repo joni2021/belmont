@@ -33,4 +33,34 @@ class Loans extends Model
         return '$'. number_format($this->attributes["amount"],2);
     }
 
+
+    public function monthlyAmount($porcent,$due){
+        $porcent = floatval($porcent / 100);
+        $p = 1 + floatval($porcent);
+        $due = intval($due);
+        $amount = floatval($this->attributes['amount']);
+        $potencia = pow($p, $due);
+
+
+        $monto = $amount * (( $porcent * (floatval($potencia))) / (( floatval( floatval($potencia))-1 )) );
+
+
+        return $monto;
+    }
+
+    public function getTotalAmountAttribute(){
+//        $totalAmount = floatval($this->monthlyAmount(Financing::first()->porcent,Financing::first()->due));
+        $totalAmount = 0;
+
+        foreach(Financing::all() as $financing):
+            if($financing->due > $this->attributes['dues'])
+                break;
+
+            $totalAmount = floatval($totalAmount) + floatval($this->monthlyAmount($financing->porcent,$financing->due));
+
+        endforeach;
+
+
+        return $totalAmount;
+    }
 }

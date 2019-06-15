@@ -12,7 +12,7 @@ class financingTableSeeder extends Seeder
     public function run()
     {
 
-        for($i = 1; $i < 12;$i++):
+        for($i = 1; $i < 13;$i++):
             DB::table("financing")->insert([
                [
                    "id"         => $i,
@@ -23,7 +23,7 @@ class financingTableSeeder extends Seeder
             ]);
         endfor;
 
-        for($i = 12; $i < 23;$i++):
+        for($i = 13; $i < 23;$i++):
             DB::table("financing")->insert([
                [
                    "id"         => $i,
@@ -43,6 +43,16 @@ class financingTableSeeder extends Seeder
             ]
         ]);
 
+        DB::table("financing")->insert([
+            [
+                "id"         => 24,
+                "due"        => 25,
+                "porcent"    => 8.1,
+                "created_at" => date("Y-m-d H:i:s")
+            ]
+        ]);
+
+
         for($i = 25; $i < 30;$i++):
             DB::table("financing")->insert([
                 [
@@ -53,6 +63,16 @@ class financingTableSeeder extends Seeder
                 ]
             ]);
         endfor;
+
+
+        DB::table("financing")->insert([
+            [
+                "id"         => 30,
+                "due"        => 31,
+                "porcent"    => 7.1,
+                "created_at" => date("Y-m-d H:i:s")
+            ]
+        ]);
 
         for($i = 31; $i < 35;$i++):
             DB::table("financing")->insert([
