@@ -24,10 +24,11 @@ $(document).ready(function () {
 
         var tasaPrimerCuota = parseFloat($("#dues option")[0].dataset.porcent)
 
-        // var tabla = "<tr><td>1</td><td>" + tasaPrimerCuota + "%</td><td>$" + calcular_cuota(2).toLocaleString() + "</td>";
+        var tabla = "<tr><td>1</td><td>" + tasaPrimerCuota + "%</td><td>$" + calcular_cuota(2).toLocaleString() + "</td>";
+        // var tabla;
 
-        var pagoTotal = 0;
-        // var pagoTotal = parseFloat(calcular_cuota(2));
+        // var pagoTotal = 0;
+        var pagoTotal = parseFloat(calcular_cuota(2));
 
          for(var i = 2; i <= cuota; i++ ){
              var tasa = $("#dues option[value=" + i + "]").data("porcent");
