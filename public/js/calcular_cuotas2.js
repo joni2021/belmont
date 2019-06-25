@@ -28,7 +28,7 @@ $(document).ready(function () {
         // var tabla;
 
         // var pagoTotal = 0;
-        var pagoTotal = parseFloat(calcular_cuota(cuota));
+        var pagoTotal = parseFloat(calcular_cuota(2));
 
          for(var i = 2; i <= cuota; i++ ){
              var tasa = $("#dues option[value=" + i + "]").data("porcent");
