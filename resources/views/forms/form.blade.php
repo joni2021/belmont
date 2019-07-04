@@ -239,7 +239,7 @@
                                                 <div class="form-group row">
                                                     <div class="col-12 col-md-2 col-lg-3">
                                                         <label class="block" for="cft">CFT</label>
-                                                        {{ Form::number('cft',null,['class' => 'required form-control','id' => 'cft']) }}
+                                                        {{ Form::number('cft',null,['class' => 'form-control','id' => 'cft']) }}
                                                         <div class="invalid-feedback d-block"></div>
                                                     </div>
 
@@ -247,7 +247,7 @@
                                                         <label class="block" for="tna">TNA</label>
                                                         <div class="input-group">
 
-                                                            {{ Form::number('tasa',null,['class' => 'form-control required','id' => 'tasa','readonly' => true]) }}
+                                                            {{ Form::number('tasa',null,['class' => 'form-control','id' => 'tasa','readonly' => true]) }}
                                                         </div>
                                                         <div class="invalid-feedback d-block"></div>
                                                     </div>

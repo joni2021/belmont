@@ -113,11 +113,11 @@ $(document).ready(function () {
             },
             cft: {
                 number: "Debe ser numérico",
-                required: "La cft es requerida"
+                // required: "La cft es requerida"
             },
             tasa: {
                 number: "Debe ser numérico",
-                required: "La tna es requerida"
+                // required: "La tna es requerida"
             },
             tem: {
                 number: "Debe ser numérico"

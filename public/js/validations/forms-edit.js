@@ -72,10 +72,10 @@ $(document).ready(function () {
             dues_amount: {
                 number: "Debe ser un monto válida",
             },
-            cft: {
-                number: "Debe ser numérico",
-                required: "La cft es requerida"
-            },
+            // cft: {
+            //     number: "Debe ser numérico",
+            //     required: "La cft es requerida"
+            // },
             tem: {
                 number: "Debe ser numérico"
             },
@@ -97,12 +97,12 @@ $(document).ready(function () {
             dues_amount: {
                 number: true
             },
-            cft: {
-                number: true
-            },
-            tna: {
-                number: true
-            },
+            // cft: {
+            //     number: true
+            // },
+            // tna: {
+            //     number: true
+            // },
             tem: {
                 number: true
             },
