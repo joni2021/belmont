@@ -2,18 +2,24 @@
 
 namespace App\Entities;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 class Loans extends Model
 {
 
-    // Todo: Agregar columna de user_id para saber qué usuario dio el prestamo.
+
     protected $fillable = [
-        'amount', 'dues', 'cft', 'tna', 'tem', 'accreditation_type_id', 'financing_id', 'client_id',"status"
+        'amount', 'dues', 'cft', 'tna', 'tem', 'accreditation_type_id', 'financing_id', 'client_id',"status", "user_id"
     ];
 
     public function Client(){
         return $this->belongsTo(Client::class);
+    }
+
+    public function User(){
+        return $this->belongsTo(User::class);
     }
 
     public function Financing(){
@@ -22,8 +28,13 @@ class Loans extends Model
 
     public function AccreditationType(){
         return $this->belongsTo(AccreditationType::class);
-
     }
+
+    public function Payments(){
+        return $this->hasMany(Payments::class);
+    }
+
+
 
     public function getDateAttribute(){
         return date('d-m-Y',strtotime($this->attributes['created_at']));
@@ -62,5 +73,19 @@ class Loans extends Model
 
 
         return $totalAmount;
+    }
+
+    public function getAccreditationDateAttribute(){
+        $fecha = Carbon::create($this->attributes['created_at'],'America/Argentina/Buenos_Aires')->locale('es');
+
+        return $fecha->isoFormat('LLLL \h\s');
+    }
+
+
+    public function itsPaid(){
+        if($this->Payments()->count() == 0)
+            return false;
+
+        return $this->Payments()->where('due','=',1)->get('state');
     }
 }

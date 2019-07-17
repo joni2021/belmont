@@ -73,7 +73,7 @@
                             <td>$18.000</td>
                             <td class="text-right">
                                 <div class="dropdown-primary dropdown open show">
-                                    <button class="btn btn-primary btn-sm dropdown-toggle waves-effect waves-light " type="button" id="dropdown-7" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Opciones</button>
+                                    <button class="btn btn-primary btn-mini dropdown-toggle waves-effect waves-light " type="button" id="dropdown-7" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Opciones</button>
                                     <div class="dropdown-menu" aria-labelledby="dropdown-7" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut" x-placement="bottom-start">
                                         <a class="dropdown-item waves-light waves-effect" href="#">
                                             <i class="fa fa-edit"></i> Editar</a>

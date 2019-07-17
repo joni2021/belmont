@@ -58,7 +58,8 @@ $(document).ready(function () {
             tabla += "<td>" + parseFloat(tasa) + "%</td>";
             tabla += "<td>$" + parseFloat(interesPagado.toFixed(2)) + "</td>";
             tabla += "<td>$" + parseFloat(amortizacionPagado.toFixed(2)) + "</td>";
-            tabla += "<td>$" + parseFloat(valorDeudaASaldar.toFixed(2)) + "</td></tr>";
+            tabla += "<td>$" + parseFloat(valorDeudaASaldar.toFixed(2)) + "</td>";
+            tabla += "<td>$" + (parseFloat(interesPagado.toFixed(2)) + parseFloat(amortizacionPagado.toFixed(2))).toFixed(2) + "</td></tr>";
 
             // pagoTotal += parseFloat(calcular_cuota(ind)).toFixed(2) //+ parseFloat(pagoTotal) ;
 

@@ -5,6 +5,7 @@ namespace App\Http\Repositories;
 use App\Entities\Client;
 use App\Entities\Loans;
 use App\Http\Repositories\BaseRepo;
+use Illuminate\Support\Facades\Auth;
 
 class LoansRepo extends BaseRepo
 {
@@ -13,8 +14,8 @@ class LoansRepo extends BaseRepo
         return new Loans();
     }
 
-    public function getAllByStatus($status){
-        return $this->getModel()->where('status',$status)->get();
+    public function getAll(){
+        return $this->getModel()->with('Payments')->where('user_id','=',Auth::user()->id)->get();
     }
 
 }

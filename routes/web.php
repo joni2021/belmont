@@ -56,6 +56,11 @@ Route::group(['middleware' => 'auth'], function () {
                 'uses' => 'ClientsController@destroy'
             ]);
 
+            Route::get('historial-financiero', [
+                'as' => 'clients.financing',
+                'uses' => 'ClientsController@financing'
+            ]);
+
         });
     });
 
@@ -75,39 +80,47 @@ Route::group(['middleware' => 'auth'], function () {
         ]);
 
 
-        Route::group(['prefix' => '{status}'], function () {
-            Route::get('index', [
-                'as' => 'forms.index',
-                'uses' => 'FormsController@index'
+        Route::get('index', [
+            'as' => 'forms.index',
+            'uses' => 'FormsController@index'
+        ]);
+
+        Route::group(['prefix' => '{id}'], function () {
+            Route::get('edit', [
+                'as' => 'forms.edit',
+                'uses' => 'FormsController@edit'
             ]);
 
-            Route::group(['prefix' => '{id}'], function () {
-                Route::get('edit', [
-                    'as' => 'forms.edit',
-                    'uses' => 'FormsController@edit'
-                ]);
+            Route::get('show', [
+                'as' => 'forms.show',
+                'uses' => 'FormsController@show'
+            ]);
 
-                Route::get('show', [
-                    'as' => 'forms.show',
-                    'uses' => 'FormsController@show'
-                ]);
+            Route::put('update', [
+                'as' => 'forms.update',
+                'uses' => 'FormsController@update'
+            ]);
 
-                Route::put('update', [
-                    'as' => 'forms.update',
-                    'uses' => 'FormsController@update'
-                ]);
+            Route::delete('destroy', [
+                'as' => 'forms.destroy',
+                'uses' => 'FormsController@destroy'
+            ]);
 
-                Route::delete('destroy', [
-                    'as' => 'forms.destroy',
-                    'uses' => 'FormsController@destroy'
-                ]);
+            Route::get('plan-de-pagos', [
+                'as' => 'forms.paymentPlan',
+                'uses' => 'FormsController@paymentPlan'
+            ]);
 
-            });
         });
+
     });
 
     Route::group(['prefix' => 'ajax'], function () {
         Route::get('searchClient', 'AjaxController@searchClient');
+
+        Route::post('payDue','AjaxController@payDue');
+
+        Route::post('cancelPayDue','AjaxController@cancelPayDue');
     });
 
 });

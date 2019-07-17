@@ -3,9 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Entities\Client;
+use App\Entities\Payments;
+use function floatval;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\DB;
+use const null;
+use function response;
 
 class AjaxController extends Controller
 {
@@ -38,5 +42,29 @@ class AjaxController extends Controller
             $status = 500;
 
         return response()->json($client,$status);
+    }
+
+    public function payDue(){
+
+        $payment = Payments::find($this->request->params["id"]);
+
+        $payment->amount_paid = floatval($this->request->params["amount_paid"]);
+        $payment->state = 1;
+
+        $payment->save();
+
+        return response()->json('ok',200);
+    }
+
+    public function cancelPayDue(){
+
+        $payment = Payments::find($this->request->params["id"]);
+
+        $payment->amount_paid = null;
+        $payment->state = 0;
+
+        $payment->save();
+
+        return response()->json('ok',200);
     }
 }

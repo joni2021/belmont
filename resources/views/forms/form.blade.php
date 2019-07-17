@@ -47,9 +47,9 @@
                                 <div id="wizard">
                                     <section>
                                         @if(isset($model))
-                                            {{ Form::model($model,['route' => ['forms.update',$status,$model->id],'method' => 'PUT','class' => 'wizard-form','id' => 'example-advanced-form']) }}
+                                            {{ Form::model($model,['route' => ['forms.update',$model->id],'method' => 'PUT','class' => 'wizard-form','id' => 'example-advanced-form']) }}
                                         @else
-                                            {{ Form::open(['route' => ['forms.store',$status],'method' => 'POST','class' => 'wizard-form','id' => 'example-advanced-form']) }}
+                                            {{ Form::open(['route' => 'forms.store','method' => 'POST','class' => 'wizard-form','id' => 'example-advanced-form']) }}
                                         @endif
                                             @csrf
 

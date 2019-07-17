@@ -28,7 +28,7 @@
     <div class="page-body">
         <div class="row">
 
-            <div class="col-8">
+            <div class="col-12 col-lg-8">
 
                 <div class="col-12">
                     <div class="card user-card-full">
@@ -125,41 +125,36 @@
                         </div>
                         <div class="card-block">
                             <div class="latest-update-box">
-                                <div class="row p-b-35">
-                                    <div class="col-auto text-right update-meta">
-                                        <p class="text-muted m-b-0 d-inline">Hace 4 hs</p>
-                                        <i class="icofont icofont-tick-boxed bg-simple-c-blue update-icon"></i>
-                                    </div>
-                                    <div class="col">
-                                        <h6>Otorgado a Julio Alvarez <small class="text-danger"> ( Monto: $25000 )</small></h6>
-                                    </div>
-                                </div>
+                                @forelse($loans as $loan)
 
-                                <div class="row p-b-35">
-                                    <div class="col-auto text-right update-meta">
-                                        <p class="text-muted m-b-0 d-inline">Hace 2 días</p>
-                                        <i class="icofont icofont-tick-boxed bg-simple-c-blue update-icon"></i>
+                                    <div class="row p-b-35">
+                                        <div class="col col-xl-5 text-right update-meta">
+                                            <p class="text-muted m-b-0 d-inline">{{ \Illuminate\Support\Carbon::create($loan->created_at,'America/Argentina/Buenos_Aires')->locale('es')->diffForHumans() }}</p>
+                                            <i class="icofont icofont-tick-boxed bg-simple-c-blue update-icon timeline"></i>
+                                        </div>
+                                        <div class="col text-md-left text-center">
+                                            <h6><a target="_blank
+" href="{{ route('clients.show',$loan->client_id) }}">{{ $loan->name }} {{ $loan->last_name }}</a>
+                                                <small class="text-danger"> ( Monto: ${{ $loan->amount }} )</small>
+                                            </h6>
+                                        </div>
                                     </div>
-                                    <div class="col">
-                                        <h6>Otorgado a Maria Rodriguez <small class="text-danger"> ( Monto: $2000 )</small></h6>
+                                @empty
+                                    <div class="row p-b-35">
+                                        <div class="col-auto text-right update-meta">
+                                            <p class="text-muted m-b-0 d-inline">Todavía no hay préstamos otorgados</p>
+                                        </div>
                                     </div>
-                                </div>
-
-                                <div class="row p-b-35">
-                                    <div class="col-auto text-right update-meta">
-                                        <p class="text-muted m-b-0 d-inline">Hace 3 días</p>
-                                        <i class="icofont icofont-tick-boxed bg-simple-c-blue update-icon"></i>
-                                    </div>
-                                    <div class="col">
-                                        <h6>Otorgado a Ricardo Urquiza <small class="text-danger"> ( Monto: $5000 )</small></h6>
-                                    </div>
-                                </div>
+                                @endforelse
 
 
                             </div>
-                            <div class="text-center">
-                                <a href="{{ route('forms.index',0) }}" class="b-b-primary text-primary">Ver todos</a>
-                            </div>
+                            @if(!empty($loans))
+                                <div class="text-center">
+                                    <a href="{{ route('forms.index',0) }}" class="b-b-primary text-primary">Ver
+                                        todos</a>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -174,128 +169,51 @@
                     </div>
                     <div class="card-block">
 
-                        <div class="card statustic-progress-card">
-                            <div class="card-header">
-                                <h5><a href="">Alvarez, Juan Carlos</a></h5>
+                        @forelse($paid as $p)
+                            <div class="card statustic-progress-card">
+                                <div class="card-header">
+                                    <h5><a href="{{ route('clients.show',$p->client_id) }}" target="_blank">{{ $p->fullname }}</a></h5>
 
-                                <a href="" class="text-primary f-30 float-right pt-0 mt-0" data-toggle="tooltip"
-                                   title="Ver detalle" data-original-title="Ver detalle">
-                                    <i class="icofont icofont-idea d-block text-primary"
-                                       style="margin-top: -10px; margin-right: -10px;"></i>
-                                </a>
-                            </div>
-
-                            <div class="card-block">
-
-                                <div class="row align-items-center">
-                                    <div class="col-auto">
-                                        <small class="text-black-50">
-                                            1/6/2019 - Cuota 3
-                                        </small>
-                                    </div>
-                                    <div class="col text-right">
-                                        <h5 class="text-danger">$3500</h5>
-                                    </div>
-                                </div>
-                                <div class="progress m-t-15">
-                                    <div class="progress-bar bg-danger" style="width:10%"></div>
+                                    <a href="{{ route('forms.paymentPlan', $p->loans_id) }}" class="text-primary f-30 float-right pt-0 mt-0" data-toggle="tooltip"
+                                       title="Ver detalle" data-original-title="Ver detalle">
+                                        <i class="icofont icofont-idea d-block text-primary"
+                                           style="margin-top: -10px; margin-right: -10px;"></i>
+                                    </a>
                                 </div>
 
-                            </div>
-                        </div>
+                                <div class="card-block">
 
-
-                        <div class="card statustic-progress-card">
-                            <div class="card-header">
-                                <h5><a href="">Perez, Rocio</a></h5>
-
-                                <a href="" class="text-primary f-30 float-right pt-0 mt-0" data-toggle="tooltip"
-                                   title="Ver detalle" data-original-title="Ver detalle">
-                                    <i class="icofont icofont-idea d-block text-primary"
-                                       style="margin-top: -10px; margin-right: -10px;"></i>
-                                </a>
-                            </div>
-
-                            <div class="card-block">
-
-                                <div class="row align-items-center">
-                                    <div class="col-auto">
-                                        <small class="text-black-50">
-                                            3/6/2019 - Cuota 1
-                                        </small>
+                                    <div class="row align-items-center">
+                                        <div class="col-auto">
+                                            <small class="text-black-50">
+                                                {{ $p->payment_date }} - Cuota {{ $p->due }} de {{ $p->total_dues }}
+                                            </small>
+                                        </div>
+                                        <div class="col text-right">
+                                            <h5 class="text-danger">${{ $p->amount_payable }}</h5>
+                                        </div>
                                     </div>
-                                    <div class="col text-right">
-                                        <h5 class="text-danger">$1000</h5>
+                                    <div class="progress m-t-15">
+                                        @php
+                                            if($p->dues < 25)
+                                                $class = 'danger';
+                                            elseif($p->dues < 50)
+                                                $class = 'warning';
+                                            elseif($p->dues < 75)
+                                                $class = 'info';
+                                            else
+                                                $class = 'primary';
+
+                                        @endphp
+
+                                        <div class="progress-bar bg-{{ $class }}" style="width:{{ $p->dues }}%"></div>
                                     </div>
-                                </div>
-                                <div class="progress m-t-15">
-                                    <div class="progress-bar bg-warning" style="width:25%"></div>
-                                </div>
 
+                                </div>
                             </div>
-                        </div>
-
-                        <div class="card statustic-progress-card">
-                            <div class="card-header">
-                                <h5><a href="">Sanchez, Ezequiel</a></h5>
-
-                                <a href="" class="text-primary f-30 float-right pt-0 mt-0" data-toggle="tooltip"
-                                   title="Ver detalle" data-original-title="Ver detalle">
-                                    <i class="icofont icofont-idea d-block text-primary"
-                                       style="margin-top: -10px; margin-right: -10px;"></i>
-                                </a>
-                            </div>
-
-                            <div class="card-block">
-
-                                <div class="row align-items-center">
-                                    <div class="col-auto">
-                                        <small class="text-black-50">
-                                            5/6/2019 - Cuota 12
-                                        </small>
-                                    </div>
-                                    <div class="col text-right">
-                                        <h5 class="text-danger">$7500</h5>
-                                    </div>
-                                </div>
-                                <div class="progress m-t-15">
-                                    <div class="progress-bar bg-success" style="width:70%"></div>
-                                </div>
-
-                            </div>
-                        </div>
-
-
-                        <div class="card statustic-progress-card">
-                            <div class="card-header">
-                                <h5><a href="">Pereira, Walter</a></h5>
-
-                                <a href="" class="text-primary f-30 float-right pt-0 mt-0" data-toggle="tooltip"
-                                   title="Ver detalle" data-original-title="Ver detalle">
-                                    <i class="icofont icofont-idea d-block text-primary"
-                                       style="margin-top: -10px; margin-right: -10px;"></i>
-                                </a>
-                            </div>
-
-                            <div class="card-block">
-
-                                <div class="row align-items-center">
-                                    <div class="col-auto">
-                                        <small class="text-black-50">
-                                            7/6/2019 - Cuota 16
-                                        </small>
-                                    </div>
-                                    <div class="col text-right">
-                                        <h5 class="text-danger">$500</h5>
-                                    </div>
-                                </div>
-                                <div class="progress m-t-15">
-                                    <div class="progress-bar bg-primary" style="width:100%"></div>
-                                </div>
-
-                            </div>
-                        </div>
-
+                        @empty
+                            <p class="text-warning"><i class="icofont icofont-info-circle icofont-2x mr-1 text-warning"></i> No hay cobros esta semana</p>
+                        @endforelse
 
                         {{--<div class="row m-b-25">--}}
                         {{--<div class="col-auto p-r-0">--}}

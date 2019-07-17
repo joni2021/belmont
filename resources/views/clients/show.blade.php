@@ -85,7 +85,7 @@
 
                         <div class="card b-r-primary shadow-none m-b-20">
                             <div class="card-header">
-                                <a href="" class="btn btn-mini btn-success float-right"><i class="fa fa-line-chart"></i> Historial financiero</a>
+                                <a href="{{ route('clients.financing', $model->id) }}" class="btn btn-mini btn-success float-right"><i class="fa fa-line-chart"></i> Historial financiero</a>
                                 <div class="service-header">
                                     <h5 class="card-header-text">Datos financieros</h5>
                                     <hr class="my-0 pb-0">

@@ -18,7 +18,7 @@
                 <div class="page-header-title">
                     <div class="d-inline">
                         <h4>Prestamos</h4>
-                        <span>Listado de mis préstamos {{ $estado }}</span>
+                        <span>Listado de mis préstamos</span>
                     </div>
                 </div>
             </div>
@@ -28,9 +28,7 @@
                         <li class="breadcrumb-item">
                             <a href="{{ url('/') }}"> <i class="feather icon-home"></i> </a>
                         </li>
-                        <li class="breadcrumb-item">Préstamos
-                        </li>
-                        <li class="breadcrumb-item text-black-50"><b>{{ $estado }}</b>
+                        <li class="breadcrumb-item">Préstamos otorgados
                         </li>
                     </ul>
                 </div>
@@ -45,26 +43,29 @@
 
             <div class="card-block">
 
-                    <div class="dt-responsive">
-                        <table class="table table-bordered nowrap datatable w-100">
-                            <thead>
-                            <tr>
-                                <th>Cliente</th>
-                                <th>DNI</th>
-                                <th>Teléfono</th>
-                                <th>Fecha</th>
-                                <th>Monto</th>
-                                <th></th>
-                            </tr>
-                            </thead>
-                            <tbody>
+                <div class="dt-responsive">
+                    <table class="table table-bordered nowrap datatable w-100">
+                        <thead>
+                        <tr>
+                            <th>Cliente</th>
+                            <th>DNI</th>
+                            <th>Teléfono</th>
+                            <th>Fecha</th>
+                            <th>Monto</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
 
-                            @forelse($models as $prestamo)
+                        @forelse($models as $prestamo)
+
                             <tr>
                                 <td>{{ $prestamo->client->fullName }}
-                                    <a href="{{ route('clients.show',$prestamo->client->id) }}" target="_blank" class="float-right pt-1" data-toggle="tooltip" data-placement="top" title="Ver cliente" data-original-title="Ver cliente">
+                                    <a href="{{ route('clients.show',$prestamo->client->id) }}" target="_blank"
+                                       class="float-right pt-1" data-toggle="tooltip" data-placement="top"
+                                       title="Ver cliente" data-original-title="Ver cliente">
 
-                                            <i class="icofont icofont-eye-alt text-primary" style="font-size:15px;"></i>
+                                        <i class="icofont icofont-eye-alt text-primary" style="font-size:15px;"></i>
 
                                     </a>
                                 </td>
@@ -77,27 +78,39 @@
                                 </td>
                                 <td>{{ $prestamo->date }}</td>
                                 <td>{{ $prestamo->formattedAmount }}</td>
+
                                 <td class="text-right">
                                     <div class="dropdown-primary dropdown open show">
-                                        <button class="btn btn-primary btn-sm dropdown-toggle waves-effect waves-light " type="button" id="dropdown-7" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Opciones</button>
-                                        <div class="dropdown-menu" aria-labelledby="dropdown-7" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut" x-placement="bottom-start">
-                                            <a class="dropdown-item waves-light waves-effect" href="{{ route('forms.edit',[$status,$prestamo->id]) }}">
-                                                <i class="fa fa-edit"></i> Editar</a>
-
+                                        <button class="btn btn-primary btn-mini dropdown-toggle waves-effect waves-light "
+                                                type="button" id="dropdown-7" data-toggle="dropdown"
+                                                aria-haspopup="true" aria-expanded="true">Opciones
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdown-7"
+                                             data-dropdown-in="fadeIn" data-dropdown-out="fadeOut"
+                                             x-placement="bottom-start">
+                                            @if(!$prestamo->itsPaid())
+                                                <a class="dropdown-item waves-light waves-effect"
+                                                   href="{{ route('forms.edit',$prestamo->id) }}">
+                                                    <i class="fa fa-edit"></i> Editar</a>
+                                            @endif
                                             <a class="dropdown-item waves-light waves-effect" href="#">
                                                 <i class="fa fa-trash"></i> Borrar</a>
                                         </div>
                                     </div>
+                                    <a class="btn btn-warning btn-mini" href="{{ route('forms.paymentPlan',$prestamo->id) }}">
+                                        Plan de cuotas
+                                    </a>
+
                                 </td>
                             </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="6" class="text-center">No otorgaste ningún préstamos todavía</td>
-                                </tr>
-                            @endforelse
-                            </tbody>
-                        </table>
-                    </div>
+                        @empty
+                            <tr>
+                                <td colspan="6" class="text-center">No otorgaste ningún préstamos todavía</td>
+                            </tr>
+                        @endforelse
+                        </tbody>
+                    </table>
+                </div>
 
             </div>
         </div>
@@ -127,3 +140,4 @@
 
 
 @endsection
+

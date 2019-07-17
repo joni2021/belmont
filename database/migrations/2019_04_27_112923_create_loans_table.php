@@ -23,11 +23,13 @@ class CreateLoansTable extends Migration
             $table->tinyInteger('accreditation_type_id',false,true);
             $table->tinyInteger('financing_id',false,true);
             $table->bigInteger('client_id',false,true);
+            $table->bigInteger('user_id',false,true);
             $table->tinyInteger('status',false,true);
 
             $table->foreign('accreditation_type_id')->references('id')->on('accreditation_types');
             $table->foreign('financing_id')->references('id')->on('financing');
             $table->foreign('client_id')->references('id')->on('clients');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
             $table->softDeletes();
         });

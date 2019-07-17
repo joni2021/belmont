@@ -34,15 +34,10 @@
                         </a>
                     </li>
                     <li class="">
-                        <a href="{{ route('forms.index',0) }}">
+                        <a href="{{ route('forms.index') }}">
                             <span class="pcoded-mtext">Préstamos otorgados</span>
                         </a>
                     </li>
-                    {{--<li class="">--}}
-                        {{--<a href="{{ route('forms.index',1) }}">--}}
-                            {{--<span class="pcoded-mtext">Mis préstamos otorgados</span>--}}
-                        {{--</a>--}}
-                    {{--</li>--}}
                 </ul>
             </li>
 

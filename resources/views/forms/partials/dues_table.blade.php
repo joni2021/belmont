@@ -7,6 +7,7 @@
             <th>Interés pagado($)</th>
             <th>Amortización($)</th>
             <th>Saldo a pagar($)</th>
+            <th>Valor cuota($)</th>
         </tr>
         </thead>
         <tbody class="datosCuota">

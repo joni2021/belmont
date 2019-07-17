@@ -16499,19 +16499,20 @@ table.footable-paging-center>tfoot>tr.footable-paging>td {
 }
 
 .latest-update-card .card-block .latest-update-box:after {
-    content: "";
-    position: absolute;
-    background: #ddd;
-    height: 100%;
-    width: 1px;
-    top: 0;
-    left: 110px;
-    z-index: 1
+    /*content: "";*/
+    /*position: absolute;*/
+    /*background: #ddd;*/
+    /*height: 100%;*/
+    /*width: 1px;*/
+    /*top: 0;*/
+    /*left: 110px;*/
+    /*z-index: 1*/
 }
 
 .latest-update-card .card-block .latest-update-box .update-meta {
     z-index: 2;
-    min-width: 160px
+    min-width: 160px;
+    position: relative;
 }
 
 .latest-update-card .card-block .latest-update-box .update-meta .update-icon {
@@ -16522,9 +16523,36 @@ table.footable-paging-center>tfoot>tr.footable-paging>td {
     padding: 12px 13px;
     font-size: 16px;
     color: #fff;
-    margin-left: 10px
+    margin-left: 10px;
+    position: relative;
 }
-
+/*
+.latest-update-card .card-block .latest-update-box .update-meta .timeline:before{
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    bottom: 15px;
+    width: 1px;
+    height: 15px;
+    background: #ddd;
+}
+*/
+.latest-update-card .card-block .latest-update-box .update-meta .timeline:after{
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    top: -15px;
+    width: 1px;
+    height: 75px;
+    background: #ddd;
+    z-index: -1;
+}
 @media only screen and (max-width: 575px) {
     .latest-update-card .card-block .latest-update-box:after {
         display: none
@@ -16532,10 +16560,20 @@ table.footable-paging-center>tfoot>tr.footable-paging>td {
     .latest-update-card .card-block .latest-update-box .update-meta {
         z-index: 2;
         min-width: 100%;
-        text-align: left !important;
+        text-align: center !important;
         margin-bottom: 15px;
         border-top: 1px solid #f1f1f1;
         padding-top: 15px
+    }
+
+
+    .latest-update-card .card-block .latest-update-box .update-meta .timeline{
+        display: block;
+        margin: auto;
+    }
+
+    .latest-update-card .card-block .latest-update-box .update-meta .timeline:after{
+        display: none;
     }
 }
 

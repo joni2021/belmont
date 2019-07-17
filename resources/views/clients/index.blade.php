@@ -75,7 +75,7 @@
                                 </td>
                                 <td class="text-right">
                                     <div class="dropdown-primary dropdown open show">
-                                        <button class="btn btn-primary btn-sm dropdown-toggle waves-effect waves-light "
+                                        <button class="btn btn-primary btn-mini dropdown-toggle waves-effect waves-light "
                                                 type="button" id="dropdown-7" data-toggle="dropdown" aria-haspopup="true"
                                                 aria-expanded="true">Opciones
                                         </button>
