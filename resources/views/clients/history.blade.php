@@ -57,18 +57,9 @@
                                                         </div>
                                                         <h4 class="card-title h4 py-2 text-secondary">{{ $loan->formatted_amount }}</h4>
                                                         <p class="card-text text-danger"><b>{{ $loan->dues }} cuotas</b></p>
-                                                        <button class="btn btn-mini btn-outline-success" type="button"
-                                                                data-target="#details-{{ $year }}-{{ $loop->index }}"
-                                                                data-toggle="collapse">Detalles ▼
-                                                        </button>
-                                                        <div class="collapse border mt-2" id="details-{{ $year }}-{{ $loop->index }}">
-                                                            <div class="p-2 text-monospace">
-                                                                <div>08:30 - 09:00 Breakfast in CR 2A</div>
-                                                                <div>09:00 - 10:30 Live sessions in CR 3</div>
-                                                                <div>10:30 - 10:45 Break</div>
-                                                                <div>10:45 - 12:00 Live sessions in CR 3</div>
-                                                            </div>
-                                                        </div>
+                                                        <a class="btn btn-mini btn-outline-success" href="{{  route('forms.paymentPlan',$loan->id) }}">
+                                                            Detalle del préstamo
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </div>

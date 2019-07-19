@@ -14,6 +14,8 @@ class Loans extends Model
         'amount', 'dues', 'cft', 'tna', 'tem', 'accreditation_type_id', 'financing_id', 'client_id',"status", "user_id"
     ];
 
+    public $casts = ['state' => 'boolean'];
+
     public function Client(){
         return $this->belongsTo(Client::class);
     }
@@ -86,6 +88,6 @@ class Loans extends Model
         if($this->Payments()->count() == 0)
             return false;
 
-        return $this->Payments()->where('due','=',1)->get('state');
+        return $this->Payments()->where('due','=',1)->first()->state ;
     }
 }

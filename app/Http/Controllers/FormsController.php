@@ -116,13 +116,14 @@ class FormsController extends Controller
         // busco al cliente
         $cliente = Client::find($this->request->searchClient);
 
-        if (!$cliente)
-            return redirect()->back()->withErrors()->withInput();
-
         // Actualizar los datos del cliente
         $datosCliente = $this->request->only(['cbu', 'name', 'last_name', 'dni_type_id', 'dni', 'address', 'city', 'province', 'cp', 'phone', 'cel', 'job_name', 'job_address', 'job_city', 'job_province', 'job_phone']);
 
-        $cliente->update($datosCliente);
+        if (!$cliente):
+            $cliente = Client::create($datosCliente);
+        else:
+            $cliente->update($datosCliente);
+        endif;
 
 
         // Guardar los datos del presupuesto

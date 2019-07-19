@@ -80,6 +80,7 @@
                                 <td>{{ $prestamo->formattedAmount }}</td>
 
                                 <td class="text-right">
+                                    
                                     <div class="dropdown-primary dropdown open show">
                                         <button class="btn btn-primary btn-mini dropdown-toggle waves-effect waves-light "
                                                 type="button" id="dropdown-7" data-toggle="dropdown"

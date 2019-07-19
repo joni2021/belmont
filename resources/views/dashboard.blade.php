@@ -215,22 +215,6 @@
                             <p class="text-warning"><i class="icofont icofont-info-circle icofont-2x mr-1 text-warning"></i> No hay cobros esta semana</p>
                         @endforelse
 
-                        {{--<div class="row m-b-25">--}}
-                        {{--<div class="col-auto p-r-0">--}}
-                        {{--<div class="u-img">--}}
-
-                        {{--</div>--}}
-                        {{--</div>--}}
-                        {{--<div class="col">--}}
-                        {{--<h6 class="m-b-5">John Deo</h6>--}}
-                        {{--<p class="text-muted m-b-0">Lorem Ipsum is simply dummy text.</p>--}}
-                        {{--<p class="text-muted m-b-0"><i class="feather icon-clock m-r-10"></i>2 min ago</p>--}}
-                        {{--</div>--}}
-                        {{--</div>--}}
-
-                        {{--<div class="text-center">--}}
-                        {{--<a href="{{ route('forms.index') }}" class="b-b-primary text-primary">Ver todos</a>--}}
-                        {{--</div>--}}
                     </div>
                 </div>
             </div>
