@@ -45,6 +45,12 @@
 <script>
     $(document).ready(function () {
 
+        $('.btnDelete').on('click', function (ev) {
+            ev.preventDefault();
+            ev.stopPropagation();
+
+            $(this).parent().find('form').submit();
+        })
 
         var dt = $('.datatable').DataTable({
             language: {
@@ -73,5 +79,6 @@
             },
             responsive: true
         })
+
     })
 </script>

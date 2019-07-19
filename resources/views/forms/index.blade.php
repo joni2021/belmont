@@ -80,7 +80,7 @@
                                 <td>{{ $prestamo->formattedAmount }}</td>
 
                                 <td class="text-right">
-                                    
+
                                     <div class="dropdown-primary dropdown open show">
                                         <button class="btn btn-primary btn-mini dropdown-toggle waves-effect waves-light "
                                                 type="button" id="dropdown-7" data-toggle="dropdown"
@@ -94,11 +94,19 @@
                                                    href="{{ route('forms.edit',$prestamo->id) }}">
                                                     <i class="fa fa-edit"></i> Editar</a>
                                             @endif
-                                            <a class="dropdown-item waves-light waves-effect" href="#">
+                                            {{ Form::open(["route" => ["forms.destroy",$prestamo->id],'method' => 'DELETE','style' => 'display:none;']) }}
+
+                                            <button class="dropdown-item waves-light waves-effect" type="submit">
+
+                                            </button>
+
+                                            {{ Form::close() }}
+                                            <a class="dropdown-item waves-light waves-effect btnDelete" href="#">
                                                 <i class="fa fa-trash"></i> Borrar</a>
                                         </div>
                                     </div>
-                                    <a class="btn btn-warning btn-mini" href="{{ route('forms.paymentPlan',$prestamo->id) }}">
+                                    <a class="btn btn-warning btn-mini"
+                                       href="{{ route('forms.paymentPlan',$prestamo->id) }}">
                                         Plan de cuotas
                                     </a>
 

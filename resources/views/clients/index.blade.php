@@ -60,7 +60,9 @@
                         @forelse($datas as $client)
                             <tr>
                                 <td>{{ $client->full_name }}
-                                    <a href="{{ route('clients.show',$client->id) }}" class="float-right pt-1" data-toggle="tooltip" data-placement="top" title="Ver detalle" data-original-title="Ver detalle">
+                                    <a href="{{ route('clients.show',$client->id) }}" class="float-right pt-1"
+                                       data-toggle="tooltip" data-placement="top" title="Ver detalle"
+                                       data-original-title="Ver detalle">
 
                                         <i class="icofont icofont-eye-alt text-primary" style="font-size:15px;"></i>
 
@@ -68,7 +70,8 @@
                                 </td>
                                 <td><b>{{ $client->dniType->type }}:</b> {{ $client->dni }}</td>
                                 <td>{{ $client->address }}</td>
-                                <td><ul>
+                                <td>
+                                    <ul>
                                         <li><b>Tel:</b> {{ $client->phone }}</li>
                                         <li><b>Cel:</b> {{ $client->cel }}</li>
                                     </ul>
@@ -76,19 +79,25 @@
                                 <td class="text-right">
                                     <div class="dropdown-primary dropdown open show">
                                         <button class="btn btn-primary btn-mini dropdown-toggle waves-effect waves-light "
-                                                type="button" id="dropdown-7" data-toggle="dropdown" aria-haspopup="true"
+                                                type="button" id="dropdown-7" data-toggle="dropdown"
+                                                aria-haspopup="true"
                                                 aria-expanded="true">Opciones
                                         </button>
-                                        <div class="dropdown-menu" aria-labelledby="dropdown-7" data-dropdown-in="fadeIn"
+                                        <div class="dropdown-menu" aria-labelledby="dropdown-7"
+                                             data-dropdown-in="fadeIn"
                                              data-dropdown-out="fadeOut" x-placement="bottom-start">
-                                            <a class="dropdown-item waves-light waves-effect" href="{{ route("clients.edit",$client->id) }}">
+                                            <a class="dropdown-item waves-light waves-effect"
+                                               href="{{ route("clients.edit",$client->id) }}">
                                                 <i class="fa fa-edit"></i> Editar</a>
-                                            {{ Form::open(["route" => ["clients.destroy",$client->id],'method' => 'DELETE']) }}
+                                            {{ Form::open(["route" => ["clients.destroy",$client->id],'method' => 'DELETE','style' => 'display:none;']) }}
 
-                                                <button class="dropdown-item waves-light waves-effect" type="submit">
-                                                    <i class="fa fa-trash"></i> Borrar</button>
+                                            <button class="dropdown-item waves-light waves-effect" type="submit">
+                                                Borrar
+                                            </button>
 
                                             {{ Form::close() }}
+                                            <a class="dropdown-item waves-light waves-effect btnDelete" href="#">
+                                                <i class="fa fa-trash"></i> Borrar</a>
                                         </div>
                                     </div>
                                 </td>
@@ -125,6 +134,5 @@
 
 
     <script type="text/javascript" src="assets/js/script.js"></script>
-
 
 @endsection
