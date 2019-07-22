@@ -57,7 +57,7 @@
         <p style="margin:0; text-transform: uppercase; padding: 5px auto; color: white;">datos laborales</p>
     </div>
 
-    <div style="margin-top: -30px;">
+    <div style="margin-top: -20px;">
         <p style="margin-left: 5px;display: inline-block; vertical-align: bottom;">Empresa: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .2cm;">{{ $loan->Client->job_name }}</i></p>
         <p style="margin-left: 5px;display: inline-block;">Domicilio laboral: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .2cm;">{{ $loan->Client->job_address }}</i></p>
     </div>
@@ -89,23 +89,23 @@
         <p style="margin-left: 5px;display: inline-block;">T.E.M: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .2cm;">{{ $loan->tem }}</i></p>
     </div>
 
-    <div style="margin-top: 0;">
+    <div style="margin-top: -10px;">
         <p>2. Objeto</p>
         <p style="margin-top: -10px;">
-            2.1. El Acreedor otorga al Deudor, 	<b><i>{{ $loan->Client->fullname }}</i></b>,la suma de <b>${{ $loan->amount }}</b> (), que el Deudor acepta y declara recibir los fondos de plena conformidad, mediante {{ $loan->AccreditationType->type }}
+            2.1. El Acreedor otorga al Deudor, 	<b><i>{{ $loan->Client->fullname }}</i></b>,la suma de <b>${{ $loan->amount }} ({{ NumerosEnLetras::convertir($loan->amount,'pesos',false,'centavos') }})</b>, que el Deudor acepta y declara recibir los fondos de plena conformidad, mediante {{ $loan->AccreditationType->type }}
             <br>
             2.2. El Deudor declara asimismo, que la totalidad de los fondos provenientes de este préstamo, los destinará a
         </p>
         <p>________________________________________________________________________________________________</p>
         <p>
             3. Cancelación del préstamo. El préstamo será cancelado bajo las siguientes condiciones: <br>
-            3.1. <b>{{ $loan->dues }}</b> cuotas mensuales, iguales y consecutivas, de: <b>$ {{ $loan->Payments->first()->amount_payable }}</b> (   )
+            3.1. <b>{{ $loan->dues }}</b> cuotas mensuales, iguales y consecutivas, de: <b>{{ $loan->Payments->first()->amount_payable }} ({{ NumerosEnLetras::convertir($loan->Payments->first()->amount_payable,'pesos',false,'centavos') }}) </b>
             <br>
             El vencimiento de la primera cuota se producirá el 	y las restantes el mismo día de cada mes subsiguiente.
             <br>
             Las cuotas son calculadas conforme al denominado sistema de amortización francés, las que tienen incluido una tasa de interés del <b>{{ $loan->financing->first()->porcent }}%</b> efectiva mensual, debiéndosele adicionar a los intereses, el Impuesto al Valor Agregado (IVA) que corresponda, los que se deberán abonar conjuntamente con cada cuota. A la cuota se le adicionarán los gastos administrativos aplicables conforme se establecen en el artículo sexto del presente.
             <br>
-            4. Libramiento de Pagaré. Las partes convienen en documentar la deuda de <b>${{ $loan->amount }}</b>, (	_________), en un pagaré a la vista bajos las condiciones de su libramiento, confiriendo a su vez la via ejecutiva al presente, por lo que el Acreedor podrá a su sola opción, iniciar la ejecución con cualesquiera de los documentos que prefiera en caso de incumplimiento de algunas de las obligaciones asumidas por el Deudor.
+            4. Libramiento de Pagaré. Las partes convienen en documentar la deuda de <b>${{ $loan->amount }} ({{ NumerosEnLetras::convertir($loan->amount,'pesos',false,'centavos') }})</b>, en un pagaré a la vista bajos las condiciones de su libramiento, confiriendo a su vez la via ejecutiva al presente, por lo que el Acreedor podrá a su sola opción, iniciar la ejecución con cualesquiera de los documentos que prefiera en caso de incumplimiento de algunas de las obligaciones asumidas por el Deudor.
             <br>
             5. Mora
             <br>
@@ -122,7 +122,7 @@
     </div>
 
 
-    <div style="margin-top: 1.5cm;">
+    <div style="margin-top: 1cm;">
         <p style="display: block; float: left;"><b>Firma del solicitante</b></p>
         <p style="display: block; float: right; margin-top: 0;"><b>Verificado</b></p>
     </div>

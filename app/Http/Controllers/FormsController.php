@@ -17,6 +17,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Auth;
 use function intval;
+use NumerosEnLetras;
 
 class FormsController extends Controller
 {
@@ -276,6 +277,7 @@ class FormsController extends Controller
         if(!$loan)
             return redirect()->route('forms.index')->withErrors('El prestamo que busca no existe');
 
+
         return $PDF->loadView('forms.pdf.contrato', [ "loan" => $loan ])->stream('contrato.pdf');
 
     }
@@ -287,6 +289,16 @@ class FormsController extends Controller
             return redirect()->route('forms.index')->withErrors('El prestamo que busca no existe');
 
         return $PDF->loadView('forms.pdf.pagare', [ "loan" => $loan ])->stream('pagare.pdf');
+
+    }
+
+    public function liquidacionPdf(PDF $PDF, Loans $loans){
+        $loan = $loans->with('Client','Payments')->find($this->route->parameter('id'));
+
+        if(!$loan)
+            return redirect()->route('forms.index')->withErrors('El prestamo que busca no existe');
+
+        return $PDF->loadView('forms.pdf.liquidacion-de-prestamo', [ "loan" => $loan ])->stream('liquidacion-de-prestamo.pdf');
 
     }
 

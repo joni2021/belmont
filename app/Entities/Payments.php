@@ -28,8 +28,16 @@ class Payments extends Model
         return '$'. number_format($this->attributes["amount_payable"],2);
     }
 
+    public function getAmountPayableOriginalAttribute(){
+        return number_format($this->attributes["amount_payable"],2);
+    }
+
     public function getAmountPaidAttribute(){
         return '$'. number_format($this->attributes["amount_paid"],2);
+    }
+
+    public function getAmountPaidOriginalAttribute(){
+        return number_format($this->attributes["amount_paid"],2);
     }
 
 }

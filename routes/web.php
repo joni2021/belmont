@@ -122,6 +122,11 @@ Route::group(['middleware' => 'auth'], function () {
                 'uses' => 'FormsController@pagarePdf'
             ]);
 
+            Route::get('liquidacion-de-prestamo-pdf', [
+                'as' => 'forms.liquidacionPdf',
+                'uses' => 'FormsController@liquidacionPdf'
+            ]);
+
         });
 
     });

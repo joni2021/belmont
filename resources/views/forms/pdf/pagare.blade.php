@@ -22,7 +22,7 @@
 </head>
 <body>
 
-<div style="width: 15cm;height: 12cm;border: 1px solid #000;border-radius: 30px; padding: 5px;">
+<div style="width: 15cm;height: 12cm;border: 1px solid #000;border-radius: 30px; padding: 5px;margin: auto;">
     <div>
         <p style="display: block; float: right; margin-top: .3cm;margin-right: 1cm; font-size: 12pt;">
             <b>$</b> {{  $loan->amount }}</p>
@@ -33,7 +33,7 @@
     <div>
         <p style="float: left; display: block; margin-top: 1.2cm;">Lugar: ______________________</p>
         <p style="margin-left: 5px;float: right;display: block; margin-top: -10px;">Fecha: <i
-                    style=" display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .2cm;">{{ $loan->created_at }}</i>
+                    style=" display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .2cm;"> {{ date('d-m-Y', strtotime($loan->created_at)) }}</i>
         </p>
     </div>
 
@@ -42,7 +42,7 @@
     <div style="margin-top: -30px;">
         <p>
             Pagaré a la vista y sin protesto (art. 50 Decreto-Ley 5965/63) a …………………………………… o a su orden la cantidad de
-            <b>${{ $loan->amount }}</b> (son pesos …………) por igual valor recibido en dinero efectivo a mi entera
+            <b>${{ $loan->amount }} (son {{ NumerosEnLetras::convertir($loan->amount,'pesos',false,'centavos') }})</b> por igual valor recibido en dinero efectivo a mi entera
             satisfacción. La suma adeudada en virtud de este pagaré, devengará intereses compensatorios a una tasa
             del {{ $loan->AccreditationType->porcent }}% efectiva mensual desde la fecha de emisión e intereses
             punitorios del orden del 50% de la tasa establecida como interés compensatorio que se adicionarán a aquel
@@ -50,7 +50,7 @@
             calcularán sobre la base de un año de 365 días.
             <br>
             Este pagaré será pagadero y exigible en la ciudad de· Buenos Aires o donde el beneficiario lo indique en el
-            futuro y podrá ser presentado al cobro hasta S (cinco) años de su fecha de emisión (art.36, 96, 100 y 103
+            futuro y podrá ser presentado al cobro hasta 5 (cinco) años de su fecha de emisión (art.36, 96, 100 y 103
             Decreto-Ley 5965/63).
         </p>
     </div>

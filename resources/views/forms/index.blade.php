@@ -116,6 +116,25 @@
                                         Plan de cuotas
                                     </a>
 
+
+                                    <div class="dropdown-info dropdown open show">
+                                        <button class="btn btn-link btn-mini dropdown-toggle waves-effect waves-light "
+                                                type="button" id="dropdown-7" data-toggle="dropdown"
+                                                aria-haspopup="true" aria-expanded="true"><i class="text-primary icofont icofont-printer icofont-2x"></i>
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdown-7"
+                                             data-dropdown-in="fadeIn" data-dropdown-out="fadeOut"
+                                             x-placement="bottom-start">
+
+                                            <a class="dropdown-item waves-light waves-effect" href="{{ route('forms.contratoPdf',$prestamo->id) }}" target="_blank">
+                                                Contrato</a>
+
+                                            <a class="dropdown-item waves-light waves-effect" href="{{ route('forms.pagarePdf',$prestamo->id) }}" target="_blank">
+                                                Pagaré</a>
+                                            <a class="dropdown-item waves-light waves-effect" href="{{ route('forms.liquidacionPdf',$prestamo->id) }}" target="_blank">
+                                                Liquidación de préstamo</a>
+                                        </div>
+                                    </div>
                                 </td>
                             </tr>
                         @empty
