@@ -10,6 +10,7 @@ use App\Entities\Loans;
 use App\Entities\Payments;
 use App\Http\Repositories\ClientsRepo;
 use App\Http\Repositories\LoansRepo;
+use Barryvdh\DomPDF\PDF;
 use Carbon\Carbon;
 use function floatval;
 use Illuminate\Http\Request;
@@ -269,5 +270,24 @@ class FormsController extends Controller
     }
 
 
+    public function contratoPdf(PDF $PDF, Loans $loans){
+        $loan = $loans->with('Client','User', 'Payments','AccreditationType')->find($this->route->parameter('id'));
+
+        if(!$loan)
+            return redirect()->route('forms.index')->withErrors('El prestamo que busca no existe');
+
+        return $PDF->loadView('forms.pdf.contrato', [ "loan" => $loan ])->stream('contrato.pdf');
+
+    }
+
+    public function pagarePdf(PDF $PDF, Loans $loans){
+        $loan = $loans->with('Client','User', 'Payments','AccreditationType')->find($this->route->parameter('id'));
+
+        if(!$loan)
+            return redirect()->route('forms.index')->withErrors('El prestamo que busca no existe');
+
+        return $PDF->loadView('forms.pdf.pagare', [ "loan" => $loan ])->stream('pagare.pdf');
+
+    }
 
 }

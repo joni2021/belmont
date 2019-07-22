@@ -111,6 +111,17 @@ Route::group(['middleware' => 'auth'], function () {
                 'uses' => 'FormsController@paymentPlan'
             ]);
 
+//            PDF
+            Route::get('contrato-pdf', [
+                'as' => 'forms.contratoPdf',
+                'uses' => 'FormsController@contratoPdf'
+            ]);
+
+            Route::get('pagare-pdf', [
+                'as' => 'forms.pagarePdf',
+                'uses' => 'FormsController@pagarePdf'
+            ]);
+
         });
 
     });

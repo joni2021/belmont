@@ -103,6 +103,12 @@
                                             {{ Form::close() }}
                                             <a class="dropdown-item waves-light waves-effect btnDelete" href="#">
                                                 <i class="fa fa-trash"></i> Borrar</a>
+
+                                            <a class="dropdown-item waves-light waves-effect" href="{{ route('forms.contratoPdf',$prestamo->id) }}" target="_blank">
+                                                <i class="ti-printer"></i> Contrato</a>
+
+                                            <a class="dropdown-item waves-light waves-effect" href="{{ route('forms.pagarePdf',$prestamo->id) }}" target="_blank">
+                                                <i class="ti-printer"></i> Pagaré</a>
                                         </div>
                                     </div>
                                     <a class="btn btn-warning btn-mini"
