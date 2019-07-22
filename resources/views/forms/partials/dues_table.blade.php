@@ -13,6 +13,12 @@
         <tbody class="datosCuota">
 
         </tbody>
+        <tfooter>
+            <tr>
+                <td colspan="5" class="text-right"><b>Total:</b></td>
+                <td colspan="1" class="text-left" id="precioTotal"></td>
+            </tr>
+        </tfooter>
 
     </table>
 </div>

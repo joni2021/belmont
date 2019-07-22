@@ -41,6 +41,7 @@ $(document).ready(function () {
         var amortizacionPagado = 0.0000;
         var valorDeudaASaldar = monto;
 
+        var total = 0;
 
         for(var i = 0; i < cuota; i++ ){
             if(i < 2){
@@ -62,14 +63,16 @@ $(document).ready(function () {
             tabla += "<td>$" + (parseFloat(interesPagado.toFixed(2)) + parseFloat(amortizacionPagado.toFixed(2))).toFixed(2) + "</td></tr>";
 
             // pagoTotal += parseFloat(calcular_cuota(ind)).toFixed(2) //+ parseFloat(pagoTotal) ;
-
+            total += parseFloat(interesPagado.toFixed(2)) + parseFloat(amortizacionPagado.toFixed(2))
         }
 
         // tabla += "<tr>";
 
 
         $(".datosCuota").empty();
+        $("#precioTotal").empty();
         $(".datosCuota").append(tabla);
+        $("#precioTotal").text('$' + total.toFixed(2));
         // $("#precioTotal").text("$ " + pagoTotal)
 
 
