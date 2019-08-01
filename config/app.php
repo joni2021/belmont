@@ -179,6 +179,8 @@ return [
          *  DomPDF...
          */
         Barryvdh\DomPDF\ServiceProvider::class,
+
+        App\Providers\FormServiceProvider::class,
     ],
 
     /*

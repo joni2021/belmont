@@ -26,7 +26,7 @@ $(document).ready(function () {
         var valCuota = monto * (porcentajeCuota / (1 - Math.pow(1 + porcentajeCuota,((-1) * cuota))))
         // var valCuota = monto * (( porcentajeCuota * (Math.pow( 1 + porcentajeCuota, cuota ))) / (( (Math.pow( 1 + porcentajeCuota, cuota )) - 1 )));
 
-        // $("#tasa").val(tasa);
+        $("#tasa").val(tasa);
         $("#dues_amount").val(parseFloat(valCuota).toFixed(2));
 
         var tasaPrimerCuota = parseFloat($("#dues option")[0].dataset.porcent)

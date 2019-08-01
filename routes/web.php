@@ -127,6 +127,11 @@ Route::group(['middleware' => 'auth'], function () {
                 'uses' => 'FormsController@liquidacionPdf'
             ]);
 
+            Route::patch('adjuntar-documentacion', [
+                'as' => 'forms.attachArchives',
+                'uses' => 'FormsController@attachArchives'
+            ]);
+
         });
 
     });

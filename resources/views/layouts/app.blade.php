@@ -114,6 +114,8 @@
             </div>
         </div>
     </div>
+
+    @yield('modal')
 </div>
 
 @include('layouts.js')

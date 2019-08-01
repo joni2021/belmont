@@ -33,13 +33,23 @@
 <script type="text/javascript"
         src="bower_components/i18next-browser-languagedetector/js/i18nextBrowserLanguageDetector.min.js"></script>
 <script type="text/javascript" src="bower_components/jquery-i18next/js/jquery-i18next.min.js"></script>
+
+<script type="text/javascript" src="bower_components/flatpickr/flatpickr.min.js"></script>
+<script type="text/javascript" src="bower_components/flatpickr/es.js"></script>
+
+<!-- modalEffects js nifty modal window effects -->
+<script type="text/javascript" src="assets/js/modalEffects.js"></script>
+<script type="text/javascript" src="assets/js/classie.js"></script>
+
 <!-- Custom js -->
-
-
 <script src="assets/js/pcoded.min.js"></script>
 <script src="assets/js/vartical-layout.min.js"></script>
 <script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+
 <script type="text/javascript" src="assets/js/script.js"></script>
+
+{{--<script src="assets/bootstrap-fileinput/js/fileinput.min.js" type="text/javascript"></script>--}}
+{{--<script src="assets/bootstrap-fileinput/js/locales/es.js" type="text/javascript"></script>--}}
 
 
 <script>
@@ -51,6 +61,7 @@
 
             $(this).parent().find('form').submit();
         })
+
 
         var dt = $('.datatable').DataTable({
             language: {
@@ -80,5 +91,14 @@
             responsive: true
         })
 
+        /*
+        $("input[type=file]").fileinput({
+            language: 'es',
+            showUpload: false,
+            autoReplace: true,
+        showRemove: false,
+        showClose: false,
+        })
+        */
     })
 </script>

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Client extends Model
 {
     protected $fillable = [
-        'name','last_name','dni_type_id','dni','address','city','province','phone','cp','cel','cbu','job_name','job_address','job_city','job_province','job_phone'
+        'name','last_name','dni_type_id','dni','cuil','address','city','province','phone','cp','cel','cbu','job_name','job_address','job_city','job_province','job_phone'
     ];
 
     public function Users(){
@@ -20,7 +20,7 @@ class Client extends Model
     }
 
     public function Loans(){
-        return $this->hasMany(Loans::class);
+        return $this->hasMany(Loan::class);
     }
 
     public function getFullNameAttribute(){

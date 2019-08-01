@@ -13,7 +13,7 @@ class Payments extends Model
     ];
 
     public function Loan(){
-        return $this->belongsTo(Loans::class);
+        return $this->belongsTo(Loan::class,'loans_id');
     }
 
     public function getFormattedStateAttribute(){

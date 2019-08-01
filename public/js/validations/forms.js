@@ -67,10 +67,16 @@ $(document).ready(function () {
                 required: "El apellido es requerido"
             },
             dni: {
-                required: "Él dni es requerido",
+                required: "El dni es requerido",
                 maxlength: "El valor debe ser un dni válido",
                 minlength: "El valor debe ser un dni válido",
                 number: "El dni tiene que ser numérico"
+            },
+            cuil: {
+                required: "El cuil es requerido",
+                maxlength: "El valor debe ser un cuil válido",
+                minlength: "El valor debe ser un cuil válido",
+                number: "El cuil tiene que ser numérico"
             },
             address: {
                 required: "La dirección es requerida"
@@ -135,6 +141,11 @@ $(document).ready(function () {
                 minlength: 7,
                 number: true
             },
+            cuil: {
+                maxlength: 12,
+                minlength: 10,
+                number: true
+            },
             phone: {
                 number: true
             },
@@ -193,6 +204,7 @@ $(document).ready(function () {
                 $('#last_name').val(client.last_name);
                 $('#dni_type_id').val(client.dni_type_id);
                 $('#dni').val(client.dni);
+                $('#cuil').val(client.cuil);
                 $('#address').val(client.address);
                 $('#city').val(client.city);
                 $('#province').val(client.province);

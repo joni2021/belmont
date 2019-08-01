@@ -20,6 +20,7 @@ class ClientsTableSeeder extends Seeder
                 "last_name"  => $faker->lastName,
                 "dni_type_id"  => rand(1,4),
                 "dni"  => Faker\Provider\es_PE\Person::dni(),
+                "cuil"  => rand(20200000003,27200000003),
                 "address"  => $faker->address,
                 "city"  => $faker->city,
                 "province"  => $faker->state,

@@ -25325,4 +25325,7 @@ body.dark #styleSelector .form-control {
     /*font-family: 'Marcellus SC', serif;*/
 }
 
+.border-bottom-primary{
+    border-bottom: 1px solid #01a9ac;
+}
 /*# sourceMappingURL=style.css.map */

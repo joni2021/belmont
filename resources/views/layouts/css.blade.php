@@ -22,6 +22,12 @@
 <!-- Select 2 css -->
 <link rel="stylesheet" href="bower_components/select2/css/select2.min.css">
 
+<!-- Flatpickr css -->
+<link rel="stylesheet" href="bower_components/flatpickr/flatpickr.min.css">
+
+<!-- animation nifty modal window effects css -->
+<link rel="stylesheet" type="text/css" href="assets/css/component.css">
+
 
 <!-- Style.css -->
 <link rel="stylesheet" type="text/css" href="assets/css/style.css">
@@ -29,4 +35,5 @@
 <script src="https://www.google.com/recaptcha/api.js"></script>
 <link rel="stylesheet" type="text/css" href="assets/css/jquery.mCustomScrollbar.css">
 
-
+{{--<link href="assets/bootstrap-fileinput/css/fileinput.css" rel="stylesheet" type="text/css" />--}}
+<link href="css/file_upload.css" rel="stylesheet" type="text/css" />

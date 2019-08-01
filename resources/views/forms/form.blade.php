@@ -47,13 +47,13 @@
                                 <div id="wizard">
                                     <section>
                                         @if(isset($model))
-                                            {{ Form::model($model,['route' => ['forms.update',$model->id],'method' => 'PUT','class' => 'wizard-form','id' => 'example-advanced-form']) }}
+                                            {{ Form::model($model,['route' => ['forms.update',$model->id],'method' => 'PUT','class' => 'wizard-form','id' => 'example-advanced-form', 'files' => true]) }}
                                         @else
-                                            {{ Form::open(['route' => 'forms.store','method' => 'POST','class' => 'wizard-form','id' => 'example-advanced-form']) }}
+                                            {{ Form::open(['route' => 'forms.store','method' => 'POST','class' => 'wizard-form','id' => 'example-advanced-form', 'files' => true]) }}
                                         @endif
-                                            @csrf
+                                        @csrf
 
-                                            @if(!isset($model))
+                                        @if(!isset($model))
                                             <h3 class="d-flex"> Datos personales </h3>
 
                                             <fieldset class="datosPersonales">
@@ -101,13 +101,40 @@
 
                                                 <div class="form-group row">
                                                     <div class="col-12 col-md-6 col-lg-4">
-                                                        <label class="block" for="name">Domicilio Actual</label>
+                                                        <label class="block" for="cuil">Cuil</label>
+                                                        {{ Form::number('cuil',null,['class' => 'form-control','id' => 'cuil']) }}
+                                                    </div>
+
+                                                    <div class="col-12 col-md-6 col-lg-2">
+                                                        <label class="block" for="cp">Cp</label>
+                                                        {{ Form::number('cp',null,['class' => 'form-control','id' => 'cp']) }}
+                                                    </div>
+
+                                                    <div class="col-12 col-md-6 col-lg-3">
+                                                        <label class="block" for="phone">Teléfono</label>
+                                                        {{ Form::number('phone',null,['class' => 'form-control','id' => 'phone']) }}
+                                                    </div>
+
+                                                    <div class="col-12 col-md-6 col-lg-3">
+                                                        <label class="block" for="cel">Celular</label>
+                                                        <div class="input-group">
+
+                                                            {{ Form::number('cel',null,['class' => 'required form-control','id' => 'cel']) }}
+                                                        </div>
+                                                        <div class="invalid-feedback d-block"></div>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <div class="col-12 col-md-6 col-lg-4">
+                                                        <label class="block" for="address">Domicilio Actual</label>
                                                         {{ Form::text('address',null,['class' => 'required form-control','id' => 'address']) }}
                                                         <div class="invalid-feedback d-block"></div>
                                                     </div>
 
                                                     <div class="col-12 col-md-6 col-lg-4">
-                                                        <label class="block" for="last_name">Localidad</label>
+                                                        <label class="block" for="city">Localidad</label>
                                                         {{ Form::text('city',null,['class' => 'required form-control','id' => 'city']) }}
                                                         <div class="invalid-feedback d-block"></div>
                                                     </div>
@@ -124,27 +151,6 @@
                                                 </div>
 
 
-                                                <div class="form-group row">
-                                                    <div class="col-12 col-md-6 col-lg-4">
-                                                        <label class="block" for="name">Cp</label>
-                                                        {{ Form::number('cp',null,['class' => 'form-control','id' => 'cp']) }}
-                                                    </div>
-
-                                                    <div class="col-12 col-md-6 col-lg-4">
-                                                        <label class="block" for="last_name">Teléfono</label>
-                                                        {{ Form::number('phone',null,['class' => 'form-control','id' => 'phone']) }}
-                                                    </div>
-
-                                                    <div class="col-12 col-md-6 col-lg-4">
-                                                        <label class="block" for="dni">Celular</label>
-                                                        <div class="input-group">
-
-                                                            {{ Form::number('cel',null,['class' => 'required form-control','id' => 'cel']) }}
-                                                        </div>
-                                                        <div class="invalid-feedback d-block"></div>
-                                                    </div>
-
-                                                </div>
                                             </fieldset>
 
 
@@ -192,88 +198,314 @@
 
 
                                             </fieldset>
-                                            @endif
 
-                                            <h3 class="align-text-bottom"> Operación </h3>
-                                            <fieldset class="mb-5">
+                                            <h3 class="d-flex"> Instrucciones </h3>
 
-                                                <div class="form-group row">
-                                                    <div class="col-12 col-md-3">
-                                                        <label class="block" for="amount">Monto solicitado ($)</label>
-                                                        {{ Form::number('amount',null,['class' => 'required form-control','id' => 'amount']) }}
-                                                        <div class="invalid-feedback d-block"></div>
-                                                    </div>
-
-                                                    <div class="col-6 col-md-2">
-                                                        <label class="block" for="dues">Cant. Cuotas</label>
-                                                        <div class="input-group">
-                                                            <select name="financing_id" id="dues" class="form-control"
-                                                                    data-placeholder="Seleccione cuotas">
-
-                                                                @foreach($financing as $f)
-                                                                    <option value="{{ $f->id }}"
-                                                                            @if(isset($model) && $model->financing_id == $f->id) selected @endif
-                                                                            data-porcent="{{ $f->porcent }}" data-due="{{ $f->due }}">{{ $f->due }}</option>
-
-                                                                @endforeach
-                                                            </select>
-
-                                                        </div>
-                                                        <div class="invalid-feedback d-block"></div>
-                                                    </div>
-
-
-                                                    <div class="col-12 col-md-7">
-                                                        <label class="block" for="cbu">C.B.U</label>
-                                                        <div class="input-group">
-                                                            @if(!isset($model))
-                                                                {{ Form::number('cbu',null,['class' => 'form-control','id' => 'cbu']) }}
-                                                            @else
-                                                                {{ Form::number(null,$model->client->cbu,['class' => 'form-control','id' => 'cbu','readonly' => true]) }}
-                                                            @endif
-                                                        </div>
-                                                        <div class="invalid-feedback d-block"></div>
-                                                    </div>
-                                                </div>
+                                            <fieldset class="instrucciones">
 
                                                 <div class="form-group row">
-                                                    <div class="col-12 col-md-2 col-lg-3">
-                                                        <label class="block" for="cft">CFT</label>
-                                                        {{ Form::number('cft',null,['class' => 'form-control','id' => 'cft']) }}
-                                                        <div class="invalid-feedback d-block"></div>
-                                                    </div>
+                                                    <div class="col-12 col-md-4">
+                                                        <p class="border-bottom-primary mb-2 pb-1">Instrucción 1</p>
 
-                                                    <div class="col-6 col-md-2 col-lg-3">
-                                                        <label class="block" for="tna">TNA</label>
-                                                        <div class="input-group">
-
-                                                            {{ Form::number('tasa',null,['class' => 'form-control','id' => 'tasa','readonly' => true]) }}
+                                                        <div class="row my-2">
+                                                            <div class="col-12">
+                                                                <label class="block"
+                                                                       for="instruction1_amount">Monto</label>
+                                                                {{ Form::number('instruction1_amount',null,['class' => 'form-control','id' => 'instruction1_amount']) }}
+                                                            </div>
                                                         </div>
-                                                        <div class="invalid-feedback d-block"></div>
-                                                    </div>
 
-                                                    <div class="col-6 col-md-2 col-lg-3">
-                                                        <label class="block" for="tem">TEM</label>
-                                                        <div class="input-group">
+                                                        <div class="row my-2">
+                                                            <div class="col-12 col-md-6">
+                                                                <label class="block" for="last_name">Fecha de
+                                                                    pago</label>
+                                                                {{ Form::text('instruction1_pay_date',null,['class' => 'form-control flatpickr','id' => 'instruction1_pay_date']) }}
+                                                            </div>
 
-                                                            {{ Form::number('tem',null,['class' => 'form-control','id' => 'tem']) }}
+                                                            <div class="col-12 col-md-6">
+                                                                <label class="block" for="instruction1_payment">Medio de
+                                                                    pago</label>
+                                                                {{ Form::select('instruction1_payment',$accreditationsType,null,['class' => 'form-control select2','id' => 'instruction1_payment']) }}
+                                                            </div>
                                                         </div>
-                                                        <div class="invalid-feedback d-block"></div>
-                                                    </div>
-
-
-                                                    <div class="col-12 col-md-5 col-lg-3">
-                                                        <label class="block" for="accreditation_type_id">Tipo de
-                                                            aceditación</label>
-                                                        <div class="input-group">
-
-                                                            {{ Form::select('accreditation_type_id',$accreditationsType,null,['class' => 'form-control','id' => 'accreditation_type_id']) }}
+                                                        <div class="row my-2">
+                                                            <div class="col-12">
+                                                                <label class="block"
+                                                                       for="instruction1_order">Orden</label>
+                                                                {{ Form::text('instruction1_order',null,['class' => 'form-control','id' => 'instruction1_order']) }}
+                                                            </div>
                                                         </div>
-                                                        <div class="invalid-feedback d-block"></div>
+
                                                     </div>
 
+                                                    <div class="col-12 col-md-4">
+                                                        <p class="border-bottom-primary mb-2 pb-1">Instrucción 2</p>
+                                                        <div class="row my-2">
+                                                            <div class="col-12">
+                                                                <label class="block"
+                                                                       for="instruction2_amount">Monto</label>
+                                                                {{ Form::number('instruction2_amount',null,['class' => 'form-control','id' => 'instruction2_amount']) }}
+                                                            </div>
+                                                        </div>
+                                                        <div class="row my-2">
+                                                            <div class="col-12 col-md-6">
+                                                                <label class="block" for="last_name">Fecha de
+                                                                    pago</label>
+                                                                {{ Form::text('instruction2_pay_date',null,['class' => 'form-control flatpickr','id' => 'instruction2_pay_date']) }}
+                                                            </div>
+
+                                                            <div class="col-12 col-md-6">
+                                                                <label class="block" for="instruction2_payment">Medio de
+                                                                    pago</label>
+                                                                {{ Form::select('instruction2_payment',$accreditationsType,null,['class' => 'form-control select2','id' => 'instruction2_payment']) }}
+                                                            </div>
+                                                        </div>
+                                                        <div class="row my-2">
+                                                            <div class="col-12">
+                                                                <label class="block"
+                                                                       for="instruction2_order">Orden</label>
+                                                                {{ Form::text('instruction2_order',null,['class' => 'form-control','id' => 'instruction2_order']) }}
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-12 col-md-4">
+                                                        <p class="border-bottom-primary mb-2 pb-1">Instrucción 3</p>
+
+                                                        <div class="row my-2">
+                                                            <div class="col-12">
+                                                                <label class="block"
+                                                                       for="instruction3_amount">Monto</label>
+                                                                {{ Form::number('instruction3_amount',null,['class' => 'form-control','id' => 'instruction3_amount']) }}
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row my-2">
+                                                            <div class="col-12 col-md-6">
+                                                                <label class="block" for="last_name">Fecha de
+                                                                    pago</label>
+                                                                {{ Form::text('instruction3_pay_date',null,['class' => 'form-control flatpickr','id' => 'instruction3_pay_date']) }}
+                                                            </div>
+
+                                                            <div class="col-12 col-md-6">
+                                                                <label class="block" for="instruction3_payment">Medio de
+                                                                    pago</label>
+                                                                {{ Form::select('instruction3_payment',$accreditationsType,null,['class' => 'form-control select2','id' => 'instruction3_payment']) }}
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row my-2">
+                                                            <div class="col-12">
+                                                                <label class="block"
+                                                                       for="instruction3_order">Orden</label>
+                                                                {{ Form::text('instruction3_order',null,['class' => 'form-control','id' => 'instruction3_order']) }}
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
 
                                                 </div>
+
+                                                <hr>
+                                                <div class="form-group row">
+
+                                                    <div class="col-12 col-md-4">
+                                                        <p class="border-bottom-primary mb-2 pb-1">Instrucción 4</p>
+
+                                                        <div class="row my-2">
+                                                            <div class="col-12">
+                                                                <label class="block"
+                                                                       for="instruction4_amount">Monto</label>
+                                                                {{ Form::number('instruction4_amount',null,['class' => 'form-control','id' => 'instruction4_amount']) }}
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row my-2">
+                                                            <div class="col-12 col-md-6">
+                                                                <label class="block" for="last_name">Fecha de
+                                                                    pago</label>
+                                                                {{ Form::text('instruction4_pay_date',null,['class' => 'form-control flatpickr','id' => 'instruction4_pay_date']) }}
+                                                            </div>
+
+                                                            <div class="col-12 col-md-6">
+                                                                <label class="block" for="instruction4_payment">Medio de
+                                                                    pago</label>
+                                                                {{ Form::select('instruction4_payment',$accreditationsType,null,['class' => 'form-control select2','id' => 'instruction4_payment']) }}
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row my-2">
+                                                            <div class="col-12">
+                                                                <label class="block"
+                                                                       for="instruction4_order">Orden</label>
+                                                                {{ Form::text('instruction4_order',null,['class' => 'form-control','id' => 'instruction4_order']) }}
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+
+                                                    <div class="col-12 col-md-4">
+                                                        <p class="border-bottom-primary mb-2 pb-1">Cancelación</p>
+
+                                                        <div class="row my-2">
+                                                            <div class="col-12">
+                                                                <label class="block"
+                                                                       for="cancellation1_amount">Monto</label>
+                                                                {{ Form::text('cancellation1_amount',null,['class' => 'form-control','id' => 'cancellation1_amount']) }}
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row my-2">
+                                                            <div class="col-12 col-md-6">
+                                                                <label class="block" for="last_name">Fecha de
+                                                                    pago</label>
+                                                                {{ Form::text('cancellation1_pay_date',null,['class' => 'form-control flatpickr','id' => 'cancellation1_pay_date']) }}
+                                                            </div>
+
+                                                            <div class="col-12 col-md-6">
+                                                                <label class="block" for="cancellation1_payment">Medio
+                                                                    de
+                                                                    pago</label>
+                                                                {{ Form::select('cancellation1_payment',$accreditationsType,null,['class' => 'form-control select2','id' => 'cancellation1_payment']) }}
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row my-2">
+                                                            <div class="col-12">
+                                                                <label class="block"
+                                                                       for="cancellation1_order">Orden</label>
+                                                                {{ Form::text('cancellation1_order',null,['class' => 'form-control','id' => 'cancellation1_order']) }}
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-12 col-md-4">
+                                                        <p class="border-bottom-primary mb-2 pb-1">Cancelación</p>
+
+                                                        <div class="row my-2">
+                                                            <div class="col-12">
+                                                                <label class="block"
+                                                                       for="cancellation2_amount">Monto</label>
+                                                                {{ Form::text('cancellation2_amount',null,['class' => 'form-control','id' => 'cancellation2_amount']) }}
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row my-2">
+                                                            <div class="col-12 col-md-6">
+                                                                <label class="block" for="last_name">Fecha de
+                                                                    pago</label>
+                                                                {{ Form::text('cancellation2_pay_date',null,['class' => 'form-control flatpickr','id' => 'cancellation2_pay_date']) }}
+                                                            </div>
+
+                                                            <div class="col-12 col-md-6">
+                                                                <label class="block" for="cancellation2_payment">Medio
+                                                                    de
+                                                                    pago</label>
+                                                                {{ Form::select('cancellation2_payment',$accreditationsType,null,['class' => 'form-control select2','id' => 'cancellation2_payment']) }}
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row my-2">
+                                                            <div class="col-12">
+                                                                <label class="block"
+                                                                       for="cancellation2_order">Orden</label>
+                                                                {{ Form::text('cancellation2_order',null,['class' => 'form-control','id' => 'cancellation2_order']) }}
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+
+                                            </fieldset>
+
+                                        @endif
+
+                                        <h3 class="align-text-bottom"> Operación </h3>
+                                        <fieldset class="mb-5">
+
+                                            <div class="form-group row">
+                                                <div class="col-12 col-md-3">
+                                                    <label class="block" for="amount">Monto solicitado ($)</label>
+                                                    {{ Form::number('amount',null,['class' => 'required form-control','id' => 'amount']) }}
+                                                    <div class="invalid-feedback d-block"></div>
+                                                </div>
+
+                                                <div class="col-6 col-md-2">
+                                                    <label class="block" for="dues">Cant. Cuotas</label>
+                                                    <div class="input-group">
+                                                        <select name="financing_id" id="dues" class="form-control"
+                                                                data-placeholder="Seleccione cuotas">
+
+                                                            @foreach($financing as $f)
+                                                                <option value="{{ $f->id }}"
+                                                                        @if(isset($model) && $model->financing_id == $f->id) selected
+                                                                        @elseif(old('financing_id') && old('financing_id') == $f->id) selected
+                                                                        @endif
+                                                                        data-porcent="{{ $f->porcent }}"
+                                                                        data-due="{{ $f->due }}">{{ $f->due }}</option>
+
+                                                            @endforeach
+                                                        </select>
+
+                                                    </div>
+                                                    <div class="invalid-feedback d-block"></div>
+                                                </div>
+
+
+                                                <div class="col-12 col-md-7">
+                                                    <label class="block" for="cbu">C.B.U</label>
+                                                    <div class="input-group">
+                                                        @if(!isset($model))
+                                                            {{ Form::number('cbu',null,['class' => 'form-control','id' => 'cbu']) }}
+                                                        @else
+                                                            {{ Form::number(null,$model->client->cbu,['class' => 'form-control','id' => 'cbu','readonly' => true]) }}
+                                                        @endif
+                                                    </div>
+                                                    <div class="invalid-feedback d-block"></div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <div class="col-12 col-md-2 col-lg-3">
+                                                    <label class="block" for="cft">CFT</label>
+                                                    {{ Form::number('cft',null,['class' => 'form-control','id' => 'cft']) }}
+                                                    <div class="invalid-feedback d-block"></div>
+                                                </div>
+
+                                                <div class="col-6 col-md-2 col-lg-3">
+                                                    <label class="block" for="tna">TNA</label>
+                                                    <div class="input-group">
+
+                                                        {{ Form::number('tasa',null,['class' => 'form-control','id' => 'tasa','readonly' => true]) }}
+                                                    </div>
+                                                    <div class="invalid-feedback d-block"></div>
+                                                </div>
+
+                                                <div class="col-6 col-md-2 col-lg-3">
+                                                    <label class="block" for="tem">TEM</label>
+                                                    <div class="input-group">
+
+                                                        {{ Form::number('tem',null,['class' => 'form-control','id' => 'tem']) }}
+                                                    </div>
+                                                    <div class="invalid-feedback d-block"></div>
+                                                </div>
+
+
+                                                <div class="col-12 col-md-5 col-lg-3">
+                                                    <label class="block" for="accreditation_type_id">Tipo de
+                                                        aceditación</label>
+                                                    <div class="input-group">
+
+                                                        {{ Form::select('accreditation_type_id',$accreditationsType,null,['class' => 'form-control','id' => 'accreditation_type_id']) }}
+                                                    </div>
+                                                    <div class="invalid-feedback d-block"></div>
+                                                </div>
+
+
+                                            </div>
 
                                             @php
                                                 if(!isset($model))
@@ -282,7 +514,97 @@
 
                                             @include('forms.partials.dues_table',$model)
 
+                                        </fieldset>
+
+                                        @if(!empty($model))
+
+                                            <h3 class="align-text-bottom">
+                                                <i class="icofont icofont-attachment icofont-2x" data-toggle="tooltip"
+                                                   data-placement="top" title="Adjuntar documentación"
+                                                   data-original-title="Adjuntar documentación"></i>
+                                            </h3>
+                                            <fieldset class="mb-5">
+                                                <div class="row">
+                                                    <div class="col-12 col-md-6">
+
+                                                        <div class="job-cards">
+                                                            <div class="media">
+                                                                <div class="media-left media-middle">
+                                                                    <img class="media-object m-r-10 m-l-10"
+                                                                         src="{{ $model->dni }}"
+                                                                         alt="Generic placeholder image">
+                                                                </div>
+                                                                <div class="media-body">
+                                                                    <div class="company-name m-b-10">
+                                                                        {{ Form::customFile('Fotocopia de DNI','dni',null) }}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="job-cards">
+                                                            <div class="media">
+                                                                <div class="media-left media-middle">
+                                                                    <img class="media-object m-r-10 m-l-10"
+                                                                         src="{{ $model->paycheck }}"
+                                                                         alt="Generic placeholder image">
+                                                                </div>
+                                                                <div class="media-body">
+                                                                    <div class="company-name m-b-10">
+                                                                        {{ Form::customFile('Recibo de sueldo','paycheck',null) }}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-12 col-md-6">
+
+                                                        <div class="job-cards">
+                                                            <div class="media">
+                                                                <div class="media-left media-middle">
+                                                                    <img class="media-object m-r-10 m-l-10"
+                                                                         src="{{ $model->contract }}"
+                                                                         alt="Generic placeholder image">
+                                                                </div>
+                                                                <div class="media-body">
+                                                                    <div class="company-name m-b-10">
+                                                                        {{ Form::customFile('Contrato','contract',null) }}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="job-cards">
+                                                            <div class="media">
+                                                                <div class="media-left media-middle">
+                                                                    <img class="media-object m-r-10 m-l-10"
+                                                                         src="{{ $model->promissory_note }}"
+                                                                         alt="Generic placeholder image">
+                                                                </div>
+                                                                <div class="media-body">
+                                                                    <div class="company-name m-b-10">
+                                                                        {{ Form::customFile('Pagaré','promissory_note',null) }}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+
                                             </fieldset>
+                                        @endif
                                         {{ Form::close() }}
 
                                     </section>
@@ -335,16 +657,17 @@
     <script type="text/javascript" src="js/calcular_cuotas.js"></script>
 
     <script>
-        //        var vm = new Vue({
-        //            el: '#example-advanced-form',
-        //            method: {
-        //                calcularMonto: function(){
-        //                    console.log("anda")
-        //                }
-        //            }
-        //        })
+        $(document).ready(function () {
+            flatpickr.localize(flatpickr.l10ns.es);
 
+            $('.flatpickr').flatpickr({
+                altFormat: 'd/m/Y',
+                altInput: true,
+                locale: 'es'
+            });
 
+        })
     </script>
 
+    <script src="js/file_upload.js" type="text/javascript"></script>
 @endsection

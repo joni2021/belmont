@@ -4,6 +4,7 @@ $(document).ready(function () {
     form.steps({
         headerTag: "h3",
         bodyTag: "fieldset",
+        enableAllSteps: true,
         titleTemplate: "#title#",
         transitionEffect: "slideLeft",
         onStepChanging: function (event, currentIndex, newIndex) {
