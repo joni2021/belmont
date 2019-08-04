@@ -461,7 +461,7 @@
                                                         @if(!isset($model))
                                                             {{ Form::number('cbu',null,['class' => 'form-control','id' => 'cbu']) }}
                                                         @else
-                                                            {{ Form::number(null,$model->client->cbu,['class' => 'form-control','id' => 'cbu','readonly' => true]) }}
+                                                            {{ Form::number(null,$model->client->cbu,['class' => 'form-control','id' => 'cbu']) }}
                                                         @endif
                                                     </div>
                                                     <div class="invalid-feedback d-block"></div>
@@ -471,7 +471,7 @@
                                             <div class="form-group row">
                                                 <div class="col-12 col-md-2 col-lg-3">
                                                     <label class="block" for="cft">CFT</label>
-                                                    {{ Form::number('cft',null,['class' => 'form-control','id' => 'cft']) }}
+                                                    {{ Form::number('cft',null,['class' => 'form-control','id' => 'cft','readonly' => true]) }}
                                                     <div class="invalid-feedback d-block"></div>
                                                 </div>
 
@@ -488,7 +488,7 @@
                                                     <label class="block" for="tem">TEM</label>
                                                     <div class="input-group">
 
-                                                        {{ Form::number('tem',null,['class' => 'form-control','id' => 'tem']) }}
+                                                        {{ Form::number('tem',null,['class' => 'form-control','id' => 'tem','readonly' => true]) }}
                                                     </div>
                                                     <div class="invalid-feedback d-block"></div>
                                                 </div>

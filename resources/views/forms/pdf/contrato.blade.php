@@ -20,7 +20,7 @@
 <body>
 
     <div>
-        <p>SRES: <br>
+        <p>SRES: {{ Auth::user()->Company->name }} <br>
             Por medio de la presente requerimos de ustedes sujeto a su definitiva aprobación y conformidad, un préstamo en Pesos o moneda de curso legal, por la suma que más abajo se detalla, declarando en base a los siguientes términos y condiciones particulares que a continuación, exponiendo mis datos personales, manifestando:
         </p>
         <p style="display: block; float: left;"><b>1. Datos</b></p>
@@ -201,7 +201,9 @@
             <b>Firma del solicitante</b> ___________________________
             <br>
             <br>
-            <b>Aclaración</b> ___________________________
+            <b>Aclaración</b> {{ $loan->Client->fullName }}
+            <br>
+            <b>{{ $loan->Client->DniType->type }} </b> {{ $loan->Client->dni }}
         </p>
     </div>
 

@@ -3,8 +3,10 @@
 namespace App\Entities;
 
 use App\User;
+use function floatval;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
+use function is_null;
 
 class Loan extends Model
 {
@@ -42,6 +44,24 @@ class Loan extends Model
         return $this->belongsToMany(Archive::class);
     }
 
+    public function Instruction1Payment(){
+        return $this->belongsTo(Payments::class,'instruction1_payment');
+    }
+    public function Instruction2Payment(){
+        return $this->belongsTo(Payments::class,'instruction2_payment');
+    }
+    public function Instruction3Payment(){
+        return $this->belongsTo(Payments::class,'instruction3_payment');
+    }
+    public function Instruction4Payment(){
+        return $this->belongsTo(Payments::class,'instruction4_payment');
+    }
+    public function Cancellation1Payment(){
+        return $this->belongsTo(Payments::class,'cancellation1_payment');
+    }
+    public function Cancellation2Payment(){
+        return $this->belongsTo(Payments::class,'cancellation2_payment');
+    }
 
 
     public function getDateAttribute(){
@@ -51,7 +71,6 @@ class Loan extends Model
     public function getFormattedAmountAttribute(){
         return '$'. number_format($this->attributes["amount"],2);
     }
-
 
     public function monthlyAmount($porcent,$due){
         $porcent = floatval($porcent / 100);
@@ -107,6 +126,34 @@ class Loan extends Model
     public function getPromissoryNoteAttribute(){
 
         return $this->Archives->where('archive_type_id',4)->count() > 0 ? $this->Archives->where('archive_type_id',4)->first()->route : 'img/imagen-no-disponible.jpg';
+    }
+
+    public function getInstruction1AmountAttribute(){
+        return $this->attributes['instruction1_amount'] ?? '0';
+    }
+
+    public function getInstruction2AmountAttribute(){
+        return $this->attributes['instruction2_amount'] ?? '0';
+    }
+
+    public function getInstruction3AmountAttribute(){
+        return $this->attributes['instruction3_amount'] ?? '0';
+    }
+
+    public function getInstruction4AmountAttribute(){
+        return $this->attributes['instruction4_amount'] ?? '0';
+    }
+
+    public function getCancellation1AmountAttribute(){
+        return $this->attributes['cancellation1_amount'] ?? '0';
+    }
+
+    public function getCancellation2AmountAttribute(){
+        return $this->attributes['cancellation2_amount'] ?? '0';
+    }
+
+    public function getNetSettledAttribute(){
+        return floatval($this->attributes['amount']) - floatval($this->attributes['instruction1_amount']) - floatval($this->attributes['instruction2_amount']) - floatval($this->attributes['instruction3_amount']) - floatval($this->attributes['instruction4_amount']) - floatval($this->attributes['cancellation1_amount']) - floatval($this->attributes['cancellation2_amount']);
     }
 
     public function itsPaid(){

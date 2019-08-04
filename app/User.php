@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Entities\Client;
+use App\Entities\Company;
 use App\Entities\DniType;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -18,7 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'last_name', 'dni', 'user', 'email', 'password',
+        'name', 'last_name', 'dni', 'user', 'email', 'password','company_id'
     ];
 
     /**
@@ -42,6 +43,10 @@ class User extends Authenticatable
 
     public function Clients(){
         return $this->belongsToMany(Client::class);
+    }
+
+    public function Company(){
+        return $this->belongsTo(Company::class);
     }
 
     public function DniType(){

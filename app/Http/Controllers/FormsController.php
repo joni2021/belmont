@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Entities\AccreditationType;
+use App\Entities\AdditionalCost;
 use App\Entities\Archive;
 use App\Entities\Client;
 use App\Entities\DniType;
@@ -14,6 +15,7 @@ use App\Http\Repositories\LoansRepo;
 use Barryvdh\DomPDF\PDF;
 use Carbon\Carbon;
 use function floatval;
+use function floatValue;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Auth;
@@ -21,6 +23,7 @@ use Illuminate\Support\Facades\Storage;
 use function intval;
 use NumerosEnLetras;
 use function public_path;
+use function round;
 use function storage_path;
 
 class FormsController extends Controller
@@ -92,6 +95,21 @@ class FormsController extends Controller
 
         $valCuota = $monto * ($porcentajeCuota / (1 - pow(1 + $porcentajeCuota,((-1) * $cuota))));
 
+        $tasaActual = Financing::find($request->financing_id)->porcent;
+        $tasaActual = floatval($tasaActual);
+
+        $tna = round(($tasaActual / 100) * 12,2);
+
+        // tasa efectiva anual
+        $tea = floatval((pow((1 + ($tasaActual/100)),12))-1);
+
+        // tasa efectiva mensual
+        $tem = floatval(((pow((1 + $tea),(30/360)))-1) * 100);
+
+        // costo financiero total
+        $additionalCosts = AdditionalCost::all();
+
+        $cft = round(floatval((($monto * ($tasaActual / 100)) + $additionalCosts[0]->amount + ( $additionalCosts[1]->amount * 12) + ($additionalCosts[2]->amount * 12)) / $monto) * 100,2);
 
         $interesPagado = 0.0000;
         $amortizacionPagado = 0.0000;
@@ -143,6 +161,12 @@ class FormsController extends Controller
         $datosPrestamo['client_id'] = $cliente->id;
 
         $datosPrestamo['dues'] = $dues->due;
+
+        $datosPrestamo['tna'] = $tna;
+
+        $datosPrestamo['tem'] = $tem;
+
+        $datosPrestamo['cft'] = $cft;
 
         $datosPrestamo['user_id'] = Auth::user()->id;
 
@@ -210,6 +234,24 @@ class FormsController extends Controller
         $valCuota = $monto * ($porcentajeCuota / (1 - pow(1 + $porcentajeCuota,((-1) * $cuota))));
 
 
+
+        $tasaActual = Financing::find($request->financing_id)->porcent;
+        $tasaActual = floatval($tasaActual);
+
+        $tna = round(($tasaActual / 100) * 12,2);
+
+        // tasa efectiva anual
+        $tea = floatval((pow((1 + ($tasaActual/100)),12))-1);
+
+        // tasa efectiva mensual
+        $tem = floatval(((pow((1 + $tea),(30/360)))-1) * 100);
+
+        // costo financiero total
+        $additionalCosts = AdditionalCost::all();
+
+        $cft = round(floatval((($monto * ($tasaActual / 100)) + $additionalCosts[0]->amount + ( $additionalCosts[1]->amount * 12) + ($additionalCosts[2]->amount * 12)) / $monto) * 100,2);
+
+
         $interesPagado = 0.0000;
         $amortizacionPagado = 0.0000;
         $valorDeudaASaldar = $monto;
@@ -243,6 +285,12 @@ class FormsController extends Controller
             return redirect()->back()->withInput()->withErrors("La cantidad de cuotas ingresado no es correcta");
 
         $datosPrestamo['dues'] = $dues->due;
+
+        $datosPrestamo['tna'] = $tna;
+
+        $datosPrestamo['tem'] = $tem;
+
+        $datosPrestamo['cft'] = $cft;
 
         $model->update($datosPrestamo);
 

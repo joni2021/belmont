@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Entities\AdditionalCost;
 use App\Entities\Client;
 use App\Entities\Payments;
 use function floatval;
@@ -66,5 +67,11 @@ class AjaxController extends Controller
         $payment->save();
 
         return response()->json('ok',200);
+    }
+
+    public function additionalCosts(){
+        $additionalCosts = AdditionalCost::all();
+
+        return response()->json($additionalCosts,200);
     }
 }

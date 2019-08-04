@@ -8,7 +8,7 @@
                     <i class="feather icon-menu"></i>
                 </a>
                 <a class="text-center" href="{{ url('/') }}">
-                    <h1 class="text-white belmont-title h5 pt-2 text-center">Belmont</h1>
+                    <h1 class="text-white belmont-title h5 pt-2 text-center">{{ Auth::user()->company->name }}</h1>
                 </a>
                 <a class="mobile-options">
                     <i class="feather icon-more-horizontal"></i>
@@ -34,8 +34,7 @@
                     <li class="user-profile header-notification">
                         <div class="dropdown-primary dropdown">
                             <div class="dropdown-toggle" data-toggle="dropdown">
-                                <img src="assets/images/avatar-4.jpg" class="img-radius"
-                                     alt="User-Profile-Image">
+
                                 <span>{{ Auth::user()->user }}</span>
                                 <i class="feather icon-chevron-down"></i>
                             </div>

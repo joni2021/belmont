@@ -104,7 +104,7 @@
                                             <a class="dropdown-item waves-light waves-effect btnDelete" href="#">
                                                 <i class="fa fa-trash"></i> Borrar</a>
 
-                                            <a class="dropdown-item waves-light waves-effect btnDelete"
+                                            <a class="dropdown-item waves-light waves-effect"
                                                href="{{ route('forms.paymentPlan',$prestamo->id) }}">
                                                 <i class="fa fa-line-chart"></i> Plan de cuotas</a>
 

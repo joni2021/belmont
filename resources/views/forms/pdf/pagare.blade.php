@@ -22,13 +22,17 @@
 </head>
 <body>
 
-<div style="width: 15cm;height: 12cm;border: 1px solid #000;border-radius: 30px; padding: 5px;margin: auto;">
+<div style="width: 17cm;height: 15cm;border: 1px solid #000;border-radius: 30px; padding: 10px;margin: auto;">
     <div>
-        <p style="display: block; float: right; margin-top: .3cm;margin-right: 1cm; font-size: 12pt;">
+        <p style="display: block; float: left; margin-top: .5cm;margin-left: 1cm; font-size: 25pt;">
+            <b>PAGARÉ</b></p>
+    </div>
+    <div>
+        <p style="display: block; float: right; margin-top: .7cm;margin-right: 1cm; font-size: 12pt;">
             <b>$</b> {{  $loan->amount }}</p>
     </div>
 
-    <div style="width: 5cm;display: block;"></div>
+    <div style="width: 15cm;display: block; clear: both;"></div>
 
     <div>
         <p style="float: left; display: block; margin-top: 1.2cm;">Lugar: ______________________</p>
@@ -41,7 +45,7 @@
 
     <div style="margin-top: -30px;">
         <p>
-            Pagaré a la vista y sin protesto (art. 50 Decreto-Ley 5965/63) a …………………………………… o a su orden la cantidad de
+            Pagaré a la vista y sin protesto (art. 50 Decreto-Ley 5965/63) a {{ Auth::user()->company->name }} o a su orden la cantidad de
             <b>${{ $loan->amount }} (son {{ NumerosEnLetras::convertir($loan->amount,'pesos',false,'centavos') }})</b> por igual valor recibido en dinero efectivo a mi entera
             satisfacción. La suma adeudada en virtud de este pagaré, devengará intereses compensatorios a una tasa
             del {{ $loan->AccreditationType->porcent }}% efectiva mensual desde la fecha de emisión e intereses
@@ -56,20 +60,20 @@
     </div>
 
     <div>
-        <div style="margin-top: -20px; float: left;">
+        <div style="margin-top: 0; float: left;">
             <p style="display: block;"><b>DEUDOR</b></p>
             <p style="display: block;">
                 <b style="margin: .1cm 0;display: block;">Firma</b>
                 <br>
-                <b style="margin: .1cm 0;display: block;">Aclaración</b>
+                <b style="margin: .1cm 0;display: block;">Aclaración</b> {{ $loan->client->fullname }}
                 <br>
-                <b style="margin: .1cm 0;display: block;">Tipo y N° Doc:</b>
+                <b style="margin: .1cm 0;display: block;">Tipo y N° Doc:</b> {{ $loan->client->dniType->type }} {{ $loan->client->dni }}
                 <br>
-                <b style="margin: .1cm 0;display: block;">Calle:</b>
+                <b style="margin: .1cm 0;display: block;">Calle:</b> {{ $loan->client->address }}
                 <br>
-                <b style="margin: .1cm 0;display: block;">Localidad:</b>
+                <b style="margin: .1cm 0;display: block;">Localidad:</b> {{ $loan->client->city }}
                 <br>
-                <b style="margin: .1cm 0;display: block;">Provincia:</b>
+                <b style="margin: .1cm 0;display: block;">Provincia:</b> {{ $loan->client->province }}
             </p>
         </div>
 

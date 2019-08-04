@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Contrato</title>
+    <title>Liquidación del préstamo</title>
 
     <style>
         html{
@@ -37,12 +37,18 @@
         </div>
 
         <div style="float: right; margin-right: 1cm;">
-            @foreach($loan->Payments as $payment)
-                <p style="display: block;">Instrucción {{ $payment->due }}: <i style="display:inline-block; vertical-align: top;border: 1px solid #9b9b9b; padding: .1cm .2cm;">{{ $payment->amount_payable }}</i></p>
-            @endforeach
-                <p style="display: block;">CANCELACION: </p>
-                <p style="display: block;">CANCELACION: </p>
-                <p style="display: block;">NETO LIQUIDADO: </p>
+
+            <p style="display: block;">Instrucción 1: <i style="display:inline-block; vertical-align: top;border: 1px solid #9b9b9b; padding: .1cm .2cm;">$ {{ $loan->instruction1_amount}}</i></p>
+            <p style="display: block;">Instrucción 2: <i style="display:inline-block; vertical-align: top;border: 1px solid #9b9b9b; padding: .1cm .2cm;">$ {{ $loan->instruction2_amount}}</i></p>
+            <p style="display: block;">Instrucción 3: <i style="display:inline-block; vertical-align: top;border: 1px solid #9b9b9b; padding: .1cm .2cm;">$ {{ $loan->instruction3_amount}}</i></p>
+            <p style="display: block;">Instrucción 4: <i style="display:inline-block; vertical-align: top;border: 1px solid #9b9b9b; padding: .1cm .2cm;">$ {{ $loan->instruction4_amount}}</i></p>
+
+
+            <p style="display: block;">CANCELACION: <i style="display:inline-block; vertical-align: top;border: 1px solid #9b9b9b; padding: .1cm .2cm;">$ {{ $loan->cancellation1_amount}}</i></p>
+            <p style="display: block;">CANCELACION: <i style="display:inline-block; vertical-align: top;border: 1px solid #9b9b9b; padding: .1cm .2cm;">$ {{ $loan->cancellation2_amount}}</i></p>
+
+
+            <p style="display: block;">NETO LIQUIDADO:$ {{ $loan->net_settled }}</p>
         </div>
 
         <div style="clear: both; width: 100%;">
@@ -58,16 +64,98 @@
 
 
     <div style="margin-top: -10px;">
-        @foreach($loan->Payments as $payment)
-            <p>
-                Instrucción {{ $payment->due }}
+
+        <p>
+            Instrucción 1
+            <br>
+            @if(!empty($loan->instruction1_pay_date))
+                Son <b>{{ NumerosEnLetras::convertir($loan->instruction1_payment,'pesos',false,'centavos')}}</b> - Fecha de pago {{ date('d-m-Y',strtotime($loan->instruction1_pay_date)) }} - Medio de pago: <b>{{ $loan->instruction1Payment->type }}</b>
                 <br>
-                Son <b>{{ NumerosEnLetras::convertir($payment->amount_payable,'pesos',false,'centavos')}}</b> - Fecha de pago {{ date('d-m-Y',strtotime($payment->payment_date)) }} - Medio de pago: <b>{{ $loan->AccreditationType->type }}</b>
+                A la orden de {{ $loan->instruction1_order }}
+            @else
+                Son <b>_______________________</b> - Fecha de pago ________________ - Medio de pago: <b>__________________________</b>
                 <br>
-                A la orden de
-            </p>
-            <hr>
-        @endforeach
+                A la orden de ____________________________________________
+            @endif
+        </p>
+        <hr>
+
+        <p>
+            Instrucción 2
+            <br>
+            @if(!empty($loan->instruction2_pay_date))
+                Son <b>{{ NumerosEnLetras::convertir($loan->instruction2_payment,'pesos',false,'centavos')}}</b> - Fecha de pago {{ date('d-m-Y',strtotime($loan->instruction2_pay_date)) }} - Medio de pago: <b>{{ $loan->instruction2Payment->type }}</b>
+                <br>
+                A la orden de {{ $loan->instruction2_order }}
+            @else
+                Son <b>_______________________</b> - Fecha de pago ________________ - Medio de pago: <b>__________________________</b>
+                <br>
+                A la orden de ____________________________________________
+            @endif
+        </p>
+        <hr>
+
+        <p>
+            Instrucción 3
+            <br>
+            @if(!empty($loan->instruction3_pay_date))
+                Son <b>{{ NumerosEnLetras::convertir($loan->instruction3_payment,'pesos',false,'centavos')}}</b> - Fecha de pago {{ date('d-m-Y',strtotime($loan->instruction3_pay_date)) }} - Medio de pago: <b>{{ $loan->instruction3Payment->type }}</b>
+                <br>
+                A la orden de {{ $loan->instruction3_order }}
+            @else
+                Son <b>_______________________</b> - Fecha de pago ________________ - Medio de pago: <b>__________________________</b>
+                <br>
+                A la orden de ____________________________________________
+            @endif
+        </p>
+        <hr>
+
+        <p>
+            Instrucción 4
+            <br>
+            @if(!empty($loan->instruction4_pay_date))
+                Son <b>{{ NumerosEnLetras::convertir($loan->instruction4_payment,'pesos',false,'centavos')}}</b> - Fecha de pago {{ date('d-m-Y',strtotime($loan->instruction4_pay_date)) }} - Medio de pago: <b>{{ $loan->instruction4Payment->type }}</b>
+                <br>
+                A la orden de {{ $loan->instruction4_order }}
+            @else
+                Son <b>_______________________</b> - Fecha de pago ________________ - Medio de pago: <b>__________________________</b>
+                <br>
+                A la orden de ____________________________________________
+            @endif
+        </p>
+        <hr>
+
+        <p>
+            Cancelación 1
+            <br>
+            @if(!empty($loan->cancellation1_pay_date))
+                Son <b>{{ NumerosEnLetras::convertir($loan->cancellation1_payment,'pesos',false,'centavos')}}</b> - Fecha de pago {{ date('d-m-Y',strtotime($loan->cancellation1_pay_date)) }} - Medio de pago: <b>{{ $loan->cancellation1Payment->type }}</b>
+                <br>
+                A la orden de {{ $loan->cancellation1_order }}
+            @else
+                Son <b>_______________________</b> - Fecha de pago ________________ - Medio de pago: <b>__________________________</b>
+                <br>
+                A la orden de ____________________________________________
+            @endif
+        </p>
+        <hr>
+
+        <p>
+            Cancelación 2
+            <br>
+            @if(!empty($loan->cancellation2_pay_date))
+                Son <b>{{ NumerosEnLetras::convertir($loan->cancellation2_payment,'pesos',false,'centavos')}}</b> - Fecha de pago {{ date('d-m-Y',strtotime($loan->cancellation2_pay_date)) }} - Medio de pago: <b>{{ $loan->cancellation2Payment->type }}</b>
+                <br>
+                A la orden de {{ $loan->cancellation2_order }}
+            @else
+                Son <b>_______________________</b> - Fecha de pago ________________ - Medio de pago: <b>__________________________</b>
+                <br>
+                A la orden de ____________________________________________
+            @endif
+        </p>
+        <hr>
+
+
     </div>
 
 
@@ -77,9 +165,14 @@
             <br>
             <b>Firma del solicitante</b></p>
         <p style="display: block; float: right; margin-top: 0;">
-            ___________________________
+            {{ $loan->Client->fullname }}
             <br>
             <b>Aclaración</b>
+            <br>
+            {{ $loan->Client->DniType->type }} {{ $loan->Client->dni
+             }}
+            <br>
+            <b>Tipo y N° de doc</b>
         </p>
     </div>
 

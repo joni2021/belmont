@@ -142,6 +142,9 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('payDue','AjaxController@payDue');
 
         Route::post('cancelPayDue','AjaxController@cancelPayDue');
+
+        Route::get('additional-costs','AjaxController@additionalCosts');
+
     });
 
 });
