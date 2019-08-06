@@ -27,7 +27,7 @@ class CreateUsersTable extends Migration
             $table->tinyInteger('company_id',false,true);
 
             $table->foreign('dni_type_id')->references('id')->on('dni_types');
-            $table->foreign('company_id')->references('id')->on('company');
+            $table->foreign('company_id')->references('id')->on('companies');
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="da2b9461-ef67-41cb-a467-f55dce82925a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -14,7 +14,7 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="2019_04_27_112923_create_loans_table.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="2019_04_27_112923_create_loans_table.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/database/migrations/2019_04_27_112923_create_loans_table.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="20">
@@ -24,21 +24,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="2014_10_12_000000_create_users_table.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php">
+      <file leaf-file-name="2014_04_27_121207_create_dni_type_table.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/database/migrations/2014_04_27_121207_create_dni_type_table.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="26" column="56" lean-forward="false" selection-start-line="26" selection-start-column="56" selection-end-line="26" selection-end-column="56" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="2014_08_02_162023_create_companies_table.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/database/migrations/2014_08_02_162023_create_companies_table.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="320">
-              <caret line="18" column="28" lean-forward="true" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="35" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -163,13 +153,13 @@
         <option value="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" />
         <option value="$PROJECT_DIR$/app/User.php" />
         <option value="$PROJECT_DIR$/resources/views/layouts/navbar.blade.php" />
-        <option value="$PROJECT_DIR$/database/migrations/2014_08_02_162023_create_companies_table.php" />
         <option value="$PROJECT_DIR$/database/seeds/CompanyTableSeeder.php" />
         <option value="$PROJECT_DIR$/resources/views/forms/pdf/contrato.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/forms/pdf/pagare.blade.php" />
         <option value="$PROJECT_DIR$/app/Entities/Loan.php" />
         <option value="$PROJECT_DIR$/resources/views/forms/pdf/liquidacion-de-prestamo.blade.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_04_27_112923_create_loans_table.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2014_08_02_162023_create_companies_table.php" />
         <option value="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" />
       </list>
     </option>
@@ -893,12 +883,12 @@
       <workItem from="1563200950324" duration="264704000" />
       <workItem from="1564951129625" duration="559000" />
       <workItem from="1565026123459" duration="790000" />
-      <workItem from="1565028733994" duration="2304000" />
+      <workItem from="1565028733994" duration="2805000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="268357000" />
+    <option name="totallyTimeSpent" value="268858000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -937,36 +927,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/config/forms.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="500">
-          <caret line="47" column="33" lean-forward="false" selection-start-line="47" selection-start-column="12" selection-end-line="47" selection-end-column="33" />
-          <caret line="48" column="35" lean-forward="false" selection-start-line="48" selection-start-column="12" selection-end-line="48" selection-end-column="35" />
-          <caret line="49" column="34" lean-forward="false" selection-start-line="49" selection-start-column="12" selection-end-line="49" selection-end-column="34" />
-          <caret line="50" column="32" lean-forward="false" selection-start-line="50" selection-start-column="12" selection-end-line="50" selection-end-column="32" />
-          <caret line="51" column="33" lean-forward="false" selection-start-line="51" selection-start-column="12" selection-end-line="51" selection-end-column="33" />
-          <caret line="52" column="35" lean-forward="false" selection-start-line="52" selection-start-column="12" selection-end-line="52" selection-end-column="35" />
-          <caret line="53" column="34" lean-forward="false" selection-start-line="53" selection-start-column="12" selection-end-line="53" selection-end-column="34" />
-          <caret line="54" column="32" lean-forward="false" selection-start-line="54" selection-start-column="12" selection-end-line="54" selection-end-column="32" />
-          <caret line="55" column="33" lean-forward="false" selection-start-line="55" selection-start-column="12" selection-end-line="55" selection-end-column="33" />
-          <caret line="56" column="35" lean-forward="false" selection-start-line="56" selection-start-column="12" selection-end-line="56" selection-end-column="35" />
-          <caret line="57" column="34" lean-forward="false" selection-start-line="57" selection-start-column="12" selection-end-line="57" selection-end-column="34" />
-          <caret line="58" column="32" lean-forward="false" selection-start-line="58" selection-start-column="12" selection-end-line="58" selection-end-column="32" />
-          <caret line="59" column="33" lean-forward="false" selection-start-line="59" selection-start-column="12" selection-end-line="59" selection-end-column="33" />
-          <caret line="60" column="35" lean-forward="false" selection-start-line="60" selection-start-column="12" selection-end-line="60" selection-end-column="35" />
-          <caret line="61" column="34" lean-forward="false" selection-start-line="61" selection-start-column="12" selection-end-line="61" selection-end-column="34" />
-          <caret line="62" column="32" lean-forward="false" selection-start-line="62" selection-start-column="12" selection-end-line="62" selection-end-column="32" />
-          <caret line="63" column="34" lean-forward="false" selection-start-line="63" selection-start-column="12" selection-end-line="63" selection-end-column="34" />
-          <caret line="64" column="36" lean-forward="false" selection-start-line="64" selection-start-column="12" selection-end-line="64" selection-end-column="36" />
-          <caret line="65" column="35" lean-forward="false" selection-start-line="65" selection-start-column="12" selection-end-line="65" selection-end-column="35" />
-          <caret line="66" column="33" lean-forward="false" selection-start-line="66" selection-start-column="12" selection-end-line="66" selection-end-column="33" />
-          <caret line="67" column="34" lean-forward="false" selection-start-line="67" selection-start-column="12" selection-end-line="67" selection-end-column="34" />
-          <caret line="69" column="35" lean-forward="false" selection-start-line="69" selection-start-column="12" selection-end-line="69" selection-end-column="35" />
-          <caret line="68" column="36" lean-forward="false" selection-start-line="68" selection-start-column="12" selection-end-line="68" selection-end-column="36" />
-          <caret line="70" column="33" lean-forward="false" selection-start-line="70" selection-start-column="12" selection-end-line="70" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2019_04_27_112013_create_financing_table.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="380">
@@ -1297,26 +1257,36 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2019_04_27_112923_create_loans_table.php">
+    <entry file="file://$PROJECT_DIR$/database/migrations/2014_08_02_162023_create_companies_table.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="20">
-          <caret line="38" column="53" lean-forward="false" selection-start-line="38" selection-start-column="53" selection-end-line="38" selection-end-column="53" />
-          <folding />
+        <state relative-caret-position="260">
+          <caret line="15" column="33" lean-forward="false" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="33" />
+          <folding>
+            <element signature="e#319#509#1#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2014_08_02_162023_create_companies_table.php">
+    <entry file="file://$PROJECT_DIR$/database/migrations/2014_04_27_121207_create_dni_type_table.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="18" column="28" lean-forward="true" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="35" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="26" column="56" lean-forward="false" selection-start-line="26" selection-start-column="56" selection-end-line="26" selection-end-column="56" />
+        <state relative-caret-position="420">
+          <caret line="29" column="74" lean-forward="false" selection-start-line="29" selection-start-column="74" selection-end-line="29" selection-end-column="74" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2019_04_27_112923_create_loans_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="20">
+          <caret line="38" column="53" lean-forward="false" selection-start-line="38" selection-start-column="53" selection-end-line="38" selection-end-column="53" />
           <folding />
         </state>
       </provider>
