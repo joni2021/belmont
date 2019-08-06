@@ -17,6 +17,7 @@ class UsersTableSeeder extends Seeder
             'last_name' => 'admin',
             'dni' => "1231232",
             'dni_type_id' => 1,
+            'company_id' => 1,
             'user' => "admin",
             'email' => "admin@admin.com",
             'password' => bcrypt('admin')
