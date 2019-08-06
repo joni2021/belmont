@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->tinyInteger('company_id',false,true);
+            $table->tinyInteger('company_id',false,true)->default(1);
 
             $table->foreign('dni_type_id')->references('id')->on('dni_types');
             $table->foreign('company_id')->references('id')->on('companies');
