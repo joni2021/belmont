@@ -3,7 +3,10 @@
 namespace App\Entities;
 
 use App\User;
+use function explode;
 use Illuminate\Database\Eloquent\Model;
+use function number_format;
+use function strlen;
 
 class Client extends Model
 {
@@ -37,6 +40,24 @@ class Client extends Model
 
     public function getJobProvinceAttribute(){
         return config('utilities.provinces')[$this->attributes['job_province']];
+    }
+
+    public function getDniAttribute(){
+        return number_format($this->attributes['dni'],0,'.','.');
+    }
+
+    public function getCuilAttribute(){
+        $cantidad = strlen($this->attributes['cuil']);
+
+        $arr = str_split($this->attributes['cuil']);
+
+        if($cantidad === 11){
+            $numero = $arr[0].$arr[1]."-".$arr[2].$arr[3].$arr[4].$arr[5].$arr[6].$arr[7].$arr[8].$arr[9].'-'.$arr[10];
+        }else{
+            $numero = $arr[0].$arr[1]."-".$arr[2].$arr[3].$arr[4].$arr[5].$arr[6].$arr[7].$arr[8].'-'.$arr[9];
+        }
+
+        return $numero;
     }
 }
 
