@@ -35,11 +35,11 @@
     </div>
 
     <div style="margin-top: -20px; text-transform: uppercase; font-size: 11pt;">
-        <p style="display: inline-block; vertical-align: bottom;">Apellido y nombres: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .2cm;">{{ $loan->Client->fullName }}</i></p>
-        <p style="margin-left: 5px;display: inline-block;">DNI: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .2cm;">{{ $loan->Client->dni }}</i></p>
+        <p style="display: inline-block; vertical-align: bottom;">Apellido y nombres: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .8cm;">{{ $loan->Client->fullName }}</i></p>
+        <p style="margin-left: 10px;display: inline-block;">DNI: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .5cm; width: 6cm;">{{ $loan->Client->dni }}</i></p>
     </div>
 
-    <div style="margin-top: -30px; text-transform: uppercase; font-size: 11pt;">
+    <div style="margin-top: -20px; text-transform: uppercase; font-size: 11pt;">
         <p style="display: inline-block; vertical-align: bottom;">Domicilio actual: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .2cm;">{{ $loan->Client->address }}</i></p>
         <p style="margin-left: 5px;display: inline-block;">Localidad: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .2cm;">{{ $loan->Client->city }}</i></p>
     </div>
@@ -84,13 +84,13 @@
 
 
     <div style="margin-top: -30px; text-transform: uppercase; font-size: 11pt;">
-        <p style="margin-left: 5px;display: inline-block; vertical-align: bottom;">CBU: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .2cm;">{{ $loan->Client->cbu }}</i></p>
-        <p style="margin-left: 5px;display: inline-block;">C.F.T: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .2cm;">{{ $loan->cft }}</i></p>
-        <p style="margin-left: 5px;display: inline-block;">T.N.A: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .2cm;">{{ $loan->tna }}</i></p>
-        <p style="margin-left: 5px;display: inline-block;">T.E.M: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .2cm;">{{ $loan->tem }}</i></p>
+        <p style="margin-left: 5px;display: inline-block; vertical-align: bottom;">CBU: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .5cm;">{{ $loan->Client->cbu }}</i></p>
+        <p style="margin-left: 12px;display: inline-block; ">C.F.T: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .5cm;width:3cm;">{{ $loan->cft }}</i></p>
+        <p style="margin-left: 12px;display: inline-block;">T.N.A: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .5cm;width:3cm;">{{ $loan->tna }}</i></p>
+        <p style="margin-left: 12px;display: inline-block; ">T.E.M: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .5cm;width:3cm;">{{ $loan->tem }}</i></p>
     </div>
 
-    <div style="margin-top: -10px;">
+    <div style="margin-top: 20px;">
         <p>2. Objeto</p>
         <p style="margin-top: -10px;">
             2.1. El Acreedor otorga al Deudor, 	<b><i>{{ $loan->Client->fullname }}</i></b>,la suma de <b>${{ $loan->amount }} ({{ NumerosEnLetras::convertir($loan->amount,'pesos',false,'centavos') }})</b>, que el Deudor acepta y declara recibir los fondos de plena conformidad, mediante {{ $loan->AccreditationType->type }}
@@ -191,7 +191,7 @@
     </div>
 
     <div>
-        <p style="font-size: 7.5pt">
+        <p style="font-size: 9pt">
             El titular de los datos personales tiene la facultad de ejercer el derecho de acceso a los mismos en forma gratuita e intervalos no inferiores a seis meses, salvo que se acredite un interés legítimo al efecto conforme lo establecido en el artículo 14. inciso 3 de la Ley N° 25.326. La DIRECCION NACIONAL DE PROTECCION DE DATOS PERSONALES, Órgano de Control de la Ley N° 25.326, tiene la atribución de atender las denuncias y reclamos que se interpongan con relación al incumplimiento de las normas sobre protección de datos personales.
         </p>
     </div>
