@@ -27,13 +27,13 @@ $(document).ready(function () {
         // var valCuota = monto * (( porcentajeCuota * (Math.pow( 1 + porcentajeCuota, cuota ))) / (( (Math.pow( 1 + porcentajeCuota, cuota )) - 1 )));
 
         var tasaActual = parseFloat($("#dues>option:selected").data("porcent"));
-        $("#tasa").val(((tasaActual / 100) * 12).toFixed(2));
+        $("#tasa").val((tasaActual * 12).toFixed(2));
 
         // tasa efectiva anual
-        var tea = parseFloat((Math.pow((1 + (tasaActual/100)),12))-1);
+        var tea = parseFloat((Math.pow((1 + tasaActual),12))-1);
 
         // tasa efectiva mensual
-        var tem = parseFloat(((Math.pow((1 + tea),(30/360)))-1) * 100);
+        var tem = parseFloat(((Math.pow((1 + tea),(30/360)))-1));
 
         $("#tem").val(tem.toFixed(2));
 
@@ -44,7 +44,7 @@ $(document).ready(function () {
         .then(function (response) {
             var additionalCosts = response.data;
 
-            var cft = (parseFloat(((monto * (tasaActual / 100)) + additionalCosts[0].amount + ( additionalCosts[1].amount * 12) + (additionalCosts[2].amount * 12)) / monto) * 100).toFixed(2) ;
+            var cft = (parseFloat(((monto * tasaActual) + additionalCosts[0].amount + ( additionalCosts[1].amount * 12) + (additionalCosts[2].amount * 12)) / monto)).toFixed(2) ;
 
             $("#cft").val(cft);
         })

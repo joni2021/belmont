@@ -6,14 +6,16 @@ use App\User;
 use function floatval;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
+use function intval;
 use function is_null;
+use function number_format;
 
 class Loan extends Model
 {
 
 
     protected $fillable = [
-        'amount', 'dues', 'cft', 'tna', 'tem', 'accreditation_type_id', 'financing_id', 'client_id',"status", "user_id","instruction1_amount","instruction1_pay_date","instruction1_payment","instruction1_order","instruction2_amount","instruction2_pay_date","instruction2_payment","instruction2_order","instruction3_amount","instruction3_pay_date","instruction3_payment","instruction3_order","instruction4_amount","instruction4_pay_date","instruction4_payment","instruction4_order","cancellation1_amount","cancellation1_pay_date","cancellation1_payment","cancellation1_order","cancellation2_amount","cancellation2_pay_date","cancellation2_payment","cancellation2_order"
+        'amount', 'dues', 'cft', 'tna', 'tem', 'accreditation_type_id', 'financing_id', 'client_id',"status", "user_id","instruction1_amount","instruction1_payment","instruction1_order","instruction2_amount","instruction2_payment","instruction2_order","instruction3_amount","instruction3_payment","instruction3_order","instruction4_amount","instruction4_payment","instruction4_order","cancellation1_amount","cancellation1_payment","cancellation1_order","cancellation2_amount","cancellation2_payment","cancellation2_order"
     ];
 
     public $casts = [
@@ -87,17 +89,15 @@ class Loan extends Model
     }
 
     public function getTotalAmountAttribute(){
-//        $totalAmount = floatval($this->monthlyAmount(Financing::first()->porcent,Financing::first()->due));
-        $totalAmount = 0;
 
-        foreach(Financing::all() as $financing):
-            if($financing->due > $this->attributes['dues'])
-                break;
+        $totalAmount = "$" . number_format(floatval($this->Payments->first()->float_amount_payable) * intval($this->attributes['dues']),2);
 
-            $totalAmount = floatval($totalAmount) + floatval($this->monthlyAmount($financing->porcent,$financing->due));
+        return $totalAmount;
+    }
 
-        endforeach;
+    public function getTotalAmountOriginalAttribute(){
 
+        $totalAmount = floatval($this->Payments->first()->float_amount_payable) * intval($this->attributes['dues']);
 
         return $totalAmount;
     }

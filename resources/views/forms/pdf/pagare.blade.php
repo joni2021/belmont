@@ -8,7 +8,7 @@
     <style>
         html {
             font-family: sans-serif, Verdana;
-            font-size: 8.5pt;
+            font-size: 14pt;
         }
 
         body {
@@ -22,21 +22,21 @@
 </head>
 <body>
 
-<div style="width: 17cm;height: 15cm;border: 1px solid #000;border-radius: 30px; padding: 10px;margin: auto;">
+<div style="width: 17cm;height: 24cm;border: 1px solid #000;border-radius: 30px; padding: 10px;margin: auto;">
     <div>
         <p style="display: block; float: left; margin-top: .5cm;margin-left: 1cm; font-size: 25pt;">
             <b>PAGARÉ</b></p>
     </div>
     <div>
-        <p style="display: block; float: right; margin-top: .7cm;margin-right: 1cm; font-size: 12pt;">
-            <b>$</b> {{  $loan->amount }}</p>
+        <p style="display: block; float: right; margin-top: .7cm;margin-right: 1cm; font-size: 18pt;">
+            <b> {{  $loan->total_amount }}</b></p>
     </div>
 
     <div style="width: 15cm;display: block; clear: both;"></div>
 
     <div>
-        <p style="float: left; display: block; margin-top: 1.2cm;">Lugar: ______________________</p>
-        <p style="margin-left: 5px;float: right;display: block; margin-top: -10px;">Fecha: <i
+        <p style="float: left; display: block; margin-top: 1.2cm; text-transform: uppercase;">Lugar: ______________________</p>
+        <p style="margin-left: 5px;float: right;display: block; margin-top: -10px; text-transform: uppercase;">Fecha: <i
                     style=" display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .2cm;"> {{ date('d-m-Y', strtotime($loan->created_at)) }}</i>
         </p>
     </div>
@@ -46,9 +46,9 @@
     <div style="margin-top: -30px;">
         <p>
             Pagaré a la vista y sin protesto (art. 50 Decreto-Ley 5965/63) a {{ Auth::user()->company->name }} o a su orden la cantidad de
-            <b>${{ $loan->amount }} (son {{ NumerosEnLetras::convertir($loan->amount,'pesos',false,'centavos') }})</b> por igual valor recibido en dinero efectivo a mi entera
+            <b>{{ $loan->total_amount }} (son {{ NumerosEnLetras::convertir($loan->total_amount_original,'pesos',false,'centavos') }})</b> por igual valor recibido en dinero efectivo a mi entera
             satisfacción. La suma adeudada en virtud de este pagaré, devengará intereses compensatorios a una tasa
-            del {{ $loan->AccreditationType->porcent }}% efectiva mensual desde la fecha de emisión e intereses
+            del _____% efectiva mensual desde la fecha de emisión e intereses
             punitorios del orden del 50% de la tasa establecida como interés compensatorio que se adicionarán a aquel
             desde la fecha de la presentación al cobro del pagaré sin realización del pago. Todos los intereses se
             calcularán sobre la base de un año de 365 días.
@@ -59,15 +59,15 @@
         </p>
     </div>
 
-    <div>
-        <div style="margin-top: 0; float: left;">
+    <div style="font-size: 12pt;">
+        <div style="margin-top: 0; float: left; text-transform: uppercase; width: 45%;">
             <p style="display: block;"><b>DEUDOR</b></p>
             <p style="display: block;">
                 <b style="margin: .1cm 0;display: block;">Firma</b>
                 <br>
                 <b style="margin: .1cm 0;display: block;">Aclaración</b> {{ $loan->client->fullname }}
                 <br>
-                <b style="margin: .1cm 0;display: block;">Tipo y N° Doc:</b> {{ $loan->client->dniType->type }} {{ $loan->client->dni }}
+                <b style="margin: .1cm 0;display: block;">Tipo y N° DOC:</b> {{ $loan->client->dniType->type }} {{ $loan->client->dni }}
                 <br>
                 <b style="margin: .1cm 0;display: block;">Calle:</b> {{ $loan->client->address }}
                 <br>
@@ -77,7 +77,7 @@
             </p>
         </div>
 
-        <div style="margin-top: 0; margin-right: 5cm; float: right;">
+        <div style="margin-top: 0; float: right; text-transform: uppercase; width: 45%;">
             <p style="display: block;"><b>DEUDOR</b></p>
             <p style="display: block">
                 <b style="margin: .1cm 0; display:block;">Firma</b>

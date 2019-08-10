@@ -59,6 +59,7 @@
                             <th>Fecha de cobro ($)</th>
                             <th>Monto a pagar ($)</th>
                             <th>Monto pagado ($)</th>
+                            <th>Monto adeudado ($)</th>
                             <th>Estado</th>
                             <th></th>
                         </tr>
@@ -70,8 +71,15 @@
                             <tr>
                                 <td>{{ $payment->due }}</td>
                                 <td>{{ $payment->payment_date }}</td>
-                                <td>{{ $payment->amount_payable }}</td>
+
+                            @if($loop->index > 0)
+                                <td>${{ number_format($payment->float_amount_payable + $paymentPlan[$loop->index - 1]->amount_owed_original, 2) }}</td>
+
+                            @else
+                                <td>${{ $payment->amount_payable_original }}</td>
+                            @endif
                                 <td>{{ $payment->amount_paid }}</td>
+                                <td>{{ $payment->amount_owed }}</td>
                                 <td>{{ $payment->formatted_state }}</td>
 
                                 <td class="text-right">
@@ -81,9 +89,14 @@
                                             <i class="zmdi zmdi-money-off zmdi-hc-2x"></i>
                                         </a>
                                     @else
-                                        <a class="btn text-success btn-link btn-mini alert-prompt-success"
-                                           data-id="{{ $payment->id }}"
-                                           data-amountpayable="{{ $payment->amount_payable }}">
+
+                                        <a class="btn text-success btn-link btn-mini alert-prompt-success" data-id="{{ $payment->id }}" data-loan="{{ $payment->loans_id }}"
+                                           @if($loop->index > 0)
+                                                data-amountpayable="{{ number_format($payment->float_amount_payable + $paymentPlan[$loop->index - 1]->amount_owed_original,2) }}"
+                                           @else
+                                                data-amountpayable="{{ $payment->amount_payable_original }}"
+                                            @endif
+                                            >
                                             <i class="zmdi zmdi-money zmdi-hc-2x"></i>
                                         </a>
                                     @endif
@@ -127,126 +140,6 @@
 
     <script type="text/javascript" src="assets/js/script.js"></script>
 
-    <script>
-        $(document).ready(function () {
-            $('.alert-prompt-success').on('click', function (ev) {
-                ev.preventDefault();
-
-                var id = $(this).data('id');
-                var amountPayable = $(this).data('amountpayable').substring(1);
-
-                swal({
-                    title: "¿Cuánto abonó el cliente?",
-                    type: "input",
-                    showCancelButton: true,
-                    closeOnConfirm: false,
-                    inputPlaceholder: "$2000",
-                    showLoaderOnConfirm: true
-                }, function (inputValue) {
-
-                    if (inputValue === false) return false;
-
-                    if (isNaN(inputValue)) {
-                        swal.showInputError("El monto debe ser un número (si es decimal use punto)");
-                        return false
-                    }
-
-                    if (inputValue === "") {
-                        swal.showInputError("Ingrese el monto pagado");
-                        return false
-                    }
-
-                    if (parseFloat(inputValue) > parseFloat(amountPayable)) {
-                        swal.showInputError("El monto tiene que ser menor a $" + amountPayable);
-                        return false
-                    }
-
-                    axios.post('ajax/payDue', {
-                        params: {
-                            id: id,
-                            amount_paid: inputValue
-                        }
-                    }).then(function (response) {
-                        swal("", "Pago ingresado: " + inputValue, "success");
-
-                        window.location.reload();
-                    })
-                        .catch(function (e) {
-                            console.log(e);
-                        })
-                });
-            });
-
-
-            $('.alert-prompt-danger').on('click', function (ev) {
-                ev.preventDefault();
-
-                var id = $(this).data('id');
-
-                swal({
-                        title: "¿Cancelar el pago?",
-                        type: "warning",
-                        showCancelButton: true,
-                        confirmButtonClass: "btn-danger",
-                        confirmButtonText: "Si",
-                        cancelButtonText: "No",
-                        closeOnConfirm: false,
-                        closeOnCancel: false,
-                        showLoaderOnConfirm: true
-                    },
-                    function (isConfirm) {
-                        if (isConfirm) {
-
-                            axios.post('ajax/cancelPayDue', {
-                                params: {
-                                    id: id,
-                                }
-                            }).then(function (response) {
-                                swal("", "El pago ha sido cancelado", "success");
-
-                                window.location.reload();
-                            }).catch(function (e) {
-                                swal("", "No se pudo cancelar el pago", "error");
-                            })
-
-                        } else {
-                            swal("", "No se pudo cancelar el pago", "error");
-                        }
-                    });
-
-
-            });
-
-
-            $(".planCuotas").DataTable({
-                language: {
-                    "sProcessing": "Procesando...",
-                    "sLengthMenu": "Mostrar _MENU_ registros",
-                    "sZeroRecords": "No se encontraron resultados",
-                    "sEmptyTable": "Ningún dato disponible en esta tabla",
-                    "sInfo": "",
-                    "sInfoEmpty": "",
-                    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-                    "sInfoPostFix": "",
-                    "sSearch": "Buscar:",
-                    "sUrl": "",
-                    "sInfoThousands": ",",
-                    "sLoadingRecords": "Cargando...",
-                    "oPaginate": {
-                        "sFirst": "Primero",
-                        "sLast": "Último",
-                        "sNext": "Siguiente",
-                        "sPrevious": "Anterior"
-                    },
-                    "oAria": {
-                        "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
-                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-                    }
-                },
-                responsive: true,
-                paging: false
-            })
-        })
-    </script>
+    <script type="text/javascript" src="js/payment_plan.js"></script>
 
 @endsection

@@ -11,6 +11,7 @@ use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\DB;
 use const null;
 use function response;
+use function round;
 
 class AjaxController extends Controller
 {
@@ -47,9 +48,22 @@ class AjaxController extends Controller
 
     public function payDue(){
 
-        $payment = Payments::find($this->request->params["id"]);
+        $payments = Payments::where('loans_id',$this->request->params["loan"]);
+        $payment = $payments->where('id',$this->request->params["id"])->get();
+
+        $owed = 0;
+
+        if($payments->where('id','=',(intval($this->request->params["id"] - 1)))->count() > 0):
+            $owed = $payments->where('id','=',(intval($this->request->params["id"] - 1)))->get()->amount_owed_original;
+        endif;
+
+
+        if(floatval($this->request->params["amount_paid"]) < ($payment->float_amount_payable + $owed))
+            $payment->amount_owed = $payment->float_amount_payable - floatval($this->request->params["amount_paid"]);
 
         $payment->amount_paid = floatval($this->request->params["amount_paid"]);
+
+
         $payment->state = 1;
 
         $payment->save();
@@ -62,6 +76,7 @@ class AjaxController extends Controller
         $payment = Payments::find($this->request->params["id"]);
 
         $payment->amount_paid = null;
+        $payment->amount_owed = null;
         $payment->state = 0;
 
         $payment->save();

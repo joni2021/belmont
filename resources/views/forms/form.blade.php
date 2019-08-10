@@ -101,12 +101,12 @@
 
                                                 <div class="form-group row">
                                                     <div class="col-12 col-md-6 col-lg-4">
-                                                        <label class="block" for="cuil">Cuil</label>
+                                                        <label class="block" for="cuil">CUIL/CUIT</label>
                                                         {{ Form::number('cuil',null,['class' => 'form-control','id' => 'cuil']) }}
                                                     </div>
 
                                                     <div class="col-12 col-md-6 col-lg-2">
-                                                        <label class="block" for="cp">Cp</label>
+                                                        <label class="block" for="cp">CP</label>
                                                         {{ Form::number('cp',null,['class' => 'form-control','id' => 'cp']) }}
                                                     </div>
 
@@ -216,13 +216,7 @@
                                                         </div>
 
                                                         <div class="row my-2">
-                                                            <div class="col-12 col-md-6">
-                                                                <label class="block" for="last_name">Fecha de
-                                                                    pago</label>
-                                                                {{ Form::text('instruction1_pay_date',null,['class' => 'form-control flatpickr','id' => 'instruction1_pay_date']) }}
-                                                            </div>
-
-                                                            <div class="col-12 col-md-6">
+                                                            <div class="col-12">
                                                                 <label class="block" for="instruction1_payment">Medio de
                                                                     pago</label>
                                                                 {{ Form::select('instruction1_payment',$accreditationsType,null,['class' => 'form-control select2','id' => 'instruction1_payment']) }}
@@ -248,13 +242,8 @@
                                                             </div>
                                                         </div>
                                                         <div class="row my-2">
-                                                            <div class="col-12 col-md-6">
-                                                                <label class="block" for="last_name">Fecha de
-                                                                    pago</label>
-                                                                {{ Form::text('instruction2_pay_date',null,['class' => 'form-control flatpickr','id' => 'instruction2_pay_date']) }}
-                                                            </div>
 
-                                                            <div class="col-12 col-md-6">
+                                                            <div class="col-12">
                                                                 <label class="block" for="instruction2_payment">Medio de
                                                                     pago</label>
                                                                 {{ Form::select('instruction2_payment',$accreditationsType,null,['class' => 'form-control select2','id' => 'instruction2_payment']) }}
@@ -282,13 +271,8 @@
                                                         </div>
 
                                                         <div class="row my-2">
-                                                            <div class="col-12 col-md-6">
-                                                                <label class="block" for="last_name">Fecha de
-                                                                    pago</label>
-                                                                {{ Form::text('instruction3_pay_date',null,['class' => 'form-control flatpickr','id' => 'instruction3_pay_date']) }}
-                                                            </div>
 
-                                                            <div class="col-12 col-md-6">
+                                                            <div class="col-12">
                                                                 <label class="block" for="instruction3_payment">Medio de
                                                                     pago</label>
                                                                 {{ Form::select('instruction3_payment',$accreditationsType,null,['class' => 'form-control select2','id' => 'instruction3_payment']) }}
@@ -322,13 +306,8 @@
                                                         </div>
 
                                                         <div class="row my-2">
-                                                            <div class="col-12 col-md-6">
-                                                                <label class="block" for="last_name">Fecha de
-                                                                    pago</label>
-                                                                {{ Form::text('instruction4_pay_date',null,['class' => 'form-control flatpickr','id' => 'instruction4_pay_date']) }}
-                                                            </div>
 
-                                                            <div class="col-12 col-md-6">
+                                                            <div class="col-12">
                                                                 <label class="block" for="instruction4_payment">Medio de
                                                                     pago</label>
                                                                 {{ Form::select('instruction4_payment',$accreditationsType,null,['class' => 'form-control select2','id' => 'instruction4_payment']) }}
@@ -358,13 +337,8 @@
                                                         </div>
 
                                                         <div class="row my-2">
-                                                            <div class="col-12 col-md-6">
-                                                                <label class="block" for="last_name">Fecha de
-                                                                    pago</label>
-                                                                {{ Form::text('cancellation1_pay_date',null,['class' => 'form-control flatpickr','id' => 'cancellation1_pay_date']) }}
-                                                            </div>
 
-                                                            <div class="col-12 col-md-6">
+                                                            <div class="col-12">
                                                                 <label class="block" for="cancellation1_payment">Medio
                                                                     de
                                                                     pago</label>
@@ -394,13 +368,8 @@
                                                         </div>
 
                                                         <div class="row my-2">
-                                                            <div class="col-12 col-md-6">
-                                                                <label class="block" for="last_name">Fecha de
-                                                                    pago</label>
-                                                                {{ Form::text('cancellation2_pay_date',null,['class' => 'form-control flatpickr','id' => 'cancellation2_pay_date']) }}
-                                                            </div>
 
-                                                            <div class="col-12 col-md-6">
+                                                            <div class="col-12">
                                                                 <label class="block" for="cancellation2_payment">Medio
                                                                     de
                                                                     pago</label>

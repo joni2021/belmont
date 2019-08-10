@@ -74,7 +74,7 @@
 
                                         <div class="form-group row">
                                             <div class="col-12 col-md-6 col-lg-4">
-                                                <label class="block" for="cuil">Cuil</label>
+                                                <label class="block" for="cuil">CUIL/CUIT</label>
                                                 <div class="input-group">
                                                     {{ Form::number('cuil',null,['class' => 'required form-control','id' => 'cuil']) }}
                                                 </div>
@@ -82,7 +82,7 @@
                                             </div>
 
                                             <div class="col-12 col-md-6 col-lg-2">
-                                                <label class="block" for="cp">Cp</label>
+                                                <label class="block" for="cp">CP</label>
                                                 {{ Form::number('cp',null,['class' => 'form-control','id' => 'cp']) }}
                                             </div>
 

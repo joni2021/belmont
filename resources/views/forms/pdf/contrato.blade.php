@@ -8,7 +8,8 @@
     <style>
         html{
             font-family: sans-serif, Verdana;
-            font-size: 8.5pt;
+            /*font-size: 8.5pt;*/
+            font-size: 12pt;
             box-sizing: border-box;
         }
 
@@ -29,60 +30,60 @@
     <div style="height: .3cm; width:.3cm;">
     </div>
 
-    <div style="width: 19.3cm;height: .7cm; display: block;border: 1px solid black; background-color: black; text-align: center;">
+    <div style="width: 19.3cm;height: .7cm; display: block;border: 1px solid black; background-color: black; text-align: center; text-transform: uppercase;">
         <p style="margin:0; text-transform: uppercase; padding: 5px auto; color: white;">datos personales</p>
     </div>
 
-    <div style="margin-top: -20px;">
+    <div style="margin-top: -20px; text-transform: uppercase; font-size: 11pt;">
         <p style="display: inline-block; vertical-align: bottom;">Apellido y nombres: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .2cm;">{{ $loan->Client->fullName }}</i></p>
         <p style="margin-left: 5px;display: inline-block;">DNI: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .2cm;">{{ $loan->Client->dni }}</i></p>
     </div>
 
-    <div style="margin-top: -30px;">
+    <div style="margin-top: -30px; text-transform: uppercase; font-size: 11pt;">
         <p style="display: inline-block; vertical-align: bottom;">Domicilio actual: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .2cm;">{{ $loan->Client->address }}</i></p>
         <p style="margin-left: 5px;display: inline-block;">Localidad: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .2cm;">{{ $loan->Client->city }}</i></p>
     </div>
 
-    <div style="margin-top: -40px;">
+    <div style="margin-top: -80px; text-transform: uppercase; font-size: 11pt;">
         <p style="display: inline-block; vertical-align: bottom;">Provincia: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .2cm;">{{ $loan->Client->province }}</i></p>
-        <p style="display: inline-block;">Cp: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .2cm;">{{ $loan->Client->cp }}</i></p>
+        <p style="display: inline-block;">CP: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .2cm;">{{ $loan->Client->cp }}</i></p>
 
-        <p style="margin-left: 5px;display: inline-block;">Tel. Particular: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .2cm;">{{ $loan->Client->phone }}</i></p>
-        <p style="margin-left: 5px;display: inline-block;">Tel. celular: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .2cm;">{{ $loan->Client->cel }}</i></p>
+        <p style="margin-left: 5px;display: inline-block;">TEL. Particular: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .2cm;">{{ $loan->Client->phone }}</i></p>
+        <p style="margin-left: 5px;display: inline-block;">TEL. celular: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .2cm;">{{ $loan->Client->cel }}</i></p>
     </div>
 
 
 
-    <div style="width: 19.3cm;height: .7cm; display: block;border: 1px solid black; background-color: black; text-align: center;">
+    <div style="width: 19.3cm;height: .7cm; display: block;border: 1px solid black; background-color: black; text-align: center; text-transform: uppercase;">
         <p style="margin:0; text-transform: uppercase; padding: 5px auto; color: white;">datos laborales</p>
     </div>
 
-    <div style="margin-top: -20px;">
+    <div style="margin-top: -20px; text-transform: uppercase; font-size: 11pt;">
         <p style="margin-left: 5px;display: inline-block; vertical-align: bottom;">Empresa: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .2cm;">{{ $loan->Client->job_name }}</i></p>
         <p style="margin-left: 5px;display: inline-block;">Domicilio laboral: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .2cm;">{{ $loan->Client->job_address }}</i></p>
     </div>
 
-    <div style="margin-top: -40px;">
+    <div style="margin-top: -40px; text-transform: uppercase; font-size: 11pt;">
         <p style="margin-left: 5px;display: inline-block; vertical-align: bottom;">Localidad: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .2cm;">{{ $loan->Client->job_city }}</i></p>
         <p style="margin-left: 5px;display: inline-block;">Provincia: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .2cm;">{{ $loan->Client->job_province }}</i></p>
 
-        <p style="margin-left: 5px;display: inline-block;">Tel. Laboral: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .2cm;">{{ $loan->Client->job_phone }}</i></p>
+        <p style="margin-left: 5px;display: inline-block;">TEL. LABORAL: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .2cm;">{{ $loan->Client->job_phone }}</i></p>
     </div>
 
 
 
-    <div style="width: 19.3cm;height: .7cm; display: block;border: 1px solid black; background-color: black; text-align: center;">
-        <p style="margin:0; text-transform: uppercase; padding: 5px auto; color: white;">datos de la operacion</p>
+    <div style="width: 19.3cm;height: .7cm; display: block;border: 1px solid black; background-color: black; text-align: center; text-transform: uppercase; font-size: 11pt;">
+        <p style="margin:0; text-transform: uppercase; font-size: 11pt; padding: 5px auto; color: white;">datos de la operacion</p>
     </div>
 
-    <div style="margin-top: -30px;">
+    <div style="margin-top: -30px; text-transform: uppercase; font-size: 11pt;">
         <p style="margin-left: 5px;display: inline-block; vertical-align: bottom;">Monto solicitado ($): <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .2cm;">{{ $loan->amount }}</i></p>
         <p style="margin-left: 5px;display: inline-block;">Cantidad de cuotas: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .2cm;">{{ $loan->dues }}</i></p>
         <p style="margin-left: 5px;display: inline-block;">Importe cuota: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .2cm;">{{ $loan->Payments->first()->amount_payable }}</i></p>
     </div>
 
 
-    <div style="margin-top: -30px;">
+    <div style="margin-top: -30px; text-transform: uppercase; font-size: 11pt;">
         <p style="margin-left: 5px;display: inline-block; vertical-align: bottom;">CBU: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .2cm;">{{ $loan->Client->cbu }}</i></p>
         <p style="margin-left: 5px;display: inline-block;">C.F.T: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .2cm;">{{ $loan->cft }}</i></p>
         <p style="margin-left: 5px;display: inline-block;">T.N.A: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .2cm;">{{ $loan->tna }}</i></p>
@@ -103,7 +104,7 @@
             <br>
             El vencimiento de la primera cuota se producirá el 	y las restantes el mismo día de cada mes subsiguiente.
             <br>
-            Las cuotas son calculadas conforme al denominado sistema de amortización francés, las que tienen incluido una tasa de interés del <b>{{ $loan->financing->first()->porcent }}%</b> efectiva mensual, debiéndosele adicionar a los intereses, el Impuesto al Valor Agregado (IVA) que corresponda, los que se deberán abonar conjuntamente con cada cuota. A la cuota se le adicionarán los gastos administrativos aplicables conforme se establecen en el artículo sexto del presente.
+            Las cuotas son calculadas conforme al denominado sistema de amortización francés, las que tienen incluido una tasa de interés del <b>{{ $loan->tem }}%</b> efectiva mensual, debiéndosele adicionar a los intereses, el Impuesto al Valor Agregado (IVA) que corresponda, los que se deberán abonar conjuntamente con cada cuota. A la cuota se le adicionarán los gastos administrativos aplicables conforme se establecen en el artículo sexto del presente.
             <br>
             4. Libramiento de Pagaré. Las partes convienen en documentar la deuda de <b>${{ $loan->amount }} ({{ NumerosEnLetras::convertir($loan->amount,'pesos',false,'centavos') }})</b>, en un pagaré a la vista bajos las condiciones de su libramiento, confiriendo a su vez la via ejecutiva al presente, por lo que el Acreedor podrá a su sola opción, iniciar la ejecución con cualesquiera de los documentos que prefiera en caso de incumplimiento de algunas de las obligaciones asumidas por el Deudor.
             <br>
@@ -149,7 +150,7 @@
             <br>
             8. Mecanismo alternativo de cobranzas. En concordancia con lo establecido en los apartados 7.1 y 7.2, de la cláusula Séptima del presente, solo para el caso que por el Acreedor no reciba por cualquier motivo los montos correspondientes al repago del préstamo otorgado, por medio del indicado sistema de débitos, él Deudor deberá cancelar en forma personal dichas obligaciones en el domicilio de pago indicado en la cláusula nueve.
             <br>
-            9. Domicilio de pago. Todos los pagos que deba efectuar el Deudor, los realizarán en el domicilio del Acreedor sito en ________________________________________, en horario y día hábil o en su defecto, donde éste lo indique en el futuro.
+            9. Domicilio de pago. Todos los pagos que deba efectuar el Deudor, los realizarán en el domicilio del Acreedor sito en <b>{{ Auth::user()->Company->address }}</b>, en horario y día hábil o en su defecto, donde éste lo indique en el futuro.
             <br>
             10. Otras causales de incumplimiento. El Acreedor tendrá la facultad de considerar la deuda como de plazo vencido y exigir el pago íntegro de todo lo adeudado, ya sea en concepto de capital, intereses, impuestos y gastos, en los siguientes casos:
             <br>

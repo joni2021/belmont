@@ -30,6 +30,14 @@ class Client extends Model
     public function getTotalLoansAttribute(){
         return $this->loans()->count();
     }
+
+    public function getProvinceAttribute(){
+        return config('utilities.provinces')[$this->attributes['province']];
+    }
+
+    public function getJobProvinceAttribute(){
+        return config('utilities.provinces')[$this->attributes['job_province']];
+    }
 }
 
 

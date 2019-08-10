@@ -72,8 +72,8 @@
                                 <td>{{ $client->address }}</td>
                                 <td>
                                     <ul>
-                                        <li><b>Tel:</b> {{ $client->phone }}</li>
-                                        <li><b>Cel:</b> {{ $client->cel }}</li>
+                                        <li><b>TEL:</b> {{ $client->phone }}</li>
+                                        <li><b>CEL:</b> {{ $client->cel }}</li>
                                     </ul>
                                 </td>
                                 <td class="text-right">

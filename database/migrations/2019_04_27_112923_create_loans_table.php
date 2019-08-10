@@ -17,41 +17,35 @@ class CreateLoansTable extends Migration
             $table->bigIncrements('id');
             $table->double('amount',10,2)->unsigned();
             $table->tinyInteger('dues')->unsigned();
-            $table->tinyInteger('cft')->unsigned()->nullable();
-            $table->tinyInteger('tna')->unsigned()->nullable();
-            $table->tinyInteger('tem')->unsigned()->nullable();
+            $table->double('cft',6,2)->unsigned();
+            $table->double('tna',6,2)->unsigned();
+            $table->double('tem',6,2)->unsigned();
             $table->tinyInteger('accreditation_type_id',false,true);
             $table->tinyInteger('financing_id',false,true);
             $table->bigInteger('client_id',false,true);
             $table->bigInteger('user_id',false,true);
             $table->tinyInteger('status',false,true);
 
-            $table->date("instruction1_pay_date")->nullable();
             $table->double("instruction1_payment",10,2)->unsigned()->nullable();
             $table->double('instruction1_amount',10,2)->nullable();
             $table->string("instruction1_order")->nullable();
 
-            $table->date("instruction2_pay_date")->nullable();
             $table->double("instruction2_payment",10,2)->unsigned()->nullable();
             $table->double('instruction2_amount',10,2)->nullable();
             $table->string("instruction2_order")->nullable();
 
-            $table->date("instruction3_pay_date")->nullable();
             $table->double("instruction3_payment",10,2)->unsigned()->nullable();
             $table->double('instruction3_amount',10,2)->nullable();
             $table->string("instruction3_order")->nullable();
 
-            $table->date("instruction4_pay_date")->nullable();
             $table->double("instruction4_payment",10,2)->unsigned()->nullable();
             $table->double('instruction4_amount',10,2)->nullable();
             $table->string("instruction4_order")->nullable();
 
-            $table->date("cancellation1_pay_date")->nullable();
             $table->double("cancellation1_payment",10,2)->unsigned()->nullable();
             $table->double('cancellation1_amount',10,2)->nullable();
             $table->string("cancellation1_order")->nullable();
 
-            $table->date("cancellation2_pay_date")->nullable();
             $table->double("cancellation2_payment",10,2)->unsigned()->nullable();
             $table->double('cancellation2_amount',10,2)->nullable();
             $table->string("cancellation2_order")->nullable();

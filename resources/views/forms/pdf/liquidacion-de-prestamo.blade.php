@@ -8,7 +8,8 @@
     <style>
         html{
             font-family: sans-serif, Verdana;
-            font-size: 8.5pt;
+            font-size: 13pt;
+            /*font-size: 8.5pt;*/
             box-sizing: border-box;
         }
 
@@ -27,25 +28,25 @@
     <div style="margin-top: -20px;">
         <p style="display: inline-block; vertical-align: bottom;">Apellido y nombres: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .2cm;">{{ $loan->Client->fullName }}</i></p>
         <p style="margin-left: 5px;display: inline-block;">DNI: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .2cm;">{{ $loan->Client->dni }}</i></p>
-        <p style="margin-left: 5px;display: inline-block;">Nro. de prestamo: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .2cm;">{{ $loan->id }}</i></p>
+        <p style="margin-left: 5px;display: inline-block;">NRO. de prestamo: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .2cm;">{{ $loan->id }}</i></p>
     </div>
 
     <div style="margin-top:0; border: 1px solid #000;padding: 5px;">
         <div style="float: left;">
-            <p style="display: block;">Prestamo otorgado: <i style="display:inline-block; vertical-align: top;border: 1px solid #9b9b9b; padding: .1cm .2cm;">${{ $loan->amount }}</i></p>
-            <p style="margin-left: 5px;">Total deducciones: <i style="display:inline-block; vertical-align: middle;border: 1px solid #9b9b9b; padding: .1cm .2cm; width: 1.2cm;">$</i></p>
+            <p style="display: block;">Prestamo otorgado: <i style="display:inline-block; vertical-align: top;border: 1px solid #9b9b9b; padding: .1cm .2cm; width: 4cm;">${{ $loan->amount }}</i></p>
+            <p style="margin-left: 5px;">Total deducciones: <i style="display:inline-block; vertical-align: middle;border: 1px solid #9b9b9b; padding: .1cm .2cm; width: 4cm;">$</i></p>
         </div>
 
         <div style="float: right; margin-right: 1cm;">
 
-            <p style="display: block;">Instrucción 1: <i style="display:inline-block; vertical-align: top;border: 1px solid #9b9b9b; padding: .1cm .2cm;">$ {{ $loan->instruction1_amount}}</i></p>
-            <p style="display: block;">Instrucción 2: <i style="display:inline-block; vertical-align: top;border: 1px solid #9b9b9b; padding: .1cm .2cm;">$ {{ $loan->instruction2_amount}}</i></p>
-            <p style="display: block;">Instrucción 3: <i style="display:inline-block; vertical-align: top;border: 1px solid #9b9b9b; padding: .1cm .2cm;">$ {{ $loan->instruction3_amount}}</i></p>
-            <p style="display: block;">Instrucción 4: <i style="display:inline-block; vertical-align: top;border: 1px solid #9b9b9b; padding: .1cm .2cm;">$ {{ $loan->instruction4_amount}}</i></p>
+            <p style="display: block;">Instrucción 1: <i style="display:inline-block; vertical-align: top;border: 1px solid #9b9b9b; padding: .1cm .2cm;width:4cm;">$ {{ $loan->instruction1_amount}}</i></p>
+            <p style="display: block;">Instrucción 2: <i style="display:inline-block; vertical-align: top;border: 1px solid #9b9b9b; padding: .1cm .2cm;width:4cm;">$ {{ $loan->instruction2_amount}}</i></p>
+            <p style="display: block;">Instrucción 3: <i style="display:inline-block; vertical-align: top;border: 1px solid #9b9b9b; padding: .1cm .2cm;width:4cm;">$ {{ $loan->instruction3_amount}}</i></p>
+            <p style="display: block;">Instrucción 4: <i style="display:inline-block; vertical-align: top;border: 1px solid #9b9b9b; padding: .1cm .2cm;width:4cm;">$ {{ $loan->instruction4_amount}}</i></p>
 
 
-            <p style="display: block;">CANCELACION: <i style="display:inline-block; vertical-align: top;border: 1px solid #9b9b9b; padding: .1cm .2cm;">$ {{ $loan->cancellation1_amount}}</i></p>
-            <p style="display: block;">CANCELACION: <i style="display:inline-block; vertical-align: top;border: 1px solid #9b9b9b; padding: .1cm .2cm;">$ {{ $loan->cancellation2_amount}}</i></p>
+            <p style="display: block;">CANCELACION: <i style="display:inline-block; vertical-align: top;border: 1px solid #9b9b9b; padding: .1cm .2cm;width:3.3cm;">$ {{ $loan->cancellation1_amount}}</i></p>
+            <p style="display: block;">CANCELACION: <i style="display:inline-block; vertical-align: top;border: 1px solid #9b9b9b; padding: .1cm .2cm;width:3.3cm;">$ {{ $loan->cancellation2_amount}}</i></p>
 
 
             <p style="display: block;">NETO LIQUIDADO:$ {{ $loan->net_settled }}</p>
@@ -73,8 +74,9 @@
                 <br>
                 A la orden de {{ $loan->instruction1_order }}
             @else
-                Son <b>_______________________</b> - Fecha de pago ________________ - Medio de pago: <b>__________________________</b>
-                <br>
+                Son <b>_______________________</b> - Medio de pago: <b>__________________________</b>
+                <br style="padding-top: 1cm;display: block;">
+                <br style="padding-top: 1cm;display: block;">
                 A la orden de ____________________________________________
             @endif
         </p>
@@ -84,12 +86,13 @@
             Instrucción 2
             <br>
             @if(!empty($loan->instruction2_pay_date))
-                Son <b>{{ NumerosEnLetras::convertir($loan->instruction2_payment,'pesos',false,'centavos')}}</b> - Fecha de pago {{ date('d-m-Y',strtotime($loan->instruction2_pay_date)) }} - Medio de pago: <b>{{ $loan->instruction2Payment->type }}</b>
+                Son <b>{{ NumerosEnLetras::convertir($loan->instruction2_payment,'pesos',false,'centavos')}}</b> - Medio de pago: <b>{{ $loan->instruction2Payment->type }}</b>
                 <br>
                 A la orden de {{ $loan->instruction2_order }}
             @else
-                Son <b>_______________________</b> - Fecha de pago ________________ - Medio de pago: <b>__________________________</b>
-                <br>
+                Son <b>_______________________</b> - Medio de pago: <b>__________________________</b>
+                <br style="padding-top: 1cm;display: block;">
+                <br style="padding-top: 1cm;display: block;">
                 A la orden de ____________________________________________
             @endif
         </p>
@@ -99,11 +102,11 @@
             Instrucción 3
             <br>
             @if(!empty($loan->instruction3_pay_date))
-                Son <b>{{ NumerosEnLetras::convertir($loan->instruction3_payment,'pesos',false,'centavos')}}</b> - Fecha de pago {{ date('d-m-Y',strtotime($loan->instruction3_pay_date)) }} - Medio de pago: <b>{{ $loan->instruction3Payment->type }}</b>
+                Son <b>{{ NumerosEnLetras::convertir($loan->instruction3_payment,'pesos',false,'centavos')}}</b> - Medio de pago: <b>{{ $loan->instruction3Payment->type }}</b>
                 <br>
                 A la orden de {{ $loan->instruction3_order }}
             @else
-                Son <b>_______________________</b> - Fecha de pago ________________ - Medio de pago: <b>__________________________</b>
+                Son <b>_______________________</b> - Medio de pago: <b>__________________________</b>
                 <br>
                 A la orden de ____________________________________________
             @endif
@@ -114,11 +117,11 @@
             Instrucción 4
             <br>
             @if(!empty($loan->instruction4_pay_date))
-                Son <b>{{ NumerosEnLetras::convertir($loan->instruction4_payment,'pesos',false,'centavos')}}</b> - Fecha de pago {{ date('d-m-Y',strtotime($loan->instruction4_pay_date)) }} - Medio de pago: <b>{{ $loan->instruction4Payment->type }}</b>
+                Son <b>{{ NumerosEnLetras::convertir($loan->instruction4_payment,'pesos',false,'centavos')}}</b> - Medio de pago: <b>{{ $loan->instruction4Payment->type }}</b>
                 <br>
                 A la orden de {{ $loan->instruction4_order }}
             @else
-                Son <b>_______________________</b> - Fecha de pago ________________ - Medio de pago: <b>__________________________</b>
+                Son <b>_______________________</b> - Medio de pago: <b>__________________________</b>
                 <br>
                 A la orden de ____________________________________________
             @endif
@@ -129,11 +132,11 @@
             Cancelación 1
             <br>
             @if(!empty($loan->cancellation1_pay_date))
-                Son <b>{{ NumerosEnLetras::convertir($loan->cancellation1_payment,'pesos',false,'centavos')}}</b> - Fecha de pago {{ date('d-m-Y',strtotime($loan->cancellation1_pay_date)) }} - Medio de pago: <b>{{ $loan->cancellation1Payment->type }}</b>
+                Son <b>{{ NumerosEnLetras::convertir($loan->cancellation1_payment,'pesos',false,'centavos')}}</b> - Medio de pago: <b>{{ $loan->cancellation1Payment->type }}</b>
                 <br>
                 A la orden de {{ $loan->cancellation1_order }}
             @else
-                Son <b>_______________________</b> - Fecha de pago ________________ - Medio de pago: <b>__________________________</b>
+                Son <b>_______________________</b> - Medio de pago: <b>__________________________</b>
                 <br>
                 A la orden de ____________________________________________
             @endif
@@ -144,11 +147,11 @@
             Cancelación 2
             <br>
             @if(!empty($loan->cancellation2_pay_date))
-                Son <b>{{ NumerosEnLetras::convertir($loan->cancellation2_payment,'pesos',false,'centavos')}}</b> - Fecha de pago {{ date('d-m-Y',strtotime($loan->cancellation2_pay_date)) }} - Medio de pago: <b>{{ $loan->cancellation2Payment->type }}</b>
+                Son <b>{{ NumerosEnLetras::convertir($loan->cancellation2_payment,'pesos',false,'centavos')}}</b> - Medio de pago: <b>{{ $loan->cancellation2Payment->type }}</b>
                 <br>
                 A la orden de {{ $loan->cancellation2_order }}
             @else
-                Son <b>_______________________</b> - Fecha de pago ________________ - Medio de pago: <b>__________________________</b>
+                Son <b>_______________________</b> - Medio de pago: <b>__________________________</b>
                 <br>
                 A la orden de ____________________________________________
             @endif
@@ -159,7 +162,7 @@
     </div>
 
 
-    <div style=" margin-top: .3cm;  ">
+    <div style=" margin-top: 1.5cm;  ">
         <p style=" display: block; float: left;">
             ___________________________
             <br>
@@ -172,7 +175,7 @@
             {{ $loan->Client->DniType->type }} {{ $loan->Client->dni
              }}
             <br>
-            <b>Tipo y N° de doc</b>
+            <b>Tipo y N° de DOC.</b>
         </p>
     </div>
 

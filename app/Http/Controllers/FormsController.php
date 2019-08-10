@@ -14,6 +14,7 @@ use App\Http\Repositories\ClientsRepo;
 use App\Http\Repositories\LoansRepo;
 use Barryvdh\DomPDF\PDF;
 use Carbon\Carbon;
+use function config;
 use function floatval;
 use function floatValue;
 use Illuminate\Http\Request;
@@ -47,6 +48,8 @@ class FormsController extends Controller
         $this->confFile = $confFile;
         $this->data['confFile'] = $confFile;
 
+        $this->data['provinces'] = config('utilities.provinces');
+
         $this->request = $request;
         $this->route = $route;
         $this->route = $route;
@@ -64,7 +67,7 @@ class FormsController extends Controller
     public function create()
     {
         $this->data['clients'] = $this->clientsRepo->getClientList();
-        $this->data['provinces'] = ["Capital Federal", "Buenos Aires", "Catamarca", "Chaco", "Chubut", "Córdoba", "Corrientes", "Entre Ríos", "Formosa", "Jujuy", "La Pampa", "La Rioja", "Mendoza", "Misiones", "Neuquén", "Río Negro", "Salta", "San Juan", "San Luis", "Santa Cruz", "Santa Fe", "Santiago Del Estero", "Tierra Del Fuego", "Tucuman"];
+
         $this->data['dniTypes'] = DniType::all()->pluck('type', 'id');
         $this->data['accreditationsType'] = AccreditationType::all()->pluck('type', 'id');
         $this->data['financing'] = Financing::all();
