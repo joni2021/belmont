@@ -48,7 +48,7 @@
                                         <p class="task-detail"><b>{{ $model->dniType->type }}</b>: {{ $model->dni }}</p>
                                         <p class="task-detail"><b>CUIL/CUIT</b>: {{ $model->cuil }}</p>
                                         <p class="task-detail"><b>Dirección: </b>{{ $model->address }}</p>
-                                        <p class="task-detail"><b>Ciudad: </b>{{ $model->city }} - {{ $model->province or '' }} - cp:{{ $model->cp }}</p>
+                                        <p class="task-detail"><b>Ciudad: </b>{{ $model->city }} - {{ $model->province }} - <b>CP:</b>{{ $model->cp }}</p>
                                         <hr>
                                         <p class="task-detail"><b>Teléfono: </b>{{ $model->phone }}</p>
                                         <p class="task-detail"><b>Celular: </b>{{ $model->cel }}</p>

@@ -72,8 +72,8 @@
                                 <td>{{ $prestamo->client->dniType->type }}: {{ $prestamo->client->dni }}</td>
                                 <td>
                                     <ul class="list-unstyled">
-                                        <li>Part: {{ $prestamo->client->phone }}</li>
-                                        <li>Cel: {{ $prestamo->client->cel }}</li>
+                                        <li>PART: {{ $prestamo->client->phone }}</li>
+                                        <li>CEL: {{ $prestamo->client->cel }}</li>
                                     </ul>
                                 </td>
                                 <td>{{ $prestamo->date }}</td>

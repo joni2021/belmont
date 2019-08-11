@@ -25,6 +25,7 @@ class CreateClientsTable extends Migration
             $table->string('province');
             $table->string('phone')->nullable();
             $table->string('cp');
+            $table->string('ca')->nullable();
             $table->string('cel')->unique();
             $table->string('cbu')->unique()->nullable()->index('cbu');
 

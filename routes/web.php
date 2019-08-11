@@ -147,5 +147,50 @@ Route::group(['middleware' => 'auth'], function () {
 
     });
 
+//  Financing
+    Route::group(['prefix' => 'financiamientos'], function () {
+
+        Route::get('create', [
+            'as' => 'financings.create',
+            'uses' => 'FinancingsController@create'
+        ]);
+
+
+        Route::post('store', [
+            'as' => 'financings.store',
+            'uses' => 'FinancingsController@store'
+        ]);
+
+
+        Route::get('index', [
+            'as' => 'financings.index',
+            'uses' => 'FinancingsController@index'
+        ]);
+
+        Route::group(['prefix' => '{id}'], function () {
+            Route::get('edit', [
+                'as' => 'financings.edit',
+                'uses' => 'FinancingsController@edit'
+            ]);
+
+            Route::get('show', [
+                'as' => 'financings.show',
+                'uses' => 'FinancingsController@show'
+            ]);
+
+            Route::put('update', [
+                'as' => 'financings.update',
+                'uses' => 'FinancingsController@update'
+            ]);
+
+            Route::delete('destroy', [
+                'as' => 'financings.destroy',
+                'uses' => 'FinancingsController@destroy'
+            ]);
+
+        });
+
+    });
+
 });
 

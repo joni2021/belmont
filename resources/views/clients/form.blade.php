@@ -73,7 +73,7 @@
 
 
                                         <div class="form-group row">
-                                            <div class="col-12 col-md-6 col-lg-4">
+                                            <div class="col-12 col-md-6 col-lg-3">
                                                 <label class="block" for="cuil">CUIL/CUIT</label>
                                                 <div class="input-group">
                                                     {{ Form::number('cuil',null,['class' => 'required form-control','id' => 'cuil']) }}
@@ -81,12 +81,17 @@
                                                 <div class="invalid-feedback d-block"></div>
                                             </div>
 
-                                            <div class="col-12 col-md-6 col-lg-2">
+                                            <div class="col-6 col-lg-2">
                                                 <label class="block" for="cp">CP</label>
                                                 {{ Form::number('cp',null,['class' => 'form-control','id' => 'cp']) }}
                                             </div>
 
-                                            <div class="col-12 col-md-6 col-lg-3">
+                                            <div class="col-6 col-lg-2">
+                                                <label class="block" for="ca">COD. ÁREA</label>
+                                                {{ Form::number('ca',null,['class' => 'form-control','id' => 'ca']) }}
+                                            </div>
+
+                                            <div class="col-12 col-md-6 col-lg-2">
                                                 <label class="block" for="phone">Teléfono</label>
                                                 {{ Form::number('phone',null,['class' => 'form-control','id' => 'phone']) }}
                                             </div>

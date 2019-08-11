@@ -41,6 +41,21 @@
                 </ul>
             </li>
 
+
+            <li class="pcoded-hasmenu ">
+                <a href="javascript:void(0)">
+                    <span class="pcoded-micon"><i class="icofont icofont-wheel"></i></span>
+                    <span class="pcoded-mtext"> Configuraciones</span>
+                </a>
+                <ul class="pcoded-submenu">
+                    <li class="">
+                        <a href="{{ route('financings.index') }}">
+                            <span class="pcoded-mtext">Financiaciones</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
         </ul>
 
     </div>
