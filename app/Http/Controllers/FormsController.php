@@ -20,6 +20,7 @@ use function floatValue;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use function intval;
 use NumerosEnLetras;
@@ -144,11 +145,23 @@ class FormsController extends Controller
         $cliente = Client::find($this->request->searchClient);
 
         // Actualizar los datos del cliente
-        $datosCliente = $this->request->only(['cbu', 'name', 'last_name', 'dni_type_id', 'dni','cuil', 'address', 'city', 'province', 'cp', 'phone', 'cel', 'job_name', 'job_address', 'job_city', 'job_province', 'job_phone']);
+        $datosCliente = $this->request->only(['cbu', 'name','ca', 'last_name', 'dni_type_id', 'dni','cuil', 'address', 'city', 'province', 'cp', 'ca','phone', 'cel', 'job_name', 'job_address', 'job_city', 'job_province', 'job_phone']);
 
         if (!$cliente):
+            $datos = new Request($datosCliente);
+
+            $this->validate($datos, config('clients.validationsStore'),config('clients.messagesStore'));
+
             $cliente = Client::create($datosCliente);
         else:
+            $datos = new Request($datosCliente);
+
+            $validaciones = config('clients.validationsUpdate');
+            $validaciones['dni'] = "numeric|unique:clients,dni,".$cliente->id;
+            $validaciones['cuil'] = "numeric|unique:clients,cuil,".$cliente->id;
+
+            $this->validate($datos,$validaciones,config('clients.messagesUpdate'));
+
             $cliente->update($datosCliente);
         endif;
 
@@ -176,6 +189,17 @@ class FormsController extends Controller
 
         // Pongo el estado en PENDIENTE
         $datosPrestamo['status'] = 1;
+
+//        Código
+        $ultimoid = DB::table('loans')->select(DB::raw('MAX(id) as id'));
+
+        if($ultimoid->count() === 0)
+            $ultimoid = 1;
+        else
+            $ultimoid = $ultimoid->first()->id + 1;
+
+        
+        $datosPrestamo['code'] = "DLP".$ultimoid;
 
         $loan = $this->repo->create($datosPrestamo);
 

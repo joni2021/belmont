@@ -27,7 +27,7 @@
 
     <div style="margin-top: -20px;">
         <p style="display: inline-block; vertical-align: bottom;">Apellido y nombres: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .2cm;">{{ $loan->Client->fullName }}</i></p>
-        <p style="margin-left: 5px;display: inline-block;">DNI: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .2cm;">{{ $loan->Client->dni }}</i></p>
+        <p style="margin-left: 5px;display: inline-block;">DNI: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .2cm;">{{ $loan->Client->formatted_dni }}</i></p>
         <p style="margin-left: 5px;display: inline-block;">NRO. de prestamo: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .2cm;">{{ $loan->id }}</i></p>
     </div>
 
@@ -172,7 +172,7 @@
             <br>
             <b>Aclaración</b>
             <br>
-            {{ $loan->Client->DniType->type }} {{ $loan->Client->dni
+            {{ $loan->Client->DniType->type }} {{ $loan->Client->formatted_dni
              }}
             <br>
             <b>Tipo y N° de DOC.</b>

@@ -11,7 +11,7 @@ use function strlen;
 class Client extends Model
 {
     protected $fillable = [
-        'name','last_name','dni_type_id','dni','cuil','address','city','province','phone','cp','cel','cbu','job_name','job_address','job_city','job_province','job_phone'
+        'name','last_name','dni_type_id','dni','cuil','address','city','province','phone','cp','ca','cel','cbu','job_name','job_address','job_city','job_province','job_phone'
     ];
 
     public function Users(){
@@ -34,19 +34,19 @@ class Client extends Model
         return $this->loans()->count();
     }
 
-    public function getProvinceAttribute(){
+    public function getProvinceNameAttribute(){
         return config('utilities.provinces')[$this->attributes['province']];
     }
 
-    public function getJobProvinceAttribute(){
+    public function getJobProvinceNameAttribute(){
         return config('utilities.provinces')[$this->attributes['job_province']];
     }
 
-    public function getDniAttribute(){
+    public function getFormattedDniAttribute(){
         return number_format($this->attributes['dni'],0,'.','.');
     }
 
-    public function getCuilAttribute(){
+    public function getFormattedCuilAttribute(){
         $cantidad = strlen($this->attributes['cuil']);
 
         $arr = str_split($this->attributes['cuil']);

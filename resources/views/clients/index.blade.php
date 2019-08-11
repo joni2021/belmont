@@ -68,7 +68,7 @@
 
                                     </a>
                                 </td>
-                                <td><b>{{ $client->dniType->type }}:</b> {{ $client->dni }}</td>
+                                <td><b>{{ $client->dniType->type }}:</b> {{ $client->formatted_dni }}</td>
                                 <td>{{ $client->address }}</td>
                                 <td>
                                     <ul>

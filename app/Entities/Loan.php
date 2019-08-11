@@ -15,7 +15,7 @@ class Loan extends Model
 
 
     protected $fillable = [
-        'amount', 'dues', 'cft', 'tna', 'tem', 'accreditation_type_id', 'financing_id', 'client_id',"status", "user_id","instruction1_amount","instruction1_payment","instruction1_order","instruction2_amount","instruction2_payment","instruction2_order","instruction3_amount","instruction3_payment","instruction3_order","instruction4_amount","instruction4_payment","instruction4_order","cancellation1_amount","cancellation1_payment","cancellation1_order","cancellation2_amount","cancellation2_payment","cancellation2_order"
+        'amount', 'dues', 'cft', 'tna', 'tem', 'accreditation_type_id', 'financing_id', 'client_id',"status","code", "user_id","instruction1_amount","instruction1_payment","instruction1_order","instruction2_amount","instruction2_payment","instruction2_order","instruction3_amount","instruction3_payment","instruction3_order","instruction4_amount","instruction4_payment","instruction4_order","cancellation1_amount","cancellation1_payment","cancellation1_order","cancellation2_amount","cancellation2_payment","cancellation2_order"
     ];
 
     public $casts = [
@@ -71,7 +71,7 @@ class Loan extends Model
     }
 
     public function getFormattedAmountAttribute(){
-        return '$'. number_format($this->attributes["amount"],2);
+        return '$'. number_format($this->attributes["amount"],2,',','.');
     }
 
     public function monthlyAmount($porcent,$due){
@@ -90,7 +90,7 @@ class Loan extends Model
 
     public function getTotalAmountAttribute(){
 
-        $totalAmount = "$" . number_format(floatval($this->Payments->first()->float_amount_payable) * intval($this->attributes['dues']),2);
+        $totalAmount = "$" . number_format(floatval($this->Payments->first()->float_amount_payable) * intval($this->attributes['dues']),2,',','.');
 
         return $totalAmount;
     }
@@ -101,6 +101,7 @@ class Loan extends Model
 
         return $totalAmount;
     }
+
 
     public function getAccreditationDateAttribute(){
         $fecha = Carbon::create($this->attributes['created_at'],'America/Argentina/Buenos_Aires')->locale('es');

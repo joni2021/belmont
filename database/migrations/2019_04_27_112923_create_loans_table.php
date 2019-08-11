@@ -25,6 +25,7 @@ class CreateLoansTable extends Migration
             $table->bigInteger('client_id',false,true);
             $table->bigInteger('user_id',false,true);
             $table->tinyInteger('status',false,true);
+            $table->string("code");
 
             $table->double("instruction1_payment",10,2)->unsigned()->nullable();
             $table->double('instruction1_amount',10,2)->nullable();

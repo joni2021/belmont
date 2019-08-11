@@ -69,6 +69,10 @@ class User extends Authenticatable
         return $total;
     }
 
+    public function getFormattedDniAttribute(){
+        return number_format($this->attributes['dni'],0,'.','.');
+    }
+
     public function TotalLoansByClient($client){
 
     }

@@ -67,13 +67,13 @@
                 <br>
                 <b style="margin: .1cm 0;display: block;">Aclaración</b> {{ $loan->client->fullname }}
                 <br>
-                <b style="margin: .1cm 0;display: block;">Tipo y N° DOC:</b> {{ $loan->client->dniType->type }} {{ $loan->client->dni }}
+                <b style="margin: .1cm 0;display: block;">Tipo y N° DOC:</b> {{ $loan->client->dniType->type }} {{ $loan->client->formatted_dni }}
                 <br>
                 <b style="margin: .1cm 0;display: block;">Calle:</b> {{ $loan->client->address }}
                 <br>
                 <b style="margin: .1cm 0;display: block;">Localidad:</b> {{ $loan->client->city }}
                 <br>
-                <b style="margin: .1cm 0;display: block;">Provincia:</b> {{ $loan->client->province }}
+                <b style="margin: .1cm 0;display: block;">Provincia:</b> {{ $loan->client->province_name }}
             </p>
         </div>
 

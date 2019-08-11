@@ -36,7 +36,7 @@
 
     <div style="margin-top: -20px; text-transform: uppercase; font-size: 11pt;">
         <p style="display: inline-block; vertical-align: bottom;">Apellido y nombres: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .8cm;">{{ $loan->Client->fullName }}</i></p>
-        <p style="margin-left: 10px;display: inline-block;">DNI: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .5cm; width: 6cm;">{{ $loan->Client->dni }}</i></p>
+        <p style="margin-left: 10px;display: inline-block;">DNI: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .5cm; width: 6cm;">{{ $loan->Client->formatted_dni }}</i></p>
     </div>
 
     <div style="margin-top: -20px; text-transform: uppercase; font-size: 11pt;">
@@ -44,8 +44,8 @@
         <p style="margin-left: 5px;display: inline-block;">Localidad: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .2cm;">{{ $loan->Client->city }}</i></p>
     </div>
 
-    <div style="margin-top: -80px; text-transform: uppercase; font-size: 11pt;">
-        <p style="display: inline-block; vertical-align: bottom;">Provincia: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .2cm;">{{ $loan->Client->province }}</i></p>
+    <div style="margin-top: -20px; text-transform: uppercase; font-size: 11pt;">
+        <p style="display: inline-block; vertical-align: bottom;">Provincia: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .2cm;">{{ $loan->Client->province_name }}</i></p>
         <p style="display: inline-block;">CP: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .2cm;">{{ $loan->Client->cp }}</i></p>
 
         <p style="margin-left: 5px;display: inline-block;">TEL. Particular: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .2cm;">{{ $loan->Client->phone }}</i></p>
@@ -59,13 +59,13 @@
     </div>
 
     <div style="margin-top: -20px; text-transform: uppercase; font-size: 11pt;">
-        <p style="margin-left: 5px;display: inline-block; vertical-align: bottom;">Empresa: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .2cm;">{{ $loan->Client->job_name }}</i></p>
-        <p style="margin-left: 5px;display: inline-block;">Domicilio laboral: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .2cm;">{{ $loan->Client->job_address }}</i></p>
+        <p style="margin-left: 5px;display: inline-block; vertical-align: bottom;">Empresa: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .2cm;width:3cm;">{{ $loan->Client->job_name }}</i></p>
+        <p style="margin-left: 5px;display: inline-block;">Domicilio laboral: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .2cm; width: 3cm;">{{ $loan->Client->job_address }}</i></p>
     </div>
 
     <div style="margin-top: -40px; text-transform: uppercase; font-size: 11pt;">
         <p style="margin-left: 5px;display: inline-block; vertical-align: bottom;">Localidad: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .2cm;">{{ $loan->Client->job_city }}</i></p>
-        <p style="margin-left: 5px;display: inline-block;">Provincia: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .2cm;">{{ $loan->Client->job_province }}</i></p>
+        <p style="margin-left: 5px;display: inline-block;">Provincia: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .2cm;">{{ $loan->Client->job_province_name }}</i></p>
 
         <p style="margin-left: 5px;display: inline-block;">TEL. LABORAL: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .2cm;">{{ $loan->Client->job_phone }}</i></p>
     </div>
@@ -77,36 +77,36 @@
     </div>
 
     <div style="margin-top: -30px; text-transform: uppercase; font-size: 11pt;">
-        <p style="margin-left: 5px;display: inline-block; vertical-align: bottom;">Monto solicitado ($): <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .2cm;">{{ $loan->amount }}</i></p>
+        <p style="margin-left: 5px;display: inline-block; vertical-align: bottom;">Monto solicitado: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .2cm;">{{ $loan->formatted_amount }}</i></p>
         <p style="margin-left: 5px;display: inline-block;">Cantidad de cuotas: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .2cm;">{{ $loan->dues }}</i></p>
-        <p style="margin-left: 5px;display: inline-block;">Importe cuota: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .2cm;">{{ $loan->Payments->first()->amount_payable }}</i></p>
+        <p style="margin-left: 5px;display: inline-block;">Importe cuota: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .2cm;">${{ $loan->Payments->first()->formated_amount_payable }}</i></p>
     </div>
 
 
     <div style="margin-top: -30px; text-transform: uppercase; font-size: 11pt;">
         <p style="margin-left: 5px;display: inline-block; vertical-align: bottom;">CBU: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .5cm;">{{ $loan->Client->cbu }}</i></p>
-        <p style="margin-left: 12px;display: inline-block; ">C.F.T: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .5cm;width:3cm;">{{ $loan->cft }}</i></p>
-        <p style="margin-left: 12px;display: inline-block;">T.N.A: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .5cm;width:3cm;">{{ $loan->tna }}</i></p>
-        <p style="margin-left: 12px;display: inline-block; ">T.E.M: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .5cm;width:3cm;">{{ $loan->tem }}</i></p>
+        <p style="margin-left: 12px;display: inline-block; ">C.F.T: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .5cm;width:3cm;">{{ $loan->cft }}%</i></p>
+        <p style="margin-left: 12px;display: inline-block;">T.N.A: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .5cm;width:3cm;">{{ $loan->tna }}%</i></p>
+        <p style="margin-left: 12px;display: inline-block; ">T.E.M: <i style="display:inline-block; vertical-align: bottom;border: 1px solid #9b9b9b; padding: .1cm .5cm;width:3cm;">{{ $loan->tem }}%</i></p>
     </div>
 
     <div style="margin-top: 20px;">
         <p>2. Objeto</p>
         <p style="margin-top: -10px;">
-            2.1. El Acreedor otorga al Deudor, 	<b><i>{{ $loan->Client->fullname }}</i></b>,la suma de <b>${{ $loan->amount }} ({{ NumerosEnLetras::convertir($loan->amount,'pesos',false,'centavos') }})</b>, que el Deudor acepta y declara recibir los fondos de plena conformidad, mediante {{ $loan->AccreditationType->type }}
+            2.1. El Acreedor otorga al Deudor, 	<b><i>{{ $loan->Client->fullname }}</i></b>,la suma de <b>{{ $loan->formatted_amount }} ({{ NumerosEnLetras::convertir($loan->amount,'pesos',false,'centavos') }})</b>, que el Deudor acepta y declara recibir los fondos de plena conformidad, mediante {{ $loan->AccreditationType->type }}
             <br>
             2.2. El Deudor declara asimismo, que la totalidad de los fondos provenientes de este préstamo, los destinará a
         </p>
         <p>________________________________________________________________________________________________</p>
         <p>
             3. Cancelación del préstamo. El préstamo será cancelado bajo las siguientes condiciones: <br>
-            3.1. <b>{{ $loan->dues }}</b> cuotas mensuales, iguales y consecutivas, de: <b>{{ $loan->Payments->first()->amount_payable }} ({{ NumerosEnLetras::convertir($loan->Payments->first()->amount_payable,'pesos',false,'centavos') }}) </b>
+            3.1. <b>{{ $loan->dues }}</b> cuotas mensuales, iguales y consecutivas, de: <b>${{ $loan->Payments->first()->formated_amount_payable }} ({{ NumerosEnLetras::convertir($loan->Payments->first()->amount_payable,'pesos',false,'centavos') }}) </b>
             <br>
             El vencimiento de la primera cuota se producirá el 	y las restantes el mismo día de cada mes subsiguiente.
             <br>
             Las cuotas son calculadas conforme al denominado sistema de amortización francés, las que tienen incluido una tasa de interés del <b>{{ $loan->tem }}%</b> efectiva mensual, debiéndosele adicionar a los intereses, el Impuesto al Valor Agregado (IVA) que corresponda, los que se deberán abonar conjuntamente con cada cuota. A la cuota se le adicionarán los gastos administrativos aplicables conforme se establecen en el artículo sexto del presente.
             <br>
-            4. Libramiento de Pagaré. Las partes convienen en documentar la deuda de <b>${{ $loan->amount }} ({{ NumerosEnLetras::convertir($loan->amount,'pesos',false,'centavos') }})</b>, en un pagaré a la vista bajos las condiciones de su libramiento, confiriendo a su vez la via ejecutiva al presente, por lo que el Acreedor podrá a su sola opción, iniciar la ejecución con cualesquiera de los documentos que prefiera en caso de incumplimiento de algunas de las obligaciones asumidas por el Deudor.
+            4. Libramiento de Pagaré. Las partes convienen en documentar la deuda de <b>{{ $loan->formatted_amount }} ({{ NumerosEnLetras::convertir($loan->amount,'pesos',false,'centavos') }})</b>, en un pagaré a la vista bajos las condiciones de su libramiento, confiriendo a su vez la via ejecutiva al presente, por lo que el Acreedor podrá a su sola opción, iniciar la ejecución con cualesquiera de los documentos que prefiera en caso de incumplimiento de algunas de las obligaciones asumidas por el Deudor.
             <br>
             5. Mora
             <br>
@@ -204,7 +204,7 @@
             <br>
             <b>Aclaración</b> {{ $loan->Client->fullName }}
             <br>
-            <b>{{ $loan->Client->DniType->type }} </b> {{ $loan->Client->dni }}
+            <b>{{ $loan->Client->DniType->type }} </b> {{ $loan->Client->formatted_dni }}
         </p>
     </div>
 

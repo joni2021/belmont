@@ -209,6 +209,7 @@ $(document).ready(function () {
                 $('#city').val(client.city);
                 $('#province').val(client.province);
                 $('#cp').val(client.cp);
+                $('#ca').val(client.ca);
                 $('#phone').val(client.phone);
                 $('#cel').val(client.cel);
 

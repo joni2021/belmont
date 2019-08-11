@@ -31,8 +31,12 @@ class Payments extends Model
         return date('d-m-Y',strtotime($this->attributes['payment_date']));
     }
 
-    public function getAmountPayableAttribute(){
-        return '$'. number_format($this->attributes["amount_payable"],2);
+//    public function getAmountPayableAttribute(){
+//        return '$'. number_format($this->attributes["amount_payable"],2);
+//    }
+
+    public function getFormatedAmountPayableAttribute(){
+        return number_format($this->attributes['amount_payable'],2,',','.');
     }
 
     public function getAmountPayableOriginalAttribute(){

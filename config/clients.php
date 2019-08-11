@@ -1,6 +1,8 @@
 <?php
 
-$module = 'clients';
+    use Illuminate\Routing\Route;
+
+    $module = 'clients';
 
 return [
 
@@ -31,20 +33,20 @@ return [
             'name' => "required|string",
             'last_name' => "string",
             'dni_types_id' => "exists:dni_types,id",
-            'dni' => "numeric",
-            'cuil' => "numeric",
+            'dni' => "numeric|unique:clients,dni",
+            'cuil' => "numeric|unique:clients,cuil",
             'address' => "string",
             'city' => "string",
             'province' => "numeric",
-            'phone' => "numeric",
-            'cp' => "numeric",
-            'cel' => "numeric",
-            'cbu' => "numeric",
-            'job_name' => "",
-            'job_address' => "",
-            'job_city' => "",
-            'job_province' => "",
-            'job_phone => "'
+            'phone' => "nullable|regex:/^[0-9]*$/",
+            'cp' => "nullable|regex:/^[0-9]*$/",
+            'ca' => "nullable|regex:/^[0-9]*$/",
+            'cbu' => "nullable|regex:/^[0-9]*$/",
+            'job_name' => "nullable",
+            'job_address' => "nullable",
+            'job_city' => "nullable",
+            'job_province' => "nullable",
+            'job_phone' => "nullable"
         ],
 
     //validaciones de edición
@@ -53,30 +55,40 @@ return [
         'name' => "required|string",
         'last_name' => "string",
         'dni_types_id' => "exists:dni_types,id",
-        'dni' => "numeric",
-        'cuil' => "numeric",
         'address' => "string",
         'city' => "string",
         'province' => "numeric",
-        'phone' => "numeric",
-        'cp' => "numeric",
-        'cel' => "numeric",
-        'cbu' => "numeric",
-        'job_name' => "",
-        'job_address' => "",
-        'job_city' => "",
-        'job_province' => "",
-        'job_phone => "'
+        'cp' => "nullable|regex:/^[0-9]*$/",
+        'ca' => "nullable|regex:/^[0-9]*$/",
+        'cbu' => "nullable|regex:/^[0-9]*$/",
+        'job_name' => "nullable",
+        'job_address' => "nullable",
+        'job_city' => "nullable",
+        'job_province' => "nullable",
+        'job_phone' => "nullable"
     ],
 
 
     'messagesStore' => [
-
+        'name.required' => "El nombre es obligtorio",
+        'phone.regex' => "El teléfono debe ser un número válido",
+        'cuil.numeric' => "El CUIL/CUIT debe ser un número",
+        'cuil.unique' => "El CUIL/CUIT ya está en uso, busque el cliente en la lista",
+        'dni.numeric' => "El DNI debe ser un número",
+        'dni.unique' => "El DNI ya está en uso, busque el cliente en la lista",
+        'cbu.numeric' => "El CBU debe ser un número",
+        'dni_types_id.exists' => "El tipo de documento no está en la lista",
     ],
 
 
     'messagesUpdate' => [
-
+        'name.required' => "El nombre es obligtorio",
+        'phone.regex' => "El teléfono debe ser un número válido",
+        'cuil.numeric' => "El CUIL/CUIT tiene que ser un número",
+        'cuil.unique' => "El CUIL/CUIT ya está en uso, busque el cliente en la lista",
+        'dni.numeric' => "El DNI tiene que ser un número",
+        'dni.unique' => "El DNI ya está en uso, busque el cliente en la lista",
+        'dni_types_id.exists' => "El tipo de documento no está en la lista",
     ],
 
 ];

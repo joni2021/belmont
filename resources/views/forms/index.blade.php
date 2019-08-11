@@ -69,7 +69,7 @@
 
                                     </a>
                                 </td>
-                                <td>{{ $prestamo->client->dniType->type }}: {{ $prestamo->client->dni }}</td>
+                                <td>{{ $prestamo->client->dniType->type }}: {{ $prestamo->client->formatted_dni }}</td>
                                 <td>
                                     <ul class="list-unstyled">
                                         <li>PART: {{ $prestamo->client->phone }}</li>
