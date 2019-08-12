@@ -15,7 +15,8 @@ class CreateArchiveTypesTable extends Migration
     {
         Schema::create('archive_types', function (Blueprint $table) {
             $table->tinyIncrements('id');
-            $table->string('type');
+            $table->string('name');
+            $table->string('slug');
 
             $table->timestamps();
         });

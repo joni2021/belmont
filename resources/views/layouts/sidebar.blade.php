@@ -48,11 +48,44 @@
                     <span class="pcoded-mtext"> Configuraciones</span>
                 </a>
                 <ul class="pcoded-submenu">
-                    <li class="">
-                        <a href="{{ route('financings.index') }}">
+                    <li class="pcoded-hasmenu" dropdown-icon="style1" subitem-icon="style1">
+                        <a href="javascript:void(0)">
                             <span class="pcoded-mtext">Financiaciones</span>
                         </a>
+                        <ul class="pcoded-submenu">
+                            <li class="">
+                                <a href="{{ route('financings.index') }}">
+                                    <span class="pcoded-mtext">Listado</span>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a href="{{ route('financings.create') }}">
+                                    <span class="pcoded-mtext">Nuevo</span>
+                                </a>
+                            </li>
+
+                        </ul>
                     </li>
+
+                    <li class="pcoded-hasmenu" dropdown-icon="style1" subitem-icon="style1">
+                        <a href="javascript:void(0)">
+                            <span class="pcoded-mtext">Tipos de archivos</span>
+                        </a>
+                        <ul class="pcoded-submenu">
+                            <li class="">
+                                <a href="{{ route('archiveTypes.index') }}">
+                                    <span class="pcoded-mtext">Listado</span>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a href="{{ route('archiveTypes.create') }}">
+                                    <span class="pcoded-mtext">Nuevo</span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+
                 </ul>
             </li>
 

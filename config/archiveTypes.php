@@ -1,6 +1,6 @@
 <?php
 
-$module = 'financings';
+$module = 'archiveTypes';
 
 return [
 
@@ -28,29 +28,22 @@ return [
 
     'validationsStore' =>
         [
-            "due" => "required|unique:financing,due",
-            "porcent" => "required"
+            "name" => "required|string",
         ],
 
     //validaciones de edición
 
     'validationsUpdate' => [
-
-        "due" => "required|unique:financing,due",
-        "porcent" => "required"
+        "name" => "required|string",
     ],
 
     'messagesStore' => [
-        'due.required' => "El número de cuota es obligatorio",
-        'due.unique' => "El número de cuota ya existe",
-        'porcent.required' => "El porcentaje de la tasa es obligatorio",
+        'name.required' => "El nombre es obligatorio",
     ],
 
 
     'messagesUpdate' => [
-        'due.required' => "El número de cuota es obligatorio",
-        'due.unique' => "El número de cuota ya existe",
-        'porcent.required' => "El porcentaje de la tasa es obligatorio",
+        'name.required' => "El nombre es obligatorio",
     ],
 
 

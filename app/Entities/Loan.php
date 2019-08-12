@@ -109,25 +109,11 @@ class Loan extends Model
         return $fecha->isoFormat('LLLL \h\s');
     }
 
-    public function getDniAttribute(){
+    public function getArchive($value){
 
-        return $this->Archives->where('archive_type_id',1)->count() > 0 ? $this->Archives->where('archive_type_id',1)->first()->route : 'img/imagen-no-disponible.jpg';
+        return $this->Archives->where('archive_type_id',$value)->count() > 0 ? $this->Archives->where('archive_type_id',$value)->first()->route : 'img/imagen-no-disponible.jpg';
     }
 
-    public function getPaycheckAttribute(){
-
-        return $this->Archives->where('archive_type_id',2)->count() > 0 ? $this->Archives->where('archive_type_id',2)->first()->route : 'img/imagen-no-disponible.jpg';
-    }
-
-    public function getContractAttribute(){
-
-        return $this->Archives->where('archive_type_id',3)->count() > 0 ? $this->Archives->where('archive_type_id',3)->first()->route : 'img/imagen-no-disponible.jpg';
-    }
-
-    public function getPromissoryNoteAttribute(){
-
-        return $this->Archives->where('archive_type_id',4)->count() > 0 ? $this->Archives->where('archive_type_id',4)->first()->route : 'img/imagen-no-disponible.jpg';
-    }
 
     public function getInstruction1AmountAttribute(){
         return $this->attributes['instruction1_amount'] ?? '0';

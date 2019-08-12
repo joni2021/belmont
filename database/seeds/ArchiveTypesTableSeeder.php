@@ -14,20 +14,35 @@ class ArchiveTypesTableSeeder extends Seeder
         DB::table('archive_types')->insert([
            [
                'id' => 1,
-               'type' => 'dni'
+               'name' => 'DNI',
+               'slug' => 'dni'
            ],
             [
                'id' => 2,
-               'type' => 'paycheck'
+               'name' => 'Recibo de sueldo',
+               'slug' => 'paycheck'
            ],
             [
                'id' => 3,
-               'type' => 'contract'
+               'name' => 'Contrato',
+               'slug' => 'contract'
            ],
             [
                'id' => 4,
-               'type' => 'promissory_note'
+               'name' => 'Pagaré',
+               'slug' => 'promissory_note'
            ],
+            [
+               'id' => 5,
+               'name' => 'Servicio',
+               'slug' => 'service'
+           ],
+            [
+               'id' => 6,
+               'name' => 'Otros',
+               'slug' => 'others'
+           ],
+
         ]);
     }
 }

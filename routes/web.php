@@ -192,5 +192,50 @@ Route::group(['middleware' => 'auth'], function () {
 
     });
 
+//  ArchiveTypes
+    Route::group(['prefix' => 'tipo-de-archivos'], function () {
+
+        Route::get('create', [
+            'as' => 'archiveTypes.create',
+            'uses' => 'ArchiveTypesController@create'
+        ]);
+
+
+        Route::post('store', [
+            'as' => 'archiveTypes.store',
+            'uses' => 'ArchiveTypesController@store'
+        ]);
+
+
+        Route::get('index', [
+            'as' => 'archiveTypes.index',
+            'uses' => 'ArchiveTypesController@index'
+        ]);
+
+        Route::group(['prefix' => '{id}'], function () {
+            Route::get('edit', [
+                'as' => 'archiveTypes.edit',
+                'uses' => 'ArchiveTypesController@edit'
+            ]);
+
+            Route::get('show', [
+                'as' => 'archiveTypes.show',
+                'uses' => 'ArchiveTypesController@show'
+            ]);
+
+            Route::put('update', [
+                'as' => 'archiveTypes.update',
+                'uses' => 'ArchiveTypesController@update'
+            ]);
+
+            Route::delete('destroy', [
+                'as' => 'archiveTypes.destroy',
+                'uses' => 'ArchiveTypesController@destroy'
+            ]);
+
+        });
+
+    });
+
 });
 

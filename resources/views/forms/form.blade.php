@@ -15,8 +15,8 @@
             <div class="col-lg-8">
                 <div class="page-header-title">
                     <div class="d-inline">
-                        <h4>Prestamos</h4>
-                        <span>Por medio de la presente requerimos a ustedes sujeto a su definitiva aprobación y conformidad, un préstamos en pesos o moneda de curso legal, por la suma más abajo detallada.</span>
+                        <h4>Préstamo</h4>
+                        <span>Por medio de la presente requerimos a ustedes, sujeto a su definitiva aprobación y conformidad, un préstamos en pesos o moneda de curso legal por la suma más abajo detallada.</span>
                     </div>
                 </div>
             </div>
@@ -500,80 +500,101 @@
                                             </h3>
                                             <fieldset class="mb-5">
                                                 <div class="row">
-                                                    <div class="col-12 col-md-6">
 
-                                                        <div class="job-cards">
-                                                            <div class="media">
-                                                                <div class="media-left media-middle">
-                                                                    <img class="media-object m-r-10 m-l-10"
-                                                                         src="{{ $model->dni }}"
-                                                                         alt="Generic placeholder image">
-                                                                </div>
-                                                                <div class="media-body">
-                                                                    <div class="company-name m-b-10">
-                                                                        {{ Form::customFile('Fotocopia de DNI','dni',null) }}
+                                                    @foreach($archiveTypes as $archiveType)
+                                                        <div class="col-12 col-md-6">
+
+                                                            <div class="job-cards">
+                                                                <div class="media">
+                                                                    <div class="media-left media-middle">
+                                                                        <img class="media-object m-r-10 m-l-10"
+                                                                             src="{{ $model->getArchive($archiveType->id) }}"
+                                                                             alt="{{ $archiveType->name }}">
+                                                                    </div>
+                                                                    <div class="media-body">
+                                                                        <div class="company-name m-b-10">
+                                                                            {{ Form::customFile($archiveType->name,$archiveType->slug,null) }}
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                    @endforeach
+
+{{--<div class="col-12 col-md-6">--}}
+
+                                                        {{--<div class="job-cards">--}}
+                                                            {{--<div class="media">--}}
+                                                                {{--<div class="media-left media-middle">--}}
+                                                                    {{--<img class="media-object m-r-10 m-l-10"--}}
+                                                                         {{--src="{{ $model->dni }}"--}}
+                                                                         {{--alt="Generic placeholder image">--}}
+                                                                {{--</div>--}}
+                                                                {{--<div class="media-body">--}}
+                                                                    {{--<div class="company-name m-b-10">--}}
+                                                                        {{--{{ Form::customFile('Fotocopia de DNI','dni',null) }}--}}
+                                                                    {{--</div>--}}
+                                                                {{--</div>--}}
+                                                            {{--</div>--}}
+                                                        {{--</div>--}}
+                                                    {{--</div>--}}
 
 
-                                                    <div class="col-12 col-md-6">
-                                                        <div class="job-cards">
-                                                            <div class="media">
-                                                                <div class="media-left media-middle">
-                                                                    <img class="media-object m-r-10 m-l-10"
-                                                                         src="{{ $model->paycheck }}"
-                                                                         alt="Generic placeholder image">
-                                                                </div>
-                                                                <div class="media-body">
-                                                                    <div class="company-name m-b-10">
-                                                                        {{ Form::customFile('Recibo de sueldo','paycheck',null) }}
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                    {{--<div class="col-12 col-md-6">--}}
+                                                        {{--<div class="job-cards">--}}
+                                                            {{--<div class="media">--}}
+                                                                {{--<div class="media-left media-middle">--}}
+                                                                    {{--<img class="media-object m-r-10 m-l-10"--}}
+                                                                         {{--src="{{ $model->paycheck }}"--}}
+                                                                         {{--alt="Generic placeholder image">--}}
+                                                                {{--</div>--}}
+                                                                {{--<div class="media-body">--}}
+                                                                    {{--<div class="company-name m-b-10">--}}
+                                                                        {{--{{ Form::customFile('Recibo de sueldo','paycheck',null) }}--}}
+                                                                    {{--</div>--}}
+                                                                {{--</div>--}}
+                                                            {{--</div>--}}
+                                                        {{--</div>--}}
+                                                    {{--</div>--}}
 
-                                                </div>
+                                                {{--</div>--}}
 
-                                                <div class="row">
-                                                    <div class="col-12 col-md-6">
+                                                {{--<div class="row">--}}
+                                                    {{--<div class="col-12 col-md-6">--}}
 
-                                                        <div class="job-cards">
-                                                            <div class="media">
-                                                                <div class="media-left media-middle">
-                                                                    <img class="media-object m-r-10 m-l-10"
-                                                                         src="{{ $model->contract }}"
-                                                                         alt="Generic placeholder image">
-                                                                </div>
-                                                                <div class="media-body">
-                                                                    <div class="company-name m-b-10">
-                                                                        {{ Form::customFile('Contrato','contract',null) }}
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                        {{--<div class="job-cards">--}}
+                                                            {{--<div class="media">--}}
+                                                                {{--<div class="media-left media-middle">--}}
+                                                                    {{--<img class="media-object m-r-10 m-l-10"--}}
+                                                                         {{--src="{{ $model->contract }}"--}}
+                                                                         {{--alt="Generic placeholder image">--}}
+                                                                {{--</div>--}}
+                                                                {{--<div class="media-body">--}}
+                                                                    {{--<div class="company-name m-b-10">--}}
+                                                                        {{--{{ Form::customFile('Contrato','contract',null) }}--}}
+                                                                    {{--</div>--}}
+                                                                {{--</div>--}}
+                                                            {{--</div>--}}
+                                                        {{--</div>--}}
+                                                    {{--</div>--}}
 
 
-                                                    <div class="col-12 col-md-6">
-                                                        <div class="job-cards">
-                                                            <div class="media">
-                                                                <div class="media-left media-middle">
-                                                                    <img class="media-object m-r-10 m-l-10"
-                                                                         src="{{ $model->promissory_note }}"
-                                                                         alt="Generic placeholder image">
-                                                                </div>
-                                                                <div class="media-body">
-                                                                    <div class="company-name m-b-10">
-                                                                        {{ Form::customFile('Pagaré','promissory_note',null) }}
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                    {{--<div class="col-12 col-md-6">--}}
+                                                        {{--<div class="job-cards">--}}
+                                                            {{--<div class="media">--}}
+                                                                {{--<div class="media-left media-middle">--}}
+                                                                    {{--<img class="media-object m-r-10 m-l-10"--}}
+                                                                         {{--src="{{ $model->promissory_note }}"--}}
+                                                                         {{--alt="Generic placeholder image">--}}
+                                                                {{--</div>--}}
+                                                                {{--<div class="media-body">--}}
+                                                                    {{--<div class="company-name m-b-10">--}}
+                                                                        {{--{{ Form::customFile('Pagaré','promissory_note',null) }}--}}
+                                                                    {{--</div>--}}
+                                                                {{--</div>--}}
+                                                            {{--</div>--}}
+                                                        {{--</div>--}}
+                                                    {{--</div>--}}
 
                                                 </div>
 

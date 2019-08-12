@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Entities\AccreditationType;
 use App\Entities\AdditionalCost;
 use App\Entities\Archive;
+use App\Entities\ArchiveType;
 use App\Entities\Client;
 use App\Entities\DniType;
 use App\Entities\Financing;
@@ -198,7 +199,7 @@ class FormsController extends Controller
         else
             $ultimoid = $ultimoid->first()->id + 1;
 
-        
+
         $datosPrestamo['code'] = "DLP".$ultimoid;
 
         $loan = $this->repo->create($datosPrestamo);
@@ -231,6 +232,8 @@ class FormsController extends Controller
         $this->data['dniTypes'] = DniType::all()->pluck('type', 'id');
         $this->data['accreditationsType'] = AccreditationType::all()->pluck('type', 'id');
         $this->data['financing'] = Financing::all();
+        $this->data['archiveTypes'] = ArchiveType::all();
+
 
         $this->data['model']= Loan::with('Archives')->find($this->route->id);
 
@@ -343,87 +346,28 @@ class FormsController extends Controller
 
         // Archivos adjuntos
         $user = $model->Client->id;
-        if($request->hasFile('dni')):
-            $dniFile = $request->file("dni");
 
-            $nombre = $user.'-dni'.'.'.$dniFile->extension();
+        foreach(ArchiveType::all() as $archiveType):
+            if($request->hasFile($archiveType->slug)):
+                $file = $request->file($archiveType->slug);
 
-            if($model->Archives->where('archive_type_id',1)->count() > 0):
-                $dni = $model->Archives->where('archive_type_id',1)->first();
+                $nombre = $user.'-'.$archiveType->slug.'.'.$file->extension();
 
-                $dni->update(['route' => 'storage/files/'.$user.'/'.$nombre]);
+                if($model->Archives->where('archive_type_id',$archiveType->id)->count() > 0):
+                    $archiveType = $model->Archives->where('archive_type_id',$archiveType->id)->first();
 
-                $model->Archives()->detach($dni->id);
-                $model->Archives()->attach($dni->id);
-            else:
-                $dni = Archive::create(['route' => 'storage/files/'.$user.'/'.$nombre, 'archive_type_id' => 1]);
-                $model->Archives()->attach($dni->id);
+                    $archiveType->update(['route' => 'storage/files/'.$user.'/'.$nombre]);
+
+                    $model->Archives()->detach($archiveType->id);
+                    $model->Archives()->attach($archiveType->id);
+                else:
+                    $archiveType = Archive::create(['route' => 'storage/files/'.$user.'/'.$nombre, 'archive_type_id' => $archiveType->id]);
+                    $model->Archives()->attach($archiveType->id);
+                endif;
+
+                $file->storeAs('files/'.$user, $nombre);
             endif;
-
-            $dniFile->storeAs('files/'.$user, $nombre);
-        endif;
-
-        if($request->hasFile('paycheck')):
-            $paycheckFile = $request->file("paycheck");
-
-            $nombre = $user.'-paycheck'.'.'.$paycheckFile->extension();
-
-            if($model->Archives->where('archive_type_id',2)->count() > 0):
-                $paycheck = $model->Archives->where('archive_type_id',2)->first();
-
-                $paycheck->update(['route' => 'storage/files/'.$user.'/'.$nombre]);
-
-                $model->Archives()->detach($paycheck->id);
-                $model->Archives()->attach($paycheck->id);
-            else:
-                $paycheck = Archive::create(['route' => 'storage/files/'.$user.'/'.$nombre, 'archive_type_id' => 2]);
-                $model->Archives()->attach($paycheck->id);
-            endif;
-
-
-            $paycheckFile->storeAs('files/'.$user, $nombre);
-        endif;
-
-        if($request->hasFile('contract')):
-            $contractFile = $request->file("contract");
-
-            $nombre = $user.'-contract'.'.'.$contractFile->extension();
-
-            if($model->Archives->where('archive_type_id',3)->count() > 0):
-                $contract = $model->Archives->where('archive_type_id',3)->first();
-
-                $contract->update(['route' => 'storage/files/'.$user.'/'.$nombre]);
-
-                $model->Archives()->detach($contract->id);
-                $model->Archives()->attach($contract->id);
-            else:
-                $contract = Archive::create(['route' => 'storage/files/'.$user.'/'.$nombre, 'archive_type_id' => 3]);
-                $model->Archives()->attach($contract->id);
-            endif;
-
-            $contractFile->storeAs('files/'.$user, $nombre);
-        endif;
-
-        if($request->hasFile('promissory_note')):
-            $promissoryNoteFile = $request->file("promissory_note");
-
-            $nombre = $user.'-promissory_note'.'.'.$promissoryNoteFile->extension();
-
-
-            if($model->Archives->where('archive_type_id',4)->count() > 0):
-                $promissoryNote = $model->Archives->where('archive_type_id',4)->first();
-
-                $promissoryNote->update(['route' => 'storage/files/'.$user.'/'.$nombre]);
-
-                $model->Archives()->detach($promissoryNote->id);
-                $model->Archives()->attach($promissoryNote->id);
-            else:
-                $promissoryNote = Archive::create(['route' => 'storage/files/'.$user.'/'.$nombre, 'archive_type_id' => 4]);
-                $model->Archives()->attach($promissoryNote->id);
-            endif;
-
-            $promissoryNoteFile->storeAs('files/'.$user, $nombre);
-        endif;
+        endforeach;
         // Fin archivos adjuntos
 
         return redirect()->route(config($this->confFile . ".viewIndex"))->with('ok', 'Registro Editado.');
