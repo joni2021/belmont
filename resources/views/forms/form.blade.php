@@ -15,7 +15,13 @@
             <div class="col-lg-8">
                 <div class="page-header-title">
                     <div class="d-inline">
-                        <h4>Préstamo</h4>
+                        @if(isset($model))
+                            <h4>Préstamo {{ $model->code }} <span class="f-20 text-muted">({{ $model->Client->fullname }})</span></h4>
+
+                        @else
+                            <h4>Préstamo</h4>
+                        @endif
+
                         <span>Por medio de la presente requerimos a ustedes, sujeto a su definitiva aprobación y conformidad, un préstamos en pesos o moneda de curso legal por la suma más abajo detallada.</span>
                     </div>
                 </div>

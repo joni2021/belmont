@@ -7,7 +7,11 @@
             <div class="col-lg-8">
                 <div class="page-header-title">
                     <div class="d-inline">
-                        <h4>Nuevo Financiamiento</h4>
+                        @if(isset($model))
+                            <h4>Editar financiamiento</h4>
+                        @else
+                            <h4>Nuevo Financiamiento</h4>
+                        @endif
                     </div>
                 </div>
             </div>

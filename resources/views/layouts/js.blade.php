@@ -1,11 +1,16 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
+
 <!-- Required Jquery -->
 <script type="text/javascript" src="bower_components/jquery/js/jquery.min.js"></script>
 <script type="text/javascript" src="bower_components/jquery-ui/js/jquery-ui.min.js"></script>
 <script type="text/javascript" src="bower_components/popper.js/js/popper.min.js"></script>
 <script type="text/javascript" src="bower_components/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- Cleave js -->
+<script type="text/javascript" src="js/cleave.js"></script>
+
 
 
 <!-- j-pro js -->
@@ -55,7 +60,7 @@
 <script>
     $(document).ready(function () {
 
-        $('.btnDelete').on('click', function (ev) {
+        $('.table').on('click', '.btnDelete', function (ev) {
             ev.preventDefault();
             ev.stopPropagation();
 
@@ -90,6 +95,7 @@
             },
             responsive: true
         })
+
 
         /*
         $("input[type=file]").fileinput({

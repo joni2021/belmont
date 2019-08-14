@@ -24,7 +24,7 @@
             <div class="col-lg-8">
                 <div class="page-header-title">
                     <div class="d-inline">
-                        <h4>Plan de pagos</h4>
+                        <h4>Plan de pagos @if(isset($loan)) <span class="f-20 text-muted">({{ $loan->Client->fullname }})</span> @endif</h4>
                     </div>
                 </div>
             </div>

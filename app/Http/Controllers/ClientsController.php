@@ -41,9 +41,9 @@ class ClientsController extends Controller
 
     public function update(Request $request)
     {
-        $validaciones = config('clients.validationsUpdate');
+        $validaciones = config('clients.validationsStore');
         $validaciones['dni'] = "numeric|unique:clients,dni,".$this->route->parameter('id');
-        $validaciones['cuil'] = "numeric|unique:clients,cuil,".$this->route->parameter('id');
+        $validaciones['cuil'] =
 
         $request->validate($validaciones,config($this->confFile.'.messagesUpdate'));
 
@@ -67,12 +67,12 @@ class ClientsController extends Controller
 
     public function financing()
     {
-        $this->data['history'] = Client::with('Loans')->find($this->route->parameter('id'));
+        $this->data['client'] = Client::with('Loans')->find($this->route->parameter('id'));
 
-        if(! $this->data['history'])
+        if(! $this->data['client'])
             return redirect()->back()->withError('El cliente no existe');
 
-        $this->data['history'] = $this->data['history']->Loans->groupBy(function($date){
+        $this->data['history'] = $this->data['client']->Loans->groupBy(function($date){
             return Carbon::parse($date->created_at)->format('Y');
         });
 

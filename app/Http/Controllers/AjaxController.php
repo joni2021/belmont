@@ -49,17 +49,17 @@ class AjaxController extends Controller
     public function payDue(){
 
         $payments = Payments::where('loans_id',$this->request->params["loan"]);
-        $payment = $payments->where('id',$this->request->params["id"])->get();
+        $payment = $payments->where('id',$this->request->params["id"])->first();
 
         $owed = 0;
 
-        if($payments->where('id','=',(intval($this->request->params["id"] - 1)))->count() > 0):
-            $owed = $payments->where('id','=',(intval($this->request->params["id"] - 1)))->get()->amount_owed_original;
+        if(Payments::find(intval($this->request->params["id"] - 1))):
+            $owed = Payments::find(intval($this->request->params["id"] - 1))->amount_owed_original;
         endif;
 
-
         if(floatval($this->request->params["amount_paid"]) < ($payment->float_amount_payable + $owed))
-            $payment->amount_owed = $payment->float_amount_payable - floatval($this->request->params["amount_paid"]);
+            $payment->amount_owed = ($payment->float_amount_payable + $owed) - floatval($this->request->params["amount_paid"]);
+
 
         $payment->amount_paid = floatval($this->request->params["amount_paid"]);
 

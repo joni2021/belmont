@@ -393,7 +393,8 @@ class FormsController extends Controller
     }
 
     public function paymentPlan(){
-        $this->data['paymentPlan'] = Loan::find($this->route->parameter('id'))->payments()->orderBy('due')->get();
+        $this->data['loan'] = Loan::with('Client')->find($this->route->parameter('id'));
+        $this->data['paymentPlan'] = $this->data['loan']->payments()->orderBy('due')->get();
 
 
         return view('forms.paymentPlan')->with($this->data);

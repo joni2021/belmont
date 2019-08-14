@@ -22,7 +22,7 @@ class CreateClientsTable extends Migration
             $table->string('cuil')->unique()->index('cuil');
             $table->string('address');
             $table->string('city');
-            $table->string('province');
+            $table->tinyInteger('province',false,true);
             $table->string('phone')->nullable();
             $table->string('cp');
             $table->string('ca')->nullable();
