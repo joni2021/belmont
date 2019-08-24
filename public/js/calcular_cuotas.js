@@ -30,10 +30,10 @@ $(document).ready(function () {
         $("#tasa").val((tasaActual * 12).toFixed(2));
 
         // tasa efectiva anual
-        var tea = parseFloat((Math.pow((1 + tasaActual),12))-1);
+        var tea = parseFloat((Math.pow((1 + (tasaActual/100)),(365/30)))-1);
 
         // tasa efectiva mensual
-        var tem = parseFloat(((Math.pow((1 + tea),(30/360)))-1));
+        var tem = parseFloat((tea/12)*100);
 
         $("#tem").val(tem.toFixed(2));
 

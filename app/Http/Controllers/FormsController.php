@@ -106,10 +106,10 @@ class FormsController extends Controller
         $tna = round(($tasaActual / 100) * 12,2);
 
         // tasa efectiva anual
-        $tea = floatval((pow((1 + ($tasaActual/100)),12))-1);
+        $tea = floatval((pow((1 + ($tasaActual/100)),(365/30)))-1);
 
         // tasa efectiva mensual
-        $tem = floatval(((pow((1 + $tea),(30/360)))-1) * 100);
+        $tem = floatval(($tea/12)*100);
 
         // costo financiero total
         $additionalCosts = AdditionalCost::all();
@@ -271,10 +271,10 @@ class FormsController extends Controller
         $tna = round(($tasaActual / 100) * 12,2);
 
         // tasa efectiva anual
-        $tea = floatval((pow((1 + ($tasaActual/100)),12))-1);
+        $tea = floatval((pow((1 + ($tasaActual/100)),(365/30)))-1);
 
         // tasa efectiva mensual
-        $tem = floatval(((pow((1 + $tea),(30/360)))-1) * 100);
+        $tem = floatval(($tea/12)*100);
 
         // costo financiero total
         $additionalCosts = AdditionalCost::all();
