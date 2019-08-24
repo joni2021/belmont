@@ -16,6 +16,9 @@ class CreateArchivesTable extends Migration
         Schema::create('archives', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('route');
+            $table->tinyInteger('archive_type_id',false,true);
+
+            $table->foreign('archive_type_id')->references('id')->on('archive_types');
             $table->timestamps();
             $table->softDeletes();
         });

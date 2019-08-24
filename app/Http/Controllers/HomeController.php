@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Entities\Loans;
+use App\Entities\Loan;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -29,8 +29,7 @@ class HomeController extends Controller
     {
         $this->data['loans'] = DB::table('loans')
             ->join('clients', 'loans.client_id', '=', 'clients.id')
-            ->join('client_user', 'client_user.client_id', '=', 'clients.id')
-            ->where('client_user.user_id', '=', auth()->user()->id)
+            ->where('loans.user_id', '=', auth()->user()->id)
             ->selectRaw('loans.id, amount, dues, loans.created_at, clients.id as client_id, clients.name, clients.last_name')->orderBy('created_at', 'DESC')->take(3)->get();
 
         $carbon = Carbon::now('America/Argentina/Buenos_Aires')->locale('es');

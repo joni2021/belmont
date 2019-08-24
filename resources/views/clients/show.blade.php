@@ -45,9 +45,10 @@
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <p class="task-detail"><b>Nombre:</b> {{ $model->fullname }}</p>
-                                        <p class="task-detail"><b>{{ $model->dniType->type }}</b>: {{ $model->dni }}</p>
+                                        <p class="task-detail"><b>{{ $model->dniType->type }}</b>: {{ $model->formatted_dni }}</p>
+                                        <p class="task-detail"><b>CUIL/CUIT</b>: {{ $model->formatted_cuil }}</p>
                                         <p class="task-detail"><b>Dirección: </b>{{ $model->address }}</p>
-                                        <p class="task-detail"><b>Ciudad: </b>{{ $model->city }} - {{ $model->province or '' }} - cp:{{ $model->cp }}</p>
+                                        <p class="task-detail"><b>Ciudad: </b>{{ $model->city }} - {{ $model->province_name }} - <b>CP:</b>{{ $model->cp }}</p>
                                         <hr>
                                         <p class="task-detail"><b>Teléfono: </b>{{ $model->phone }}</p>
                                         <p class="task-detail"><b>Celular: </b>{{ $model->cel }}</p>

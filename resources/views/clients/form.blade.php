@@ -7,7 +7,11 @@
             <div class="col-lg-8">
                 <div class="page-header-title">
                     <div class="d-inline">
-                        <h4>Nuevo Cliente</h4>
+                        @if(isset($model))
+                            <h4>{{ $model->fullname }}</h4>
+                        @else
+                            <h4>Nuevo Cliente</h4>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -71,15 +75,51 @@
 
                                         </div>
 
+
+                                        <div class="form-group row">
+                                            <div class="col-12 col-md-6 col-lg-3">
+                                                <label class="block" for="cuil">CUIL/CUIT</label>
+                                                <div class="input-group">
+                                                    {{ Form::number('cuil',null,['class' => 'required form-control','id' => 'cuil']) }}
+                                                </div>
+                                                <div class="invalid-feedback d-block"></div>
+                                            </div>
+
+                                            <div class="col-6 col-lg-2">
+                                                <label class="block" for="cp">CP</label>
+                                                {{ Form::number('cp',null,['class' => 'form-control','id' => 'cp']) }}
+                                            </div>
+
+                                            <div class="col-6 col-lg-2">
+                                                <label class="block" for="ca">COD. ÁREA</label>
+                                                {{ Form::number('ca',null,['class' => 'form-control','id' => 'ca']) }}
+                                            </div>
+
+                                            <div class="col-12 col-md-6 col-lg-2">
+                                                <label class="block" for="phone">Teléfono</label>
+                                                {{ Form::number('phone',null,['class' => 'form-control','id' => 'phone']) }}
+                                            </div>
+
+                                            <div class="col-12 col-md-6 col-lg-3">
+                                                <label class="block" for="cel">Celular</label>
+                                                <div class="input-group">
+
+                                                    {{ Form::number('cel',null,['class' => 'required form-control','id' => 'cel']) }}
+                                                </div>
+                                                <div class="invalid-feedback d-block"></div>
+                                            </div>
+
+                                        </div>
+
                                         <div class="form-group row">
                                             <div class="col-12 col-md-6 col-lg-4">
-                                                <label class="block" for="name">Domicilio Actual</label>
+                                                <label class="block" for="address">Domicilio Actual</label>
                                                 {{ Form::text('address',null,['class' => 'required form-control','id' => 'address']) }}
                                                 <div class="invalid-feedback d-block"></div>
                                             </div>
 
                                             <div class="col-12 col-md-6 col-lg-4">
-                                                <label class="block" for="last_name">Localidad</label>
+                                                <label class="block" for="city">Localidad</label>
                                                 {{ Form::text('city',null,['class' => 'required form-control','id' => 'city']) }}
                                                 <div class="invalid-feedback d-block"></div>
                                             </div>
@@ -95,29 +135,6 @@
 
                                         </div>
 
-
-                                        <div class="form-group row">
-                                            <div class="col-12 col-md-6 col-lg-4">
-                                                <label class="block" for="name">Cp</label>
-                                                {{ Form::number('cp',null,['class' => 'form-control','id' => 'cp']) }}
-                                            </div>
-
-                                            <div class="col-12 col-md-6 col-lg-4">
-                                                <label class="block" for="last_name">Teléfono</label>
-                                                {{ Form::number('phone',null,['class' => 'form-control','id' => 'phone']) }}
-                                                <div class="invalid-feedback d-block"></div>
-                                            </div>
-
-                                            <div class="col-12 col-md-6 col-lg-4">
-                                                <label class="block" for="dni">Celular</label>
-                                                <div class="input-group">
-
-                                                    {{ Form::number('cel',null,['class' => 'required form-control','id' => 'cel']) }}
-                                                </div>
-                                                <div class="invalid-feedback d-block"></div>
-                                            </div>
-
-                                        </div>
 
                                         <button type="submit" class="btn btn-primary">Crear</button>
                                         {{ Form::close() }}

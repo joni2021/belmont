@@ -64,7 +64,7 @@
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <p class="m-b-10 f-w-600">{{ Auth::user()->dniType->type }}</p>
-                                            <h6 class="text-muted f-w-400">{{ Auth::user()->dni }}</h6>
+                                            <h6 class="text-muted f-w-400">{{ Auth::user()->formatted_dni }}</h6>
                                         </div>
                                         <div class="col-sm-6">
                                             <p class="m-b-10 f-w-600">Dirección</p>

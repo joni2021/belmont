@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Financing extends Model
 {
     protected $fillable = [
-        'name','due','porcent'
+        'due','porcent'
     ];
 
     protected $table = "financing";

@@ -69,11 +69,11 @@
 
                                     </a>
                                 </td>
-                                <td>{{ $prestamo->client->dniType->type }}: {{ $prestamo->client->dni }}</td>
+                                <td>{{ $prestamo->client->dniType->type }}: {{ $prestamo->client->formatted_dni }}</td>
                                 <td>
                                     <ul class="list-unstyled">
-                                        <li>Part: {{ $prestamo->client->phone }}</li>
-                                        <li>Cel: {{ $prestamo->client->cel }}</li>
+                                        <li>PART: {{ $prestamo->client->phone }}</li>
+                                        <li>CEL: {{ $prestamo->client->cel }}</li>
                                     </ul>
                                 </td>
                                 <td>{{ $prestamo->date }}</td>
@@ -81,8 +81,8 @@
 
                                 <td class="text-right">
 
-                                    <div class="dropdown-primary dropdown open show">
-                                        <button class="btn btn-primary btn-mini dropdown-toggle waves-effect waves-light "
+                                    <div class="dropdown-default bg-transparent border-0 dropdown open show">
+                                        <button class="btn btn-light bg-transparent border-0 btn-mini dropdown-toggle waves-effect"
                                                 type="button" id="dropdown-7" data-toggle="dropdown"
                                                 aria-haspopup="true" aria-expanded="true">Opciones
                                         </button>
@@ -103,12 +103,38 @@
                                             {{ Form::close() }}
                                             <a class="dropdown-item waves-light waves-effect btnDelete" href="#">
                                                 <i class="fa fa-trash"></i> Borrar</a>
+
+                                            <a class="dropdown-item waves-light waves-effect"
+                                               href="{{ route('forms.paymentPlan',$prestamo->id) }}">
+                                                <i class="fa fa-line-chart"></i> Plan de cuotas</a>
+
                                         </div>
                                     </div>
-                                    <a class="btn btn-warning btn-mini"
-                                       href="{{ route('forms.paymentPlan',$prestamo->id) }}">
-                                        Plan de cuotas
-                                    </a>
+
+                                    <div class="dropdown-info dropdown open show border-0">
+                                        <button class="btn btn-light bg-transparent border-0 btn-mini dropdown-toggle waves-effect waves-light "
+                                                type="button" id="dropdown-7" data-toggle="dropdown"
+                                                aria-haspopup="true" aria-expanded="true" data-toggle="tooltip"
+                                                data-placement="top" title="Imprimir documentación"
+                                                data-original-title="Imprimir documentación"><i
+                                                    class="text-amazon icofont icofont-printer icofont-2x"></i>
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdown-7"
+                                             data-dropdown-in="fadeIn" data-dropdown-out="fadeOut"
+                                             x-placement="bottom-start">
+
+                                            <a class="dropdown-item waves-light waves-effect"
+                                               href="{{ route('forms.contratoPdf',$prestamo->id) }}" target="_blank">
+                                                Contrato</a>
+
+                                            <a class="dropdown-item waves-light waves-effect"
+                                               href="{{ route('forms.pagarePdf',$prestamo->id) }}" target="_blank">
+                                                Pagaré</a>
+                                            <a class="dropdown-item waves-light waves-effect"
+                                               href="{{ route('forms.liquidacionPdf',$prestamo->id) }}" target="_blank">
+                                                Liquidación de préstamo</a>
+                                        </div>
+                                    </div>
 
                                 </td>
                             </tr>
@@ -117,6 +143,7 @@
                                 <td colspan="6" class="text-center">No otorgaste ningún préstamos todavía</td>
                             </tr>
                         @endforelse
+
                         </tbody>
                     </table>
                 </div>
@@ -146,7 +173,6 @@
     {{--<script src="assets/pages/data-table/extensions/responsive/js/responsive-custom.js"></script>--}}
 
     <script type="text/javascript" src="assets/js/script.js"></script>
-
 
 @endsection
 

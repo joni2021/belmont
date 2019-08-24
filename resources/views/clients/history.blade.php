@@ -29,7 +29,7 @@
 
                 <div class="row">
                     <div class="col-12">
-                        <div class="sub-title">Historial financiero</div>
+                        <div class="sub-title">Historial financiero  <span class="text-muted">({{ $client->fullname }})</span></div>
                         <!-- Nav tabs -->
                         <ul class="nav nav-tabs md-tabs tabs-left b-none" role="tablist">
                             @foreach($history as $year => $loans)

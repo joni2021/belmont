@@ -3,19 +3,31 @@
 namespace App\Http\Controllers;
 
 use App\Entities\AccreditationType;
+use App\Entities\AdditionalCost;
+use App\Entities\Archive;
+use App\Entities\ArchiveType;
 use App\Entities\Client;
 use App\Entities\DniType;
 use App\Entities\Financing;
-use App\Entities\Loans;
+use App\Entities\Loan;
 use App\Entities\Payments;
 use App\Http\Repositories\ClientsRepo;
 use App\Http\Repositories\LoansRepo;
+use Barryvdh\DomPDF\PDF;
 use Carbon\Carbon;
+use function config;
 use function floatval;
+use function floatValue;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use function intval;
+use NumerosEnLetras;
+use function public_path;
+use function round;
+use function storage_path;
 
 class FormsController extends Controller
 {
@@ -38,6 +50,8 @@ class FormsController extends Controller
         $this->confFile = $confFile;
         $this->data['confFile'] = $confFile;
 
+        $this->data['provinces'] = config('utilities.provinces');
+
         $this->request = $request;
         $this->route = $route;
         $this->route = $route;
@@ -55,7 +69,7 @@ class FormsController extends Controller
     public function create()
     {
         $this->data['clients'] = $this->clientsRepo->getClientList();
-        $this->data['provinces'] = ["Capital Federal", "Buenos Aires", "Catamarca", "Chaco", "Chubut", "Córdoba", "Corrientes", "Entre Ríos", "Formosa", "Jujuy", "La Pampa", "La Rioja", "Mendoza", "Misiones", "Neuquén", "Río Negro", "Salta", "San Juan", "San Luis", "Santa Cruz", "Santa Fe", "Santiago Del Estero", "Tierra Del Fuego", "Tucuman"];
+
         $this->data['dniTypes'] = DniType::all()->pluck('type', 'id');
         $this->data['accreditationsType'] = AccreditationType::all()->pluck('type', 'id');
         $this->data['financing'] = Financing::all();
@@ -86,6 +100,21 @@ class FormsController extends Controller
 
         $valCuota = $monto * ($porcentajeCuota / (1 - pow(1 + $porcentajeCuota,((-1) * $cuota))));
 
+        $tasaActual = Financing::find($request->financing_id)->porcent;
+        $tasaActual = floatval($tasaActual);
+
+        $tna = round(($tasaActual / 100) * 12,2);
+
+        // tasa efectiva anual
+        $tea = floatval((pow((1 + ($tasaActual/100)),(365/30)))-1);
+
+        // tasa efectiva mensual
+        $tem = floatval(($tea/12)*100);
+
+        // costo financiero total
+        $additionalCosts = AdditionalCost::all();
+
+        $cft = round(floatval((($monto * ($tasaActual / 100)) + $additionalCosts[0]->amount + ( $additionalCosts[1]->amount * 12) + ($additionalCosts[2]->amount * 12)) / $monto) * 100,2);
 
         $interesPagado = 0.0000;
         $amortizacionPagado = 0.0000;
@@ -117,17 +146,29 @@ class FormsController extends Controller
         $cliente = Client::find($this->request->searchClient);
 
         // Actualizar los datos del cliente
-        $datosCliente = $this->request->only(['cbu', 'name', 'last_name', 'dni_type_id', 'dni', 'address', 'city', 'province', 'cp', 'phone', 'cel', 'job_name', 'job_address', 'job_city', 'job_province', 'job_phone']);
+        $datosCliente = $this->request->only(['cbu', 'name','ca', 'last_name', 'dni_type_id', 'dni','cuil', 'address', 'city', 'province', 'cp', 'ca','phone', 'cel', 'job_name', 'job_address', 'job_city', 'job_province', 'job_phone']);
 
         if (!$cliente):
+            $datos = new Request($datosCliente);
+
+            $this->validate($datos, config('clients.validationsStore'),config('clients.messagesStore'));
+
             $cliente = Client::create($datosCliente);
         else:
+            $datos = new Request($datosCliente);
+
+            $validaciones = config('clients.validationsUpdate');
+            $validaciones['dni'] = "numeric|unique:clients,dni,".$cliente->id;
+            $validaciones['cuil'] = "numeric|unique:clients,cuil,".$cliente->id;
+
+            $this->validate($datos,$validaciones,config('clients.messagesUpdate'));
+
             $cliente->update($datosCliente);
         endif;
 
 
         // Guardar los datos del presupuesto
-        $datosPrestamo = $this->request->only(['amount', 'financing_id', 'cbu', 'cft', 'tem', 'accreditation_type_id']);
+        $datosPrestamo = $this->request->only(['amount', 'financing_id', 'cbu', 'cft', 'tem', 'accreditation_type_id',"instruction1_amount","instruction1_pay_date","instruction1_payment","instruction1_order","instruction2_amount","instruction2_pay_date","instruction2_payment","instruction2_order","instruction3_amount","instruction3_pay_date","instruction3_payment","instruction3_order","instruction4_amount","instruction4_pay_date","instruction4_payment","instruction4_order","cancellation1_amount","cancellation1_pay_date","cancellation1_payment","cancellation1_order","cancellation2_amount","cancellation2_pay_date","cancellation2_payment","cancellation2_order"]);
 
         $dues = Financing::find($datosPrestamo['financing_id']);
 
@@ -138,11 +179,28 @@ class FormsController extends Controller
 
         $datosPrestamo['dues'] = $dues->due;
 
+        $datosPrestamo['tna'] = $tna;
+
+        $datosPrestamo['tem'] = $tem;
+
+        $datosPrestamo['cft'] = $cft;
+
         $datosPrestamo['user_id'] = Auth::user()->id;
 
 
         // Pongo el estado en PENDIENTE
         $datosPrestamo['status'] = 1;
+
+//        Código
+        $ultimoid = DB::table('loans')->select(DB::raw('MAX(id) as id'));
+
+        if($ultimoid->count() === 0)
+            $ultimoid = 1;
+        else
+            $ultimoid = $ultimoid->first()->id + 1;
+
+
+        $datosPrestamo['code'] = "DLP".$ultimoid;
 
         $loan = $this->repo->create($datosPrestamo);
 
@@ -162,7 +220,6 @@ class FormsController extends Controller
         endforeach;
         // Fin crear plan de pagos
 
-
         return redirect()->route(config($this->confFile . ".viewIndex"))->with('ok', 'Registro Creado.');
 
     }
@@ -175,8 +232,12 @@ class FormsController extends Controller
         $this->data['dniTypes'] = DniType::all()->pluck('type', 'id');
         $this->data['accreditationsType'] = AccreditationType::all()->pluck('type', 'id');
         $this->data['financing'] = Financing::all();
+        $this->data['archiveTypes'] = ArchiveType::all();
 
-        return parent::edit(); // TODO: Change the autogenerated stub
+
+        $this->data['model']= Loan::with('Archives')->find($this->route->id);
+
+        return view(config($this->confFile.".viewForm"))->with($this->data);
     }
 
     public function update(Request $request)
@@ -201,6 +262,24 @@ class FormsController extends Controller
         $porcentajeCuota = floatval($porcentajeCuota);
 
         $valCuota = $monto * ($porcentajeCuota / (1 - pow(1 + $porcentajeCuota,((-1) * $cuota))));
+
+
+
+        $tasaActual = Financing::find($request->financing_id)->porcent;
+        $tasaActual = floatval($tasaActual);
+
+        $tna = round(($tasaActual / 100) * 12,2);
+
+        // tasa efectiva anual
+        $tea = floatval((pow((1 + ($tasaActual/100)),(365/30)))-1);
+
+        // tasa efectiva mensual
+        $tem = floatval(($tea/12)*100);
+
+        // costo financiero total
+        $additionalCosts = AdditionalCost::all();
+
+        $cft = round(floatval((($monto * ($tasaActual / 100)) + $additionalCosts[0]->amount + ( $additionalCosts[1]->amount * 12) + ($additionalCosts[2]->amount * 12)) / $monto) * 100,2);
 
 
         $interesPagado = 0.0000;
@@ -228,7 +307,7 @@ class FormsController extends Controller
         // Fin de plan de pagos
 
 
-        $datosPrestamo = $this->request->only(['amount', 'financing_id', 'cbu', 'cft', 'tem', 'accreditation_type_id']);
+        $datosPrestamo = $this->request->only(['amount', 'financing_id', 'cbu', 'cft', 'tem', 'accreditation_type_id', 'dni', 'paycheck', 'contract', 'promissory_note']);
 
         $dues = Financing::find($datosPrestamo['financing_id']);
 
@@ -236,6 +315,12 @@ class FormsController extends Controller
             return redirect()->back()->withInput()->withErrors("La cantidad de cuotas ingresado no es correcta");
 
         $datosPrestamo['dues'] = $dues->due;
+
+        $datosPrestamo['tna'] = $tna;
+
+        $datosPrestamo['tem'] = $tem;
+
+        $datosPrestamo['cft'] = $cft;
 
         $model->update($datosPrestamo);
 
@@ -258,16 +343,94 @@ class FormsController extends Controller
         // Fin crear plan de pagos
 
 
+
+        // Archivos adjuntos
+        $user = $model->Client->id;
+
+        foreach(ArchiveType::all() as $archiveType):
+            if($request->hasFile($archiveType->slug)):
+                $file = $request->file($archiveType->slug);
+
+                $nombre = $user.'-'.$archiveType->slug.'.'.$file->extension();
+
+                if($model->Archives->where('archive_type_id',$archiveType->id)->count() > 0):
+                    $archiveType = $model->Archives->where('archive_type_id',$archiveType->id)->first();
+
+                    $archiveType->update(['route' => 'storage/files/'.$user.'/'.$nombre]);
+
+                    $model->Archives()->detach($archiveType->id);
+                    $model->Archives()->attach($archiveType->id);
+                else:
+                    $archiveType = Archive::create(['route' => 'storage/files/'.$user.'/'.$nombre, 'archive_type_id' => $archiveType->id]);
+                    $model->Archives()->attach($archiveType->id);
+                endif;
+
+                $file->storeAs('files/'.$user, $nombre);
+            endif;
+        endforeach;
+        // Fin archivos adjuntos
+
         return redirect()->route(config($this->confFile . ".viewIndex"))->with('ok', 'Registro Editado.');
     }
 
+    public function destroy()
+    {
+        $model = $this->repo->find($this->route->id);
+
+        if(!$model)
+            return redirect()->back()->withErrors('No se pudo borrar el registro');
+
+        if($model->Archives->count() > 1):
+            foreach($model->Archives as $archive):
+                $archive->delete();
+            endforeach;
+            Storage::deleteDirectory($model->Client->id);
+        endif;
+
+        $model->delete();
+
+        return redirect()->route(config($this->confFile.".viewIndex"))->with('ok','Registro Borrado.');
+    }
+
     public function paymentPlan(){
-        $this->data['paymentPlan'] = Loans::find($this->route->parameter('id'))->payments()->orderBy('due')->get();
+        $this->data['loan'] = Loan::with('Client')->find($this->route->parameter('id'));
+        $this->data['paymentPlan'] = $this->data['loan']->payments()->orderBy('due')->get();
 
 
         return view('forms.paymentPlan')->with($this->data);
     }
 
+
+    public function contratoPdf(PDF $PDF, Loan $loans){
+        $loan = $loans->with('Client','User', 'Payments','AccreditationType')->find($this->route->parameter('id'));
+
+        if(!$loan)
+            return redirect()->route('forms.index')->withErrors('El prestamo que busca no existe');
+
+
+        return $PDF->loadView('forms.pdf.contrato', [ "loan" => $loan ])->stream('contrato.pdf');
+
+    }
+
+    public function pagarePdf(PDF $PDF, Loan $loans){
+        $loan = $loans->with('Client','User', 'Payments','AccreditationType')->find($this->route->parameter('id'));
+
+        if(!$loan)
+            return redirect()->route('forms.index')->withErrors('El prestamo que busca no existe');
+
+        return $PDF->loadView('forms.pdf.pagare', [ "loan" => $loan ])->stream('pagare.pdf');
+
+    }
+
+    public function liquidacionPdf(PDF $PDF, Loan $loans){
+        $loan = $loans->with('Client','Payments')->find($this->route->parameter('id'));
+
+        if(!$loan)
+            return redirect()->route('forms.index')->withErrors('El prestamo que busca no existe');
+
+        return $PDF->loadView('forms.pdf.liquidacion-de-prestamo', [ "loan" => $loan ])->stream('liquidacion-de-prestamo.pdf');
+
+    }
 
 
 }

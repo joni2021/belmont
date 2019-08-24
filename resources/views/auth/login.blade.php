@@ -2,7 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-    <title>Prestamos</title>
+    <title>Belmont</title>
 
     <base href="{{asset('/')}}">
 

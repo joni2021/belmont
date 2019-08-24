@@ -68,20 +68,19 @@
 
                                     </a>
                                 </td>
-                                <td><b>{{ $client->dniType->type }}:</b> {{ $client->dni }}</td>
+                                <td><b>{{ $client->dniType->type }}:</b> {{ $client->formatted_dni }}</td>
                                 <td>{{ $client->address }}</td>
                                 <td>
                                     <ul>
-                                        <li><b>Tel:</b> {{ $client->phone }}</li>
-                                        <li><b>Cel:</b> {{ $client->cel }}</li>
+                                        <li><b>TEL:</b> {{ $client->phone }}</li>
+                                        <li><b>CEL:</b> {{ $client->cel }}</li>
                                     </ul>
                                 </td>
                                 <td class="text-right">
-                                    <div class="dropdown-primary dropdown open show">
-                                        <button class="btn btn-primary btn-mini dropdown-toggle waves-effect waves-light "
+                                    <div class="dropdown-default bg-transparent border-0 dropdown open show">
+                                        <button class="btn btn-light bg-transparent border-0 btn-mini dropdown-toggle waves-effect"
                                                 type="button" id="dropdown-7" data-toggle="dropdown"
-                                                aria-haspopup="true"
-                                                aria-expanded="true">Opciones
+                                                aria-haspopup="true" aria-expanded="true">Opciones
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdown-7"
                                              data-dropdown-in="fadeIn"

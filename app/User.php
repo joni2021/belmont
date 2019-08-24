@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Entities\Client;
+use App\Entities\Company;
 use App\Entities\DniType;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -18,7 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'last_name', 'dni', 'user', 'email', 'password',
+        'name', 'last_name', 'dni', 'user', 'email', 'password','company_id'
     ];
 
     /**
@@ -44,6 +45,10 @@ class User extends Authenticatable
         return $this->belongsToMany(Client::class);
     }
 
+    public function Company(){
+        return $this->belongsTo(Company::class);
+    }
+
     public function DniType(){
         return $this->belongsTo(DniType::class);
     }
@@ -62,6 +67,10 @@ class User extends Authenticatable
         endif;
 
         return $total;
+    }
+
+    public function getFormattedDniAttribute(){
+        return number_format($this->attributes['dni'],0,'.','.');
     }
 
     public function TotalLoansByClient($client){

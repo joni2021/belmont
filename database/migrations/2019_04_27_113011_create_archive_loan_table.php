@@ -32,6 +32,6 @@ class CreateArchiveLoanTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('archive_loan');
+        Schema::dropIfExists('archive_loans');
     }
 }

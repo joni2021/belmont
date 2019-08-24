@@ -18,14 +18,16 @@ class CreateClientsTable extends Migration
             $table->string('name');
             $table->string('last_name');
             $table->tinyInteger('dni_type_id',false,true);
-            $table->string('dni')->unique();
+            $table->string('dni')->unique()->index('dni');
+            $table->string('cuil')->unique()->index('cuil');
             $table->string('address');
             $table->string('city');
-            $table->string('province');
+            $table->tinyInteger('province',false,true);
             $table->string('phone')->nullable();
             $table->string('cp');
+            $table->string('ca')->nullable();
             $table->string('cel')->unique();
-            $table->string('cbu')->unique()->nullable();
+            $table->string('cbu')->unique()->nullable()->index('cbu');
 
             $table->string('job_name')->nullable();
             $table->string('job_address')->nullable();

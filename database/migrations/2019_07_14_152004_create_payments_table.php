@@ -19,6 +19,7 @@ class CreatePaymentsTable extends Migration
             $table->date('payment_date');
             $table->double('amount_payable',10,2)->unsigned();
             $table->double('amount_paid',10,2)->unsigned()->nullable();
+            $table->double('amount_owed',10,2)->unsigned()->nullable();
             $table->boolean('state')->default(0);
             $table->bigInteger('loans_id',false,true);
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Entities\AdditionalCost;
 use App\Entities\Client;
 use App\Entities\Payments;
 use function floatval;
@@ -10,6 +11,7 @@ use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\DB;
 use const null;
 use function response;
+use function round;
 
 class AjaxController extends Controller
 {
@@ -46,9 +48,22 @@ class AjaxController extends Controller
 
     public function payDue(){
 
-        $payment = Payments::find($this->request->params["id"]);
+        $payments = Payments::where('loans_id',$this->request->params["loan"]);
+        $payment = $payments->where('id',$this->request->params["id"])->first();
+
+        $owed = 0;
+
+        if(Payments::find(intval($this->request->params["id"] - 1))):
+            $owed = Payments::find(intval($this->request->params["id"] - 1))->amount_owed_original;
+        endif;
+
+        if(floatval($this->request->params["amount_paid"]) < ($payment->float_amount_payable + $owed))
+            $payment->amount_owed = ($payment->float_amount_payable + $owed) - floatval($this->request->params["amount_paid"]);
+
 
         $payment->amount_paid = floatval($this->request->params["amount_paid"]);
+
+
         $payment->state = 1;
 
         $payment->save();
@@ -61,10 +76,17 @@ class AjaxController extends Controller
         $payment = Payments::find($this->request->params["id"]);
 
         $payment->amount_paid = null;
+        $payment->amount_owed = null;
         $payment->state = 0;
 
         $payment->save();
 
         return response()->json('ok',200);
+    }
+
+    public function additionalCosts(){
+        $additionalCosts = AdditionalCost::all();
+
+        return response()->json($additionalCosts,200);
     }
 }

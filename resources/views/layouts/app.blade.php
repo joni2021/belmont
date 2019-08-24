@@ -2,7 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-    <title>Prestamos</title>
+    <title>Belmont</title>
 
     <base href="{{asset('/')}}">
 
@@ -114,6 +114,8 @@
             </div>
         </div>
     </div>
+
+    @yield('modal')
 </div>
 
 @include('layouts.js')
