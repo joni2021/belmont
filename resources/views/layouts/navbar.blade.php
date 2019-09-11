@@ -4,11 +4,11 @@
         <div class="navbar-wrapper">
 
             <div class="navbar-logo">
-                <a class="mobile-menu" id="mobile-collapse">
-                    <i class="feather icon-menu"></i>
-                </a>
-                <a class="text-center" href="{{ url('/') }}">
+                <a class="text-center d-block" href="{{ url('/') }}">
                     <h1 class="text-white belmont-title h5 pt-2 text-center">{{ Auth::user()->company->name }}</h1>
+                </a>
+                <a class="mobile-menu d-block" id="mobile-collapse">
+                    <i class="feather icon-menu"></i>
                 </a>
                 <a class="mobile-options">
                     <i class="feather icon-more-horizontal"></i>

@@ -7633,6 +7633,7 @@ table tbody .border-bottom-info td {
 
 .header-navbar .navbar-wrapper .navbar-logo {
     position: relative;
+    justify-content: space-around;
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
@@ -7660,7 +7661,7 @@ table tbody .border-bottom-info td {
 }
 
 .header-navbar .navbar-wrapper .navbar-logo .mobile-menu {
-    position: absolute;
+    /*position: absolute;*/
     right: 5px;
     top: calc(50% - 20px);
     border-radius: 50%;
@@ -25321,6 +25322,7 @@ body.dark #styleSelector .form-control {
 
 .belmont-title{
     font-family: 'Vollkorn SC', serif;
+    font-size: 1rem;
     /*font-family: 'Marcellus SC', serif;*/
 }
 
