@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="da2b9461-ef67-41cb-a467-f55dce82925a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/clients.php" afterPath="$PROJECT_DIR$/config/clients.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/css/component.css" afterPath="$PROJECT_DIR$/public/assets/css/component.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/css/style.css" afterPath="$PROJECT_DIR$/public/assets/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/layouts/navbar.blade.php" afterPath="$PROJECT_DIR$/resources/views/layouts/navbar.blade.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -88,8 +86,8 @@
       <file leaf-file-name="style.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/assets/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="362">
-              <caret line="7635" column="34" lean-forward="false" selection-start-line="7635" selection-start-column="34" selection-end-line="7635" selection-end-column="34" />
+            <state relative-caret-position="126">
+              <caret line="23631" column="5" lean-forward="true" selection-start-line="23631" selection-start-column="5" selection-end-line="23631" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -183,7 +181,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/resources/views/financings/index.blade.php" />
         <option value="$PROJECT_DIR$/app/Entities/Financing.php" />
         <option value="$PROJECT_DIR$/public/js/validations/financings.js" />
         <option value="$PROJECT_DIR$/database/migrations/2019_04_27_112923_create_loans_table.php" />
@@ -233,6 +230,7 @@
         <option value="$PROJECT_DIR$/public/js/calcular_cuotas.js" />
         <option value="$PROJECT_DIR$/config/clients.php" />
         <option value="$PROJECT_DIR$/resources/views/layouts/navbar.blade.php" />
+        <option value="$PROJECT_DIR$/public/assets/css/component.css" />
         <option value="$PROJECT_DIR$/public/assets/css/style.css" />
       </list>
     </option>
@@ -855,7 +853,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="383997000" />
+    <option name="totallyTimeSpent" value="385438000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -905,13 +903,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/views/forms/pdf/contrato.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="108" column="78" lean-forward="true" selection-start-line="108" selection-start-column="78" selection-end-line="108" selection-end-column="78" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Entities/AdditionalCost.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1299,10 +1290,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public/assets/css/component.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="728" column="23" lean-forward="false" selection-start-line="728" selection-start-column="23" selection-end-line="728" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public/assets/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="362">
-          <caret line="7635" column="34" lean-forward="false" selection-start-line="7635" selection-start-column="34" selection-end-line="7635" selection-end-column="34" />
+        <state relative-caret-position="126">
+          <caret line="23631" column="5" lean-forward="true" selection-start-line="23631" selection-start-column="5" selection-end-line="23631" selection-end-column="5" />
           <folding />
         </state>
       </provider>

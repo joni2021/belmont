@@ -23628,7 +23628,7 @@ span.value {
         font-size: 16px
     }
     .header-navbar .navbar-wrapper .navbar-logo {
-        display: inherit
+        /*display: inherit*/
     }
     .header-navbar .navbar-wrapper .navbar-logo a {
         display: inline-block
