@@ -12,22 +12,22 @@ class financingTableSeeder extends Seeder
     public function run()
     {
 
-        for($i = 1; $i < 13;$i++):
+        for($i = 1; $i < 14;$i++):
             DB::table("financing")->insert([
                [
                    "id"         => $i,
-                   "due"        => $i+1,
+                   "due"        => $i,
                    "porcent"    => 10.1,
                    "created_at" => date("Y-m-d H:i:s")
                ]
             ]);
         endfor;
 
-        for($i = 13; $i < 23;$i++):
+        for($i = 14; $i < 24;$i++):
             DB::table("financing")->insert([
                [
                    "id"         => $i,
-                   "due"        => $i+1,
+                   "due"        => $i,
                    "porcent"    => 9.1,
                    "created_at" => date("Y-m-d H:i:s")
                ]
@@ -36,28 +36,18 @@ class financingTableSeeder extends Seeder
 
         DB::table("financing")->insert([
             [
-                "id"         => 23,
+                "id"         => 24,
                 "due"        => 24,
                 "porcent"    => 7.95,
                 "created_at" => date("Y-m-d H:i:s")
             ]
         ]);
 
-        DB::table("financing")->insert([
-            [
-                "id"         => 24,
-                "due"        => 25,
-                "porcent"    => 8.1,
-                "created_at" => date("Y-m-d H:i:s")
-            ]
-        ]);
-
-
-        for($i = 25; $i < 30;$i++):
+        for($i = 25; $i < 31;$i++):
             DB::table("financing")->insert([
                 [
                     "id"         => $i,
-                    "due"        => $i+1,
+                    "due"        => $i,
                     "porcent"    => 8.1,
                     "created_at" => date("Y-m-d H:i:s")
                 ]
@@ -65,16 +55,7 @@ class financingTableSeeder extends Seeder
         endfor;
 
 
-        DB::table("financing")->insert([
-            [
-                "id"         => 30,
-                "due"        => 31,
-                "porcent"    => 7.1,
-                "created_at" => date("Y-m-d H:i:s")
-            ]
-        ]);
-
-        for($i = 31; $i < 35;$i++):
+        for($i = 31; $i < 36;$i++):
             DB::table("financing")->insert([
                 [
                     "id"         => $i,
@@ -87,7 +68,7 @@ class financingTableSeeder extends Seeder
 
         DB::table("financing")->insert([
             [
-                "id"         => 35,
+                "id"         => 36,
                 "due"        => 36,
                 "porcent"    => 6.42,
                 "created_at" => date("Y-m-d H:i:s")

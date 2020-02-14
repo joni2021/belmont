@@ -12,19 +12,16 @@ $(document).ready(function () {
         var dues = $("#dues");
         cuota = parseFloat($(dues).find("option:selected").data("due"));
         // tasa = parseFloat(ev.currentTarget.selectedOptions[0].dataset.porcent);
-        tasa = parseFloat($("#dues>option:first-child").data("porcent"));
+        tasa = parseFloat($("#dues>option:selected").data("porcent"));
         monto = parseFloat($('#amount').val());
-
         if (monto == 'undefined' || parseFloat(monto) < 1 || isNaN(monto)) {
             return false;
         }
-
-
-        porcentajeCuota = (tasa / 100) / 12;
-        porcentajeCuota = parseFloat(porcentajeCuota);
-
-        var valCuota = monto * (porcentajeCuota / (1 - Math.pow(1 + porcentajeCuota, ((-1) * cuota))))
-        // var valCuota = monto * (( porcentajeCuota * (Math.pow( 1 + porcentajeCuota, cuota ))) / (( (Math.pow( 1 + porcentajeCuota, cuota )) - 1 )));
+        porcentajeCuota = (tasa / 100);
+        porcentajeCuota = parseFloat(porcentajeCuota.toFixed(3));
+        var valCuota = monto * (( porcentajeCuota * (Math.pow( 1 + porcentajeCuota, cuota ))) / (( (Math.pow( 1 + porcentajeCuota, cuota )) - 1 )));
+        // $("#tasa").val(tasa);
+        $("#dues_amount").val(parseFloat(valCuota).toFixed(2));
 
         var tasaActual = parseFloat($("#dues>option:selected").data("porcent"));
         $("#tasa").val((tasaActual * 12).toFixed(2));
@@ -41,16 +38,16 @@ $(document).ready(function () {
         var cft = 0;
 
         axios.get('ajax/additional-costs')
-        .then(function (response) {
-            var additionalCosts = response.data;
+            .then(function (response) {
+                var additionalCosts = response.data;
 
-            var cft = (parseFloat(((monto * tasaActual) + additionalCosts[0].amount + ( additionalCosts[1].amount * 12) + (additionalCosts[2].amount * 12)) / monto)).toFixed(2) ;
+                var cft = (parseFloat(((monto * tasaActual) + additionalCosts[0].amount + ( additionalCosts[1].amount * 12) + (additionalCosts[2].amount * 12)) / monto)).toFixed(2) ;
 
-            $("#cft").val(cft);
-        })
-        .catch(function (e) {
-            console.log(e);
-        })
+                $("#cft").val(cft);
+            })
+            .catch(function (e) {
+                console.log(e);
+            })
 
 
         $("#dues_amount").val(parseFloat(valCuota).toFixed(2));
@@ -69,12 +66,13 @@ $(document).ready(function () {
 
         var total = 0;
 
+
         for (var i = 0; i < cuota; i++) {
-            if (i < 2) {
-                var tasa = $("#dues option[value=" + 2 + "]").data("porcent");
-            } else {
-                var tasa = $("#dues option[value=" + i + "]").data("porcent");
-            }
+            // if (i < 2) {
+            //     var tasa = $("#dues option[value=" + 2 + "]").data("porcent");
+            // } else {
+                var tasa = $("#dues option[value=" + cuota + "]").data("porcent");
+            // }
 
             interesPagado = valorDeudaASaldar * porcentajeCuota;
             amortizacionPagado = valCuota - interesPagado;
@@ -86,7 +84,9 @@ $(document).ready(function () {
             tabla += "<td>$" + parseFloat(interesPagado.toFixed(2)) + "</td>";
             tabla += "<td>$" + parseFloat(amortizacionPagado.toFixed(2)) + "</td>";
             tabla += "<td>$" + parseFloat(valorDeudaASaldar.toFixed(2)) + "</td>";
-            tabla += "<td>$" + (parseFloat(interesPagado.toFixed(2)) + parseFloat(amortizacionPagado.toFixed(2))).toFixed(2) + "</td></tr>";
+            // tabla += "<td>$" + (parseFloat(interesPagado.toFixed(2)) + parseFloat(amortizacionPagado.toFixed(2))).toFixed(2) + "</td></tr>";
+
+            tabla += "<td>$" + calcular_cuota(cuota).toFixed(2).toLocaleString() + "</td></tr>";
 
             // pagoTotal += parseFloat(calcular_cuota(ind)).toFixed(2) //+ parseFloat(pagoTotal) ;
             total += parseFloat(interesPagado.toFixed(2)) + parseFloat(amortizacionPagado.toFixed(2))
@@ -110,9 +110,9 @@ $(document).ready(function () {
 
     function calcular_cuota(cuota) {
 
-        var valor = monto * (porcentajeCuota / (1 - Math.pow(1 + porcentajeCuota, ((-1) * cuota))))
+        // var valor = monto * (porcentajeCuota / (1 - Math.pow(1 + porcentajeCuota, ((-1) * cuota))))
 
-        // var valor =  monto * (( porcentajeCuota * (Math.pow( 1 + porcentajeCuota, cuota ))) / (( (Math.pow( 1 + porcentajeCuota, cuota )) - 1 )))
+        var valor =  monto * (( porcentajeCuota * (Math.pow( 1 + porcentajeCuota, cuota ))) / (( (Math.pow( 1 + porcentajeCuota, cuota )) - 1 )))
 
         return parseFloat(valor);
     }

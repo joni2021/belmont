@@ -24,11 +24,14 @@ class ClientsTableSeeder extends Seeder
                 "address"  => $faker->address,
                 "city"  => $faker->city,
                 "province"  => rand(1,22),
-                "phone"  => $faker->phoneNumber,
+                "phone"  => rand(1500000000,1599999999),
                 "cp"  => 1322,
                 "ca"  => rand(1000,2222),
-                "cel"  => $faker->phoneNumber,
+                "cel"  => rand(1500000000,1599999999),
+                "job_address"  => $faker->address,
                 "job_name"  => $faker->company,
+                "job_city"  => $faker->city,
+                "job_province"  => rand(1,22),
                 "created_at"  => date("Y-m-d H:i:s")
             ]);
         endfor;
